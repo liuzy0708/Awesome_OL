@@ -17,9 +17,9 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 | Strategy          | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| Random Sampling (RS)  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. |  NA      |    NA    | NA | NA
-| Uncertainty Sampling with Fixed Threshold (US_fix)  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | NA      |   NA     | NA | NA
-| Uncertainty Sampling with Variable Threshold (US_var)  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | NA       |  NA   | NA | NA
+| RS  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. |  NA      |    NA    | NA | NA
+| US_fix  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | NA      |   NA     | NA | NA
+| US_var  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | NA       |  NA   | NA | NA
 
 ### OSSL Classifiers:
 
