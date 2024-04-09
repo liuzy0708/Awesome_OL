@@ -71,21 +71,6 @@ def get_stream(name):
 
 def get_pt(stream, n_pt, n_class):
     data, labels = stream.next_sample(n_pt)
-    # X_pt = []
-    # y_pt = []
-    #
-    # for i in range(n_class):
-    #     indices_with_label_i = np.where(labels == i)[0][:n_pt]
-    #     selected_data_label_i = data[indices_with_label_i]
-    #     selected_labels_i = labels[indices_with_label_i]
-    #
-    #     X_pt.append(selected_data_label_i)
-    #     y_pt.append(selected_labels_i)
-    #
-    # X_pt = np.concatenate(X_pt, axis=0)
-    # y_pt = np.concatenate(y_pt, axis=0)
-    #
-    # return X_pt, y_pt
     return data, labels
 
 class para_init:
