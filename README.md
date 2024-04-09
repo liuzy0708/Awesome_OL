@@ -27,9 +27,9 @@ Discover online semi-supervised learning classifiers in the **OSSL_strategies** 
 
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OSSBLS            |  | [Paper]([11])       |   NA    | 2021 | IEEE Transactions on Industrial Informatics
-| ISSBLS            |   | [Paper]([11])       |  NA     | 2021 |IEEE Transactions on Industrial Informatics
-| SOSELM            |  | [Paper]([12])       |    [link](https://github.com/scikit-multiflow/scikit-multiflow)  | 2016 |Neurocomputing
+| OSSBLS            | An online semi-supervised BLS method with a loss function incorporating static anchor points. | [Paper]([11])       |   NA    | 2021 | IEEE Transactions on Industrial Informatics
+| ISSBLS            | An online semi-supervised BLS method that ignores the relationship between historical data.  | [Paper]([11])       |  NA     | 2021 |IEEE Transactions on Industrial Informatics
+| SOSELM            | A classic online semi-supervised learning method based on extreme learning machines. | [Paper]([12])       |    [Link](https://github.com/scikit-multiflow/scikit-multiflow)  | 2016 |Neurocomputing
 
 ### Supervised Classifiers:
 
@@ -37,12 +37,12 @@ Find various online learning classifiers in the **classifer** folder:
 
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OLI2DS            |  | [Paper]([6])       |       | 2023 | IEEE Transactions on Knowledge and Data Engineering
-| DES               | | [Paper]([7])       |      | 2022 | IEEE Transactions on Neural Networks and Learning Systems
-| BLS-W             | | [Paper]([2])       |      |   2022 | IEEE Transactions on Neural Networks and Learning Systems
-| ACDWM             | | [Paper]([8])       |       | 2020 | IEEE Transactions on Neural Networks and Learning Systems
-| SRP               |  | [Paper]([9])       |      | 2019 | ICDM
-| ARF               |  | [Paper]([10])       |  | 2017 | Machien Learning
+| OLI2DS            | An online learning algorithm for imbalanced data streams that tackles dynamically evolving feature spaces and imbalances and empirical risk minimization using dynamic cost strategies. | [Paper]([6])       |   [Link](https://github.com/youdianlong/OLI2DS)    | 2023 | IEEE Transactions on Knowledge and Data Engineering
+| DES               | An online ensemble learning method designed to adapt to data drift in streams with class imbalance, employing an improved Synthetic Minority Oversampling TEchnique (SMOTE) concept. | [Paper]([7])       |   [Link](https://github.com/Jesen-BT/DES-ICD)   | 2022 | IEEE Transactions on Neural Networks and Learning Systems
+| BLS-W             | An online learning method based on the standard BLS architecture, utilizing the Sherman–Morrison Woodbury formula for incremental updates. | [Paper]([2])       |   [Link](https://github.com/liuzy0708/DMI-LS-Demo)   |   2022 | IEEE Transactions on Neural Networks and Learning Systems
+| ACDWM             | An adaptive chunk-based incremental learning method is proposed for handling imbalanced streaming data with concept drift, utilizing statistical hypothesis tests to dynamically select chunk sizes for assessing classifier stability. | [Paper](https://ieeexplore.ieee.org/document/8924892)       |   [Link](https://github.com/jasonyanglu/ACDWM)    | 2020 | IEEE Transactions on Neural Networks and Learning Systems
+| ARF               | An advanced online ensemble learning method that addresses changing data streams by integrating effective resampling methods and adaptive operators with ADWIN. | [Paper]([10])       |  [Link](https://github.com/scikit-multiflow/scikit-multiflow) | 2017 | Machien Learning
+| SRP               |  | [Paper]([9])       |   [Link](https://github.com/scikit-multiflow/scikit-multiflow)   | 2019 | ICDM
 
 The following details are summarized for such implemented methods:
 
