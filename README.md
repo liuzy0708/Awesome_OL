@@ -10,44 +10,60 @@ Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies
 
 Explore a variety of online active learning strategies located in the **OAL_strategies** folder:
 
-| Strategy          | Description                                                                                                           | Reference            | Code Source        |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| ROALE-DI          | Proposed in the 2023 IEEE-TKDE.  | [Paper](link)       | [Link](link)       |
-| CogDQS            | Proposed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| DSA-AI            | Proposed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| MTSGQS            | Proposed in the 2023 IEEE-TITS. | [Paper](link)       | [Link](link)       |
+| Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| ROALE-DI          |   | [Paper]([1])     | [Link](link)       |  2023 | IEEE TKDE
+| CogDQS            |  | [Paper]([3])       | [Link](link)       | 2023 | IEEE-TNNLS
+| DSA-AI            | | [Paper]([2])       | [Link](link)       | 2023 | IEEE-TNNLS
+| MTSGQS            | | [Paper]([4])       | [Link](link)       | 2023 | IEEE-TITS
 
 ### Baseline Strategies:
 
-| Strategy          | Description                                                                                                           | Reference            | Code Source       |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| Random Sampling (RS)  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. | [Paper](link)       | [Link](link)       |
-| Uncertainty Sampling with Fixed Threshold (US_fix)  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper](link)       | [Link](link)       |
-| Uncertainty Sampling with Variable Threshold (US_var)  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | [Paper](link)       | [Link](link)       |
+| Strategy          | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| Random Sampling (RS)  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. |  NA      | [Link](link)       |
+| Uncertainty Sampling with Fixed Threshold (US_fix)  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper]([5])       | [Link](link)       |
+| Uncertainty Sampling with Variable Threshold (US_var)  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | [Paper]([5])       | [Link](link)       |
 
 ### OSSL Classifiers:
 
 Discover online semi-supervised learning classifiers in the **OSSL_strategies** folder:
 
-| Classifier        | Description                                                                                                           | Reference            | Code Source        |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| OSSBLS            |  Proposed in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
-| ISSBLS            |  Proposed in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
-| SOSELM            | Proposed in the 2016 Neurocomputing. | [Paper](link)       | [Link](link)       |
+| Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| OSSBLS            |  | [Paper]([11])       | [Link](link)       | 2021 | IEEE Transactions on Industrial Informatics
+| ISSBLS            |   | [Paper]([11])       | [Link](link)       | 2021 |IEEE Transactions on Industrial Informatics
+| SOSELM            |  | [Paper]([12])       | [Link](link)       | 2016 |Neurocomputing
 
 ### Supervised Classifiers:
 
 Find various online learning classifiers in the **classifer** folder:
 
-| Classifier        | Description                                                                                                           | Reference            | Code Source        |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| OLI2DS            | Proposed in the 2023 IEEE-TKDE. | [Paper](link)       | [Link](link)       |
-| DES               | Proposed in the 2022 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| BLS-W             | Proposed in the 2021 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| ACDWM             | Proposed in the 2020 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| SRP               | Proposed in the 2019 ICDM. | [Paper](link)       | [Link](link)       |
-| ARF               | Proposed in the 2017 Machine Learning. | [Paper](link)       | [Link](link)       |
+| Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| OLI2DS            |  | [Paper]([6])       | [Link](link)       | 2023 | IEEE Transactions on Knowledge and Data Engineering
+| DES               | | [Paper]([7])       | [Link](link)       | 2022 | IEEE Transactions on Neural Networks and Learning Systems
+| BLS-W             | | [Paper]([2])       | [Link](link)       |   2022 | IEEE Transactions on Neural Networks and Learning Systems
+| ACDWM             | | [Paper]([8])       | [Link](link)       | 2020 | IEEE Transactions on Neural Networks and Learning Systems
+| SRP               |  | [Paper]([9])       | [Link](link)       | 2019 | ICDM
+| ARF               |  | [Paper]([10])       | [Link](link)       | 2017 | Machien Learning
 
+The following details are summarized for such implemented methods:
+
+| Method  | OAL Strategy | Classifier | Binary Classification | Multi-class Classification | Concept Drift Adaptation | Ensemble |
+|---------|:------------:|:----------:|:-------:|:-----------:|:------------------------:|:--------:|
+| ROALE-DI |      ✅       |     ✅      |    ✅    |      ✅      |            ✅             |    ✅     |
+| CogDQS  |      ✅       |            |    ✅     |      ✅      |              ✅            |          |
+| DSA-AI  |      ✅       |            |     ✅    |      ✅      |             ✅             |          |
+| MTSGQS  |      ✅       |            |    ✅     |      ✅      |            ✅              |          |
+| RS      |      ✅       |            |     ✅    |      ✅      |                          |          |
+| US-fix  |      ✅       |            |    ✅     |      ✅      |                          |          |
+| US-var  |      ✅       |            |     ✅    |      ✅      |                          |          |
+| OLI2DS  |              |     ✅       |    ✅     |             |               ✅           |          |
+| DES   |              |       ✅     |    ✅     |             |              ✅            |    ✅      |
+| ACDWM   |              |     ✅       |    ✅     |             |              ✅            |    ✅      |
+| SRP  |              |        ✅    |     ✅    |      ✅      |               ✅           |     ✅     |
+| ARF  |              |       ✅     |     ✅    |      ✅      |              ✅            |     ✅     |
 
 ### Datasets:
 
@@ -65,54 +81,34 @@ To set up the required environment, run the following command:
 conda env create -f env.yml
 ```
 
-[//]: # (## Prerequisites)
+## Prerequisites
 
-[//]: # ()
-[//]: # (| Package                    | Version    | Package                    | Version          | Package           | Version          |)
+To use this library, make sure you have the following packages installed:
 
-[//]: # (|-------------------------|------------|-------------------------|-----------------|-------------------|-----------------|)
+| Package                  | Version       | Package                  | Version       | Package                  | Version       |
+|--------------------------|---------------|--------------------------|---------------|--------------------------|---------------|
+| brotlipy                 | 0.7.0         | m2w64-gmp                | 6.1.0         | python                   | 3.7.1         |
+| ca-certificates          | 2023.08.22    | m2w64-libwinpthread-git  | 5.0.0.4634.697f757 | python-dateutil    | 2.8.2         |
+| certifi                  | 2022.12.7     | matplotlib-base          | 3.2.2         | python_abi               | 3.7           |
+| cffi                     | 1.15.1        | mkl                      | 2020.4        | pytz                     | 2023.3.post1 |
+| charset-normalizer       | 2.0.4         | msys2-conda-epoch        | 20160418      | qdldl-python             | 0.1.5         |
+| cryptography             | 39.0.1        | numpy                    | 1.21.6        | requests                 | 2.28.1        |
+| cvxpy                    | 1.2.1         | openssl                  | 1.1.1w       | scikit-learn             | 0.22.1        |
+| cvxpy-base               | 1.2.1         | osqp                     | 0.6.2.post0  | scikit-multiflow         | 0.5.3         |
+| cycler                   | 0.11.0        | pandas                   | 1.2.3         | scipy                    | 1.7.3         |
+| ecos                     | 2.0.10        | pip                      | 22.3.1        | scs                      | 3.2.0         |
+| flit-core                | 3.6.0         | prettytable              | 3.5.0         | setuptools               | 59.8.0        |
+| freetype                 | 2.10.4        | pycparser                | 2.21          | six                      | 1.16.0        |
+| idna                     | 3.4           | pyopenssl                | 23.0.0        | sortedcontainers         | 2.4.0         |
+| importlib-metadata       | 4.11.3        | pyparsing                | 3.1.1         | tornado                  | 6.2           |
+| intel-openmp             | 2023.2.0      | pysocks                  | 1.7.1         | typing_extensions        | 4.4.0         |
+| joblib                   | 1.3.2         | python                   | 3.7.1         | urllib3                  | 1.26.14       |
+| kiwisolver               | 1.4.4         | python-dateutil          | 2.8.2         | vc                       | 14.2          |
+| libblas                  | 3.9.0         | python_abi               | 3.7           | vs2015_runtime           | 14.27.29016   |
+| libcblas                 | 3.9.0         | pytz                     | 2023.3.post1 | wcwidth                  | 0.2.5         |
+| liblapack                | 3.9.0         | qdldl-python             | 0.1.5         | wheel                    | 0.38.4        |
+| libpng                   | 1.6.39        | requests                 | 2.28.1        | win_inet_pton            | 1.1.0         |
 
-[//]: # (| brotlipy                | 0.7.0      | m2w64-gmp               | 6.1.0           | python            | 3.7.1           |)
-
-[//]: # (| ca-certificates         | 2023.08.22 | m2w64-libwinpthread-git | 5.0.0.4634.697f757 | python-dateutil   | 2.8.2           |)
-
-[//]: # (| certifi                 | 2022.12.7  | matplotlib-base         | 3.2.2           | python_abi        | 3.7             |)
-
-[//]: # (| cffi                    | 1.15.1     | mkl                     | 2020.4          | pytz              | 2023.3.post1    |)
-
-[//]: # (| charset-normalizer      | 2.0.4      | msys2-conda-epoch       | 20160418        | qdldl-python      | 0.1.5           |)
-
-[//]: # (| cryptography            | 39.0.1     | numpy                   | 1.21.6          | requests          | 2.28.1          |)
-
-[//]: # (| cvxpy                   | 1.2.1      | openssl                 | 1.1.1w          | scikit-learn      | 0.22.1          |)
-
-[//]: # (| cvxpy-base              | 1.2.1      | osqp                    | 0.6.2.post0     | scikit-multiflow  | 0.5.3           |)
-
-[//]: # (| cycler                  | 0.11.0     | pandas                  | 1.2.3           | scipy             | 1.7.3           |)
-
-[//]: # (| ecos                    | 2.0.10     | pip                     | 22.3.1          | scs               | 3.2.0           |)
-
-[//]: # (| flit-core               | 3.6.0      | prettytable             | 3.5.0           | setuptools        | 59.8.0          |)
-
-[//]: # (| freetype                | 2.10.4     | pycparser               | 2.21            | six               | 1.16.0          |)
-
-[//]: # (| idna                    | 3.4        | pyopenssl               | 23.0.0          | sortedcontainers  | 2.4.0           |)
-
-[//]: # (| importlib-metadata      | 4.11.3     | pyparsing               | 3.1.1           | tornado           | 6.2             |)
-
-[//]: # (| intel-openmp            | 2023.2.0   | pysocks                 | 1.7.1           | typing_extensions | 4.4.0           |)
-
-[//]: # (| joblib                  | 1.3.2      | python                  | 3.7.1           | urllib3           | 1.26.14         |)
-
-[//]: # (| kiwisolver              | 1.4.4      | python-dateutil         | 2.8.2           | vc                | 14.2            |)
-
-[//]: # (| libblas                 | 3.9.0      | python_abi              | 3.7             | vs2015_runtime    | 14.27.29016     |)
-
-[//]: # (| libcblas                | 3.9.0      | pytz                    | 2023.3.post1    | wcwidth           | 0.2.5           |)
-
-[//]: # (| liblapack               | 3.9.0      | qdldl-python            | 0.1.5           | wheel             | 0.38.4          |)
-
-[//]: # (| libpng                  | 1.6.39     | requests                | 2.28.1          | win_inet_pton     | 1.1.0           |)
 
 ## References:
 
@@ -120,6 +116,21 @@ Explore related resources and inspiration at:
 
 - [GitHub - deep-active-learning](https://github.com/ej0cl6/deep-active-learning)
 
+The referenced papers are:
+
+- [1] H. Zhang, W. Liu and Q. Liu, "Reinforcement Online Active Learning Ensemble for Drifting Imbalanced Data Streams," in <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 34, no. 8, pp. 3971-3983, 1 Aug. 2022.
+- [2] Z. Liu and X. He, "Dynamic Submodular-Based Learning Strategy in Imbalanced Drifting Streams for Real-Time Safety Assessment in Nonstationary Environments," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 2023.
+- [3] S. Liu et al., "Online Active Learning for Drifting Data Streams," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, vol. 34, no. 1, pp. 186-200, Jan. 2023.
+- [4] Z. Liu and X. He, "Real-Time Safety Assessment for Dynamic Systems With Limited Memory and Annotations," in <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 24, no. 9, pp. 10076-10086, Sept. 2023.
+- [5] I. Žliobaitė, A. Bifet, B. Pfahringer and G. Holmes, "Active Learning With Drifting Streaming Data," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, vol. 25, no. 1, pp. 27-39, Jan. 2014.
+- [6] D. You et al., "Online Learning From Incomplete and Imbalanced Data Streams," in <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 35, no. 10, pp. 10650-10665, 1 Oct. 2023.
+- [7] B. Jiao, Y. Guo, D. Gong and Q. Chen, "Dynamic Ensemble Selection for Imbalanced Data Streams With Concept Drift," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 2022.
+- [8] Y. Lu, Y. -M. Cheung and Y. Yan Tang, "Adaptive Chunk-Based Dynamic Weighted Majority for Imbalanced Data Streams With Concept Drift," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, vol. 31, no. 8, pp. 2764-2778, Aug. 2020.
+- [9] H. M. Gomes, J. Read and A. Bifet, "Streaming Random Patches for Evolving Data Stream Classification," <em>2019 IEEE International Conference on Data Mining</em> (ICDM), Beijing, China, 2019, pp. 240-249.
+- [10] H. M. Gomes, et al. "Adaptive random forests for evolving data stream classification." in <em>Machine Learning</em> vol. 106, pp. 1469-1495, 2017.
+- [11] X. Pu and C. Li, "Online Semisupervised Broad Learning System for Industrial Fault Diagnosis," in <em>IEEE Transactions on Industrial Informatics</em>, vol. 17, no. 10, pp. 6644-6654, Oct. 2021.
+- [12] X. Jia, et al. "A semi-supervised online sequential extreme learning machine method." in <em>Neurocomputing</em> vol. 174, pp. 168-178, 2016.
+- 
 ---
 
 ## Note
