@@ -5,44 +5,54 @@ Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies
 ### OAL Strategies:
 
 Explore a variety of online active learning strategies located in the **OAL_strategies** folder:
-
+#### Recent Progress:
 | Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| ROALE-DI          |  A reinforcement online active learning ensemble for drifting imbalanced data streams, which combines uncertainty and imbalance strategies to evaluate sample value. | [Paper]([1])     |   [Link](https://github.com/saferhand/ROALE-DI)    |  2023 | IEEE Transactions on Knowledge and Data Engineering
-| CogDQS            | A dual-query strategy using Ebbinghaus’s law of human memory cognition, enabling experts to annotate the most representative samples. It employs a fixed uncertainty strategy for auxiliary judgment. | [Paper]([3])       |    NA   | 2023 | IEEE Transactions on Neural Networks and Learning Systems
-| DSA-AI            |  A dynamic submodular-based learning strategy with activation interval for imbalanced drifting streams, which aims to address the challenges posed by concept drifts in nonstationary environments.| [Paper]([2])       |   [Link](https://github.com/liuzy0708/DSLS-Demo)    | 2023 | IEEE Transactions on Neural Networks and Learning Systems
-| MTSGQS            | A memory-triggered submodularity-guided query strategy that evaluates sample value through residual analysis and limited retraining, effectively addressing imbalanced data stream issues. | [Paper]([4])       |  NA     | 2023 | IEEE Transactions on Intelligent Transportation Systems
+| ROALE-DI          |  A reinforcement online active learning ensemble for drifting imbalanced data streams, which combines uncertainty and imbalance strategies to evaluate sample value. | [Paper](https://ieeexplore.ieee.org/abstract/document/9204849)     |   [Link](https://github.com/saferhand/ROALE-DI)    |  2023 | IEEE Transactions on Knowledge and Data Engineering
+| CogDQS            | A dual-query strategy using Ebbinghaus’s law of human memory cognition, enabling experts to annotate the most representative samples. It employs a fixed uncertainty strategy for auxiliary judgment. | [Paper](https://ieeexplore.ieee.org/abstract/document/9492291)      |    NA   | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| DSA-AI            |  A dynamic submodular-based learning strategy with activation interval for imbalanced drifting streams, which aims to address the challenges posed by concept drifts in nonstationary environments.| [Paper](https://ieeexplore.ieee.org/abstract/document/10195233/)     |   [Link](https://github.com/liuzy0708/DSLS-Demo)    | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| MTSGQS            | A memory-triggered submodularity-guided query strategy that evaluates sample value through residual analysis and limited retraining, effectively addressing imbalanced data stream issues. | [Paper](https://ieeexplore.ieee.org/abstract/document/10105849)       |  NA     | 2023 | IEEE Transactions on Intelligent Transportation Systems
 
-### Baseline Strategies:
+#### Baseline Strategies:
 
 | Strategy          | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
 | RS  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. |  NA      |    NA    | NA | NA
-| US_fix  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | NA      |   NA     | NA | NA
-| US_var  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | NA       |  NA   | NA | NA
+| US_fix  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper](https://ieeexplore.ieee.org/abstract/document/6414645)      |   NA     | 2014 | IEEE Transactions on Neural Networks and Learning Systems
+| US_var  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | [Paper](https://ieeexplore.ieee.org/abstract/document/6414645)      |  NA   | 2014 | IEEE Transactions on Neural Networks and Learning Systems
 
 ### OSSL Classifiers:
 
 Discover online semi-supervised learning classifiers in the **OSSL_strategies** folder:
-
+#### Recent Progress:
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OSSBLS            | An online semi-supervised BLS method with a loss function incorporating static anchor points. | [Paper]([11])       |   NA    | 2021 | IEEE Transactions on Industrial Informatics
-| ISSBLS            | An online semi-supervised BLS method that ignores the relationship between historical data.  | [Paper]([11])       |  NA     | 2021 |IEEE Transactions on Industrial Informatics
-| SOSELM            | A classic online semi-supervised learning method based on extreme learning machines. | [Paper]([12])       |    [Link](https://github.com/scikit-multiflow/scikit-multiflow)  | 2016 |Neurocomputing
+| OSSBLS            | An online semi-supervised BLS method with a loss function incorporating static anchor points. | [Paper](https://ieeexplore.ieee.org/abstract/document/9314231)       |   NA    | 2021 | IEEE Transactions on Industrial Informatics
+| ISSBLS            | An online semi-supervised BLS method that ignores the relationship between historical data.  | [Paper](https://ieeexplore.ieee.org/abstract/document/9314231)       |  NA     | 2021 |IEEE Transactions on Industrial Informatics
+
+#### Baseline Strategies:
+| Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| SOSELM            | A classic online semi-supervised learning method based on extreme learning machines. | [Paper](https://www.sciencedirect.com/science/article/pii/S0925231215011212)       |    NA  | 2016 |Neurocomputing
 
 ### Supervised Classifiers:
 
 Find various online learning classifiers in the **classifer** folder:
-
+#### Baseline Strategies:
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OLI2DS            | An online learning algorithm for imbalanced data streams that tackles dynamically evolving feature spaces and imbalances and empirical risk minimization using dynamic cost strategies. | [Paper]([6])       |   [Link](https://github.com/youdianlong/OLI2DS)    | 2023 | IEEE Transactions on Knowledge and Data Engineering
-| DES               | An online ensemble learning method designed to adapt to data drift in streams with class imbalance, employing an improved Synthetic Minority Oversampling TEchnique (SMOTE) concept. | [Paper]([7])       |   [Link](https://github.com/Jesen-BT/DES-ICD)   | 2022 | IEEE Transactions on Neural Networks and Learning Systems
-| BLS-W             | An online learning method based on the standard BLS architecture, utilizing the Sherman–Morrison Woodbury formula for incremental updates. | [Paper]([2])       |   [Link](https://github.com/liuzy0708/DMI-LS-Demo)   |   2022 | IEEE Transactions on Neural Networks and Learning Systems
+| OLI2DS            | An online learning algorithm for imbalanced data streams that tackles dynamically evolving feature spaces and imbalances and empirical risk minimization using dynamic cost strategies. | [Paper](https://ieeexplore.ieee.org/abstract/document/10058539)     |   [Link](https://github.com/youdianlong/OLI2DS)    | 2023 | IEEE Transactions on Knowledge and Data Engineering
+| DES               | An online ensemble learning method designed to adapt to data drift in streams with class imbalance, employing an improved Synthetic Minority Oversampling TEchnique (SMOTE) concept. | [Paper](https://ieeexplore.ieee.org/abstract/document/9802893)      |   [Link](https://github.com/Jesen-BT/DES-ICD)   | 2022 | IEEE Transactions on Neural Networks and Learning Systems
+| BLS-W             | An online learning method based on the standard BLS architecture, utilizing the Sherman–Morrison Woodbury formula for incremental updates. | [Paper](https://ieeexplore.ieee.org/abstract/document/10375819)      |   [Link](https://github.com/liuzy0708/DMI-LS-Demo)   |   2022 | IEEE Transactions on Neural Networks and Learning Systems
 | ACDWM             | An adaptive chunk-based incremental learning method is proposed for handling imbalanced streaming data with concept drift, utilizing statistical hypothesis tests to dynamically select chunk sizes for assessing classifier stability. | [Paper](https://ieeexplore.ieee.org/document/8924892)       |   [Link](https://github.com/jasonyanglu/ACDWM)    | 2020 | IEEE Transactions on Neural Networks and Learning Systems
-| ARF               | An advanced online ensemble learning method that addresses changing data streams by integrating effective resampling methods and adaptive operators with ADWIN. | [Paper]([10])       |  [Link](https://github.com/scikit-multiflow/scikit-multiflow) | 2017 | Machien Learning
-| SRP               |  | [Paper]([9])       |   [Link](https://github.com/scikit-multiflow/scikit-multiflow)   | 2019 | ICDM
+| ARF               | An advanced online ensemble learning method that addresses changing data streams by integrating effective resampling methods and adaptive operators with ADWIN. | [Paper](https://link.springer.com/article/10.1007/s10994-017-5642-8)       |  [Link](https://github.com/scikit-multiflow/scikit-multiflow) | 2017 | Machine Learning
+| SRP               | An ensemble method specially adapted to stream classification which combines random subspaces and online bagging. | [Paper](https://ieeexplore.ieee.org/document/8970784)       |   [Link](https://github.com/scikit-multiflow/scikit-multiflow)   | 2019 | ICDM
+
+#### Baseline Strategies:
+| Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| OSELM               | An online sequential extreme learning machine model, which tries to iteratively update with the structure of extreme learning machines without the drift detection and adaption technique. | [Paper](https://ieeexplore.ieee.org/abstract/document/4012031)       |   [Link](https://github.com/leferrad/pyoselm)   | 2006 | IEEE Transactions on Neural Networks
+
 
 The following details are summarized for such implemented methods:
 
@@ -80,62 +90,37 @@ The specific implementations are encapsulated into a unified form. Further techn
 
 ## Environment Setup:
 
+Before using this library, please ensure that you have the following essential packages and their corresponding versions installed.
 
+| Package       | Version       |
+|---------------|---------------|
+| numpy         | 1.21.6        |
+| matplotlib    | 3.2.2         |
+| scikit-learn  | 0.22.1        |
+| scikit-multiflow | 0.5.3       |
+| pandas        | 1.2.3         |
+| scipy         | 1.7.3         |
+| six           | 1.16.0        |
+| requests      | 2.28.1        |
+| python-dateutil | 2.8.2       |
+| pytz          | 2023.3.post1 |
+| setuptools    | 59.8.0        |
+| urllib3       | 1.26.14       |
+| wheel         | 0.38.4        |
 
-To set up the required environment, run the following command:
+Alternatively, for your convenience, you can set up the required environment by running the following command:
 
 ```
 conda env create -f env.yml
 ```
 
-## Prerequisites
-
-To use this library, make sure you have the following packages installed:
-
-| Package                  | Version       | Package                  | Version       | Package                  | Version       |
-|--------------------------|---------------|--------------------------|---------------|--------------------------|---------------|
-| brotlipy                 | 0.7.0         | m2w64-gmp                | 6.1.0         | python                   | 3.7.1         |
-| ca-certificates          | 2023.08.22    | m2w64-libwinpthread-git  | 5.0.0.4634.697f757 | python-dateutil    | 2.8.2         |
-| certifi                  | 2022.12.7     | matplotlib-base          | 3.2.2         | python_abi               | 3.7           |
-| cffi                     | 1.15.1        | mkl                      | 2020.4        | pytz                     | 2023.3.post1 |
-| charset-normalizer       | 2.0.4         | msys2-conda-epoch        | 20160418      | qdldl-python             | 0.1.5         |
-| cryptography             | 39.0.1        | numpy                    | 1.21.6        | requests                 | 2.28.1        |
-| cvxpy                    | 1.2.1         | openssl                  | 1.1.1w       | scikit-learn             | 0.22.1        |
-| cvxpy-base               | 1.2.1         | osqp                     | 0.6.2.post0  | scikit-multiflow         | 0.5.3         |
-| cycler                   | 0.11.0        | pandas                   | 1.2.3         | scipy                    | 1.7.3         |
-| ecos                     | 2.0.10        | pip                      | 22.3.1        | scs                      | 3.2.0         |
-| flit-core                | 3.6.0         | prettytable              | 3.5.0         | setuptools               | 59.8.0        |
-| freetype                 | 2.10.4        | pycparser                | 2.21          | six                      | 1.16.0        |
-| idna                     | 3.4           | pyopenssl                | 23.0.0        | sortedcontainers         | 2.4.0         |
-| importlib-metadata       | 4.11.3        | pyparsing                | 3.1.1         | tornado                  | 6.2           |
-| intel-openmp             | 2023.2.0      | pysocks                  | 1.7.1         | typing_extensions        | 4.4.0         |
-| joblib                   | 1.3.2         | python                   | 3.7.1         | urllib3                  | 1.26.14       |
-| kiwisolver               | 1.4.4         | python-dateutil          | 2.8.2         | vc                       | 14.2          |
-| libblas                  | 3.9.0         | python_abi               | 3.7           | vs2015_runtime           | 14.27.29016   |
-| libcblas                 | 3.9.0         | pytz                     | 2023.3.post1 | wcwidth                  | 0.2.5         |
-| liblapack                | 3.9.0         | qdldl-python             | 0.1.5         | wheel                    | 0.38.4        |
-| libpng                   | 1.6.39        | requests                 | 2.28.1        | win_inet_pton            | 1.1.0         |
 
 ## References:
 
 Explore related resources and inspiration at:
 
 - [GitHub - deep-active-learning](https://github.com/ej0cl6/deep-active-learning)
-
-The referenced papers are:
-
-- [1] H. Zhang, W. Liu and Q. Liu, "Reinforcement Online Active Learning Ensemble for Drifting Imbalanced Data Streams," in <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 34, no. 8, pp. 3971-3983, 1 Aug. 2022.
-- [2] Z. Liu and X. He, "Dynamic Submodular-Based Learning Strategy in Imbalanced Drifting Streams for Real-Time Safety Assessment in Nonstationary Environments," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 2023.
-- [3] S. Liu et al., "Online Active Learning for Drifting Data Streams," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, vol. 34, no. 1, pp. 186-200, Jan. 2023.
-- [4] Z. Liu and X. He, "Real-Time Safety Assessment for Dynamic Systems With Limited Memory and Annotations," in <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 24, no. 9, pp. 10076-10086, Sept. 2023.
-- [5] I. Žliobaitė, A. Bifet, B. Pfahringer and G. Holmes, "Active Learning With Drifting Streaming Data," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, vol. 25, no. 1, pp. 27-39, Jan. 2014.
-- [6] D. You et al., "Online Learning From Incomplete and Imbalanced Data Streams," in <em>IEEE Transactions on Knowledge and Data Engineering</em>, vol. 35, no. 10, pp. 10650-10665, 1 Oct. 2023.
-- [7] B. Jiao, Y. Guo, D. Gong and Q. Chen, "Dynamic Ensemble Selection for Imbalanced Data Streams With Concept Drift," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, 2022.
-- [8] Y. Lu, Y. -M. Cheung and Y. Yan Tang, "Adaptive Chunk-Based Dynamic Weighted Majority for Imbalanced Data Streams With Concept Drift," in <em>IEEE Transactions on Neural Networks and Learning Systems</em>, vol. 31, no. 8, pp. 2764-2778, Aug. 2020.
-- [9] H. M. Gomes, J. Read and A. Bifet, "Streaming Random Patches for Evolving Data Stream Classification," <em>2019 IEEE International Conference on Data Mining</em> (ICDM), Beijing, China, 2019, pp. 240-249.
-- [10] H. M. Gomes, et al. "Adaptive random forests for evolving data stream classification." in <em>Machine Learning</em> vol. 106, pp. 1469-1495, 2017.
-- [11] X. Pu and C. Li, "Online Semisupervised Broad Learning System for Industrial Fault Diagnosis," in <em>IEEE Transactions on Industrial Informatics</em>, vol. 17, no. 10, pp. 6644-6654, Oct. 2021.
-- [12] X. Jia, et al. "A semi-supervised online sequential extreme learning machine method." in <em>Neurocomputing</em> vol. 174, pp. 168-178, 2016.
+- [GitHub - scikit-multiflow](https://github.com/scikit-multiflow/scikit-multiflow)
 
 ---
 
