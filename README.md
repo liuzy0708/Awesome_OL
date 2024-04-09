@@ -10,7 +10,7 @@ Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies
 
 Explore a variety of online active learning strategies located in the **OAL_strategies** folder:
 
-| Strategy          | Description                                                                                                           | Reference            | Source Code        |
+| Strategy          | Description                                                                                                           | Reference            | Code Source        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
 | ROALE-DI          | Proposed in the 2023 IEEE-TKDE.  | [Paper](link)       | [Link](link)       |
 | CogDQS            | Proposed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
@@ -19,7 +19,7 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 ### Baseline Strategies:
 
-| Strategy          | Description                                                                                                           | Reference            | Source Code        |
+| Strategy          | Description                                                                                                           | Reference            | Code Source       |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
 | Random Sampling (RS)  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. | [Paper](link)       | [Link](link)       |
 | Uncertainty Sampling with Fixed Threshold (US_fix)  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper](link)       | [Link](link)       |
@@ -29,7 +29,7 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 Discover online semi-supervised learning classifiers in the **OSSL_strategies** folder:
 
-| Classifier        | Description                                                                                                           | Reference            | Source Code        |
+| Classifier        | Description                                                                                                           | Reference            | Code Source        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
 | OSSBLS            |  Proposed in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
 | ISSBLS            |  Proposed in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
@@ -39,7 +39,7 @@ Discover online semi-supervised learning classifiers in the **OSSL_strategies** 
 
 Find various online learning classifiers in the **classifer** folder:
 
-| Classifier        | Description                                                                                                           | Reference            | Source Code        |
+| Classifier        | Description                                                                                                           | Reference            | Code Source        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
 | OLI2DS            | Proposed in the 2023 IEEE-TKDE. | [Paper](link)       | [Link](link)       |
 | DES               | Proposed in the 2022 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
