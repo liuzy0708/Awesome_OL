@@ -102,12 +102,6 @@ Before using this library, please ensure that you have the following essential p
 | scikit-multiflow   | 0.5.3         |
 | pandas             | 1.2.3         |
 | scipy              | 1.7.3         |
-| six                | 1.16.0        |
-| requests           | 2.28.1        |
-| python-dateutil    | 2.8.2         |
-| setuptools         | 59.8.0        |
-| urllib3            | 1.26.14       |
-| wheel              | 0.38.4        |
 
 </center>
 
