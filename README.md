@@ -35,6 +35,16 @@ Discover online semi-supervised learning classifiers in the **OSSL_strategies** 
 | ISSBLS            |   | [Paper]([11])       |      | 2021 |IEEE Transactions on Industrial Informatics
 | SOSELM            |  | [Paper]([12])       |      | 2016 |Neurocomputing
 
+### OAL Classifiers:
+
+Explore various online active learning classifiers in the **OAL_classifiers** folder:
+
+| Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| OAL_Classifier1   |   |  | [Paper]([13])       |       | 2023 | Journal/Conference Name
+| OAL_Classifier2   |   |  | [Paper]([14])       |       | 2023 | Journal/Conference Name
+| OAL_Classifier3   |   |  | [Paper]([15])       |       | 2023 | Journal/Conference Name
+
 ### Supervised Classifiers:
 
 Find various online learning classifiers in the **classifer** folder:
@@ -69,11 +79,17 @@ The following details are summarized for such implemented methods:
 
 The **datasets** folder contains .csv files structured with attributes, headers, and labels, catering to the needs of various strategies and classifiers.
 
+### Visualization:
+
+The **visualization** folder contains implementations for visualizing metrics such as accuracy (acc), macro F1 score, and other relevant performance measures.
+
 ### Implementation:
 
 The specific implementations are encapsulated into a unified form. Further technical details and improvements can be explored within each strategy or classifier.
 
 ## Environment Setup:
+
+
 
 To set up the required environment, run the following command:
 
@@ -108,7 +124,6 @@ To use this library, make sure you have the following packages installed:
 | libcblas                 | 3.9.0         | pytz                     | 2023.3.post1 | wcwidth                  | 0.2.5         |
 | liblapack                | 3.9.0         | qdldl-python             | 0.1.5         | wheel                    | 0.38.4        |
 | libpng                   | 1.6.39        | requests                 | 2.28.1        | win_inet_pton            | 1.1.0         |
-
 
 ## References:
 
