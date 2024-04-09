@@ -70,9 +70,14 @@ conda env create -f env.yml
 Explore related resources and inspiration at:
 
 - [GitHub - deep-active-learning](https://github.com/ej0cl6/deep-active-learning)
-- 
-Thank you for selecting Awesome_OL! We trust that this toolkit will prove to be a valuable resource in your online learning pursuits.
 
-We are from the THUFDD Research Group, under the guidance of Prof. Xiao He and Prof. Donghua Zhou, situated within the Department of Automation at Tsinghua University.
+---
 
-Should you have any inquiries, feedback, or wish to contribute, we encourage you to engage with our community via [mailto:liuzy21@mails.tsinghua.edu.cn]. Here's to a fruitful learning journey!
+## Thank you for choosing Awesome_OL!
+
+We hope this toolkit serves as a valuable asset in your online learning endeavors.
+
+We are from the THUFDD Research Group, led by Prof. Xiao He and Prof. Donghua Zhou in the Department of Automation at Tsinghua University.
+
+We are committed to the long-term development of this toolkit. Should you have any inquiries, feedback, or wish to contribute, we encourage you to engage with our community via [mailto:liuzy21@mails.tsinghua.edu.cn]. Here's to a fruitful learning journey!
+
