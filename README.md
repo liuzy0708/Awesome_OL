@@ -8,10 +8,10 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 | Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| ROALE-DI          |   | [Paper]([1])     |       |  2023 | IEEE Transactions on Knowledge and Data Engineering
-| CogDQS            |  | [Paper]([3])       |       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| ROALE-DI          |  A reinforcement online active learning ensemble for drifting imbalanced data streams, which combines uncertainty and imbalance strategies to evaluate sample value. | [Paper]([1])     |       |  2023 | IEEE Transactions on Knowledge and Data Engineering
+| CogDQS            | A dual-query strategy using Ebbinghaus’s law of human memory cognition, enabling experts to annotate the most representative samples. It employs a fixed uncertainty strategy for auxiliary judgment. | [Paper]([3])       |       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
 | DSA-AI            | | [Paper]([2])       |       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
-| MTSGQS            | | [Paper]([4])       |       | 2023 | IEEE Transactions on Intelligent Transportation Systems
+| MTSGQS            | A memory-triggered submodularity-guided query strategy that evaluates sample value through residual analysis and limited retraining, effectively addressing imbalanced data stream issues. | [Paper]([4])       |       | 2023 | IEEE Transactions on Intelligent Transportation Systems
 
 ### Baseline Strategies:
 
