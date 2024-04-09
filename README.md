@@ -2,10 +2,6 @@
 
 Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies and classifiers! This repository provides a collection of state-of-the-art strategies and classifiers for online active learning (OAL) and online semi-supervised learning (OSSL). Whether you're a researcher, practitioner, or enthusiast in machine learning, this toolkit offers valuable resources and implementations to enhance your projects.
 
-### Contents:
-
-- **utils.py**: This component file serves as the interface between classifiers and strategies, facilitating seamless interaction within the toolkit.
-
 ### OAL Strategies:
 
 Explore a variety of online active learning strategies located in the **OAL_strategies** folder:
@@ -82,6 +78,11 @@ The **datasets** folder contains .csv files structured with attributes, headers,
 ### Visualization:
 
 The **visualization** folder contains implementations for visualizing metrics such as accuracy (acc), macro F1 score, and other relevant performance measures.
+
+### Utility:
+
+- **utils.py**: This component file serves as the interface between classifiers and strategies, facilitating seamless interaction within the toolkit.
+
 
 ### Implementation:
 
