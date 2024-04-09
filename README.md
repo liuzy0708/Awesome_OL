@@ -150,9 +150,9 @@ The referenced papers are:
 
 ## Note
 
-We hope this toolkit serves as a valuable asset in your online learning endeavors.
+We hope this toolkit serves as a valuable asset in your online learning endeavors. Our team at the THUFDD Research Group, led by Prof. Xiao He and Prof. Donghua Zhou in the Department of Automation at Tsinghua University, is dedicated to fostering innovation and excellence in machine learning for industrial applications.
 
-We are from the THUFDD Research Group, led by Prof. Xiao He and Prof. Donghua Zhou in the Department of Automation at Tsinghua University.
+Your feedback, questions, and contributions are invaluable to us. Whether you have suggestions for improvements, encounter issues, or wish to collaborate on enhancements, we welcome your participation. Together, we can continue to refine and expand this toolkit to empower researchers, practitioners, and enthusiasts in the field.
 
-We are committed to the long-term development of this toolkit. Should you have any inquiries, feedback, or wish to contribute, we encourage you to engage with our community via [mailto:liuzy21@mails.tsinghua.edu.cn]. Here's to a fruitful learning journey!
+Please feel free to reach out to us via email at [mailto:liuzy21@mails.tsinghua.edu.cn]. Here's to a fruitful learning journey!
 
