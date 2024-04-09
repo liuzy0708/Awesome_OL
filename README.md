@@ -105,7 +105,6 @@ Before using this library, please ensure that you have the following essential p
 | six                | 1.16.0        |
 | requests           | 2.28.1        |
 | python-dateutil    | 2.8.2         |
-| pytz               | 2023.3.post1  |
 | setuptools         | 59.8.0        |
 | urllib3            | 1.26.14       |
 | wheel              | 0.38.4        |
