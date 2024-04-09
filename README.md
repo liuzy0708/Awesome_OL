@@ -12,10 +12,10 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 | Strategy          | Description                                                                                                           | Reference            | Source Code        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| ROALE-DI          | Recent Object-Adaptive Learning with Dynamic Importance (ROALE-DI) dynamically adjusts the importance of different data samples based on their relevance to the evolving model, effectively maximizing model performance with limited labeled data. Introduced in the 2023 IEEE-TKDE.  | [Paper](link)       | [Link](link)       |
-| CogDQS            | Cognitive Drift-Quelling Strategy (CogDQS) addresses the challenge of concept drift in online learning scenarios by detecting and mitigating cognitive drift, ensuring model stability and adaptability over time. Proposed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| DSA-AI            | Dynamic Sample Acquisition with Artificial Intelligence (DSA-AI) leverages advanced AI techniques to intelligently select data samples for labeling, dynamically adjusting the sample acquisition process based on model performance and data distribution. Discussed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| MTSGQS            | Multi-Task Sequential Gaussian Quadratic Sampling (MTSGQS) incorporates multi-task learning principles to enhance sample selection efficiency and model generalization by exploiting correlations among related tasks. Presented in the 2023 IEEE-TITS. | [Paper](link)       | [Link](link)       |
+| ROALE-DI          | Proposed in the 2023 IEEE-TKDE.  | [Paper](link)       | [Link](link)       |
+| CogDQS            | Proposed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
+| DSA-AI            | Proposed in the 2023 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
+| MTSGQS            | Proposed in the 2023 IEEE-TITS. | [Paper](link)       | [Link](link)       |
 
 ### Baseline Strategies:
 
@@ -31,9 +31,9 @@ Discover online semi-supervised learning classifiers in the **OSSL_strategies** 
 
 | Classifier        | Description                                                                                                           | Reference            | Source Code        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| OSSBLS            | Online Semi-Supervised Binary Learning System (OSSBLS) is a powerful framework for semi-supervised learning in online settings, enhancing model robustness and scalability by leveraging both labeled and unlabeled data. Introduced in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
-| ISSBLS            | Incremental Semi-Supervised Binary Learning System (ISSBLS) extends OSSBLS by incorporating incremental learning principles, achieving continuous improvement and adaptation to evolving data distributions. Presented in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
-| SOSELM            | Self-Organizing Semi-Supervised Extreme Learning Machine (SOSELM) combines the advantages of self-organizing maps (SOMs) and extreme learning machines (ELMs) for semi-supervised learning, enhancing model generalization and scalability by exploiting the structure of unlabeled data. Described in the 2016 Neurocomputing. | [Paper](link)       | [Link](link)       |
+| OSSBLS            |  Proposed in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
+| ISSBLS            |  Proposed in the 2021 IEEE-TII. | [Paper](link)       | [Link](link)       |
+| SOSELM            | Proposed in the 2016 Neurocomputing. | [Paper](link)       | [Link](link)       |
 
 ### Supervised Classifiers:
 
@@ -41,12 +41,12 @@ Find various online learning classifiers in the **classifer** folder:
 
 | Classifier        | Description                                                                                                           | Reference            | Source Code        |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|
-| OLI2DS            | Online Incremental Two-Dimensional Space Classifier (OLI2DS) is a novel approach for online learning in two-dimensional data spaces, achieving high accuracy and low computational complexity by efficiently updating model parameters and decision boundaries. Presented in the 2023 IEEE-TKDE. | [Paper](link)       | [Link](link)       |
-| DES               | Dynamic Ensemble Selection (DES) is an ensemble learning technique designed for dynamic environments, adapting to changing data distributions and concept drift by dynamically selecting and combining base classifiers. Described in the 2022 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| BLS-W             | Balanced Label Space for Online Learning (BLS-W) addresses the challenge of imbalanced label distributions in online learning tasks by incorporating label balancing techniques, improving model fairness and generalization. Introduced in the 2021 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| ACDWM             | Adaptive Contextual Decision Weighting Model (ACDWM) is a flexible framework for contextual online learning, achieving adaptive model updating and robust performance in dynamic environments by dynamically adjusting decision weights based on contextual information. Discussed in the 2020 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
-| SRP               | Stream-based Random Projection (SRP) is a dimensionality reduction technique tailored for streaming data, reducing computational complexity and memory requirements by projecting high-dimensional data onto a lower-dimensional space. Presented in the 2019 ICDM. | [Paper](link)       | [Link](link)       |
-| ARF               | Adaptive Random Forest (ARF) is a variant of the random forest algorithm designed for online learning tasks, achieving high accuracy and efficiency by adaptively updating decision trees and pruning outdated branches. Introduced in the 2017 Machine Learning. | [Paper](link)       | [Link](link)       |
+| OLI2DS            | Proposed in the 2023 IEEE-TKDE. | [Paper](link)       | [Link](link)       |
+| DES               | Proposed in the 2022 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
+| BLS-W             | Proposed in the 2021 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
+| ACDWM             | Proposed in the 2020 IEEE-TNNLS. | [Paper](link)       | [Link](link)       |
+| SRP               | Proposed in the 2019 ICDM. | [Paper](link)       | [Link](link)       |
+| ARF               | Proposed in the 2017 Machine Learning. | [Paper](link)       | [Link](link)       |
 
 
 ### Datasets:
