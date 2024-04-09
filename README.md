@@ -27,19 +27,9 @@ Discover online semi-supervised learning classifiers in the **OSSL_strategies** 
 
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OSSBLS            |  | [Paper]([11])       |      | 2021 | IEEE Transactions on Industrial Informatics
-| ISSBLS            |   | [Paper]([11])       |      | 2021 |IEEE Transactions on Industrial Informatics
-| SOSELM            |  | [Paper]([12])       |      | 2016 |Neurocomputing
-
-### OAL Classifiers:
-
-Explore various online active learning classifiers in the **OAL_classifiers** folder:
-
-| Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OAL_Classifier1   |   |  | [Paper]([13])       |       | 2023 | Journal/Conference Name
-| OAL_Classifier2   |   |  | [Paper]([14])       |       | 2023 | Journal/Conference Name
-| OAL_Classifier3   |   |  | [Paper]([15])       |       | 2023 | Journal/Conference Name
+| OSSBLS            |  | [Paper]([11])       |   NA    | 2021 | IEEE Transactions on Industrial Informatics
+| ISSBLS            |   | [Paper]([11])       |  NA     | 2021 |IEEE Transactions on Industrial Informatics
+| SOSELM            |  | [Paper]([12])       |    [link](https://github.com/scikit-multiflow/scikit-multiflow)  | 2016 |Neurocomputing
 
 ### Supervised Classifiers:
 
