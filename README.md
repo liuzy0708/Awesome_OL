@@ -12,18 +12,18 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 | Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| ROALE-DI          |   | [Paper]([1])     | [Link](link)       |  2023 | IEEE Transactions on Knowledge and Data Engineering
-| CogDQS            |  | [Paper]([3])       | [Link](link)       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
-| DSA-AI            | | [Paper]([2])       | [Link](link)       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
-| MTSGQS            | | [Paper]([4])       | [Link](link)       | 2023 | IEEE Transactions on Intelligent Transportation Systems
+| ROALE-DI          |   | [Paper]([1])     |       |  2023 | IEEE Transactions on Knowledge and Data Engineering
+| CogDQS            |  | [Paper]([3])       |       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| DSA-AI            | | [Paper]([2])       |       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| MTSGQS            | | [Paper]([4])       |       | 2023 | IEEE Transactions on Intelligent Transportation Systems
 
 ### Baseline Strategies:
 
 | Strategy          | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| Random Sampling (RS)  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. |  NA      | [Link](link)       |
-| Uncertainty Sampling with Fixed Threshold (US_fix)  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper]([5])       | [Link](link)       |
-| Uncertainty Sampling with Variable Threshold (US_var)  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | [Paper]([5])       | [Link](link)       |
+| Random Sampling (RS)  | Random Sampling (RS) serves as a simple baseline for active learning, randomly selecting data samples for labeling without considering their informativeness. |  NA      |        |
+| Uncertainty Sampling with Fixed Threshold (US_fix)  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper]([5])       |        |
+| Uncertainty Sampling with Variable Threshold (US_var)  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | [Paper]([5])       |     |
 
 ### OSSL Classifiers:
 
@@ -31,9 +31,9 @@ Discover online semi-supervised learning classifiers in the **OSSL_strategies** 
 
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OSSBLS            |  | [Paper]([11])       | [Link](link)       | 2021 | IEEE Transactions on Industrial Informatics
-| ISSBLS            |   | [Paper]([11])       | [Link](link)       | 2021 |IEEE Transactions on Industrial Informatics
-| SOSELM            |  | [Paper]([12])       | [Link](link)       | 2016 |Neurocomputing
+| OSSBLS            |  | [Paper]([11])       |      | 2021 | IEEE Transactions on Industrial Informatics
+| ISSBLS            |   | [Paper]([11])       |      | 2021 |IEEE Transactions on Industrial Informatics
+| SOSELM            |  | [Paper]([12])       |      | 2016 |Neurocomputing
 
 ### Supervised Classifiers:
 
@@ -41,12 +41,12 @@ Find various online learning classifiers in the **classifer** folder:
 
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| OLI2DS            |  | [Paper]([6])       | [Link](link)       | 2023 | IEEE Transactions on Knowledge and Data Engineering
-| DES               | | [Paper]([7])       | [Link](link)       | 2022 | IEEE Transactions on Neural Networks and Learning Systems
-| BLS-W             | | [Paper]([2])       | [Link](link)       |   2022 | IEEE Transactions on Neural Networks and Learning Systems
-| ACDWM             | | [Paper]([8])       | [Link](link)       | 2020 | IEEE Transactions on Neural Networks and Learning Systems
-| SRP               |  | [Paper]([9])       | [Link](link)       | 2019 | ICDM
-| ARF               |  | [Paper]([10])       | [Link](link)       | 2017 | Machien Learning
+| OLI2DS            |  | [Paper]([6])       |       | 2023 | IEEE Transactions on Knowledge and Data Engineering
+| DES               | | [Paper]([7])       |      | 2022 | IEEE Transactions on Neural Networks and Learning Systems
+| BLS-W             | | [Paper]([2])       |      |   2022 | IEEE Transactions on Neural Networks and Learning Systems
+| ACDWM             | | [Paper]([8])       |       | 2020 | IEEE Transactions on Neural Networks and Learning Systems
+| SRP               |  | [Paper]([9])       |      | 2019 | ICDM
+| ARF               |  | [Paper]([10])       |  | 2017 | Machien Learning
 
 The following details are summarized for such implemented methods:
 
