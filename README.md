@@ -12,10 +12,10 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 
 | Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| ROALE-DI          |   | [Paper]([1])     | [Link](link)       |  2023 | IEEE TKDE
-| CogDQS            |  | [Paper]([3])       | [Link](link)       | 2023 | IEEE-TNNLS
-| DSA-AI            | | [Paper]([2])       | [Link](link)       | 2023 | IEEE-TNNLS
-| MTSGQS            | | [Paper]([4])       | [Link](link)       | 2023 | IEEE-TITS
+| ROALE-DI          |   | [Paper]([1])     | [Link](link)       |  2023 | IEEE Transactions on Knowledge and Data Engineering
+| CogDQS            |  | [Paper]([3])       | [Link](link)       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| DSA-AI            | | [Paper]([2])       | [Link](link)       | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| MTSGQS            | | [Paper]([4])       | [Link](link)       | 2023 | IEEE Transactions on Intelligent Transportation Systems
 
 ### Baseline Strategies:
 
@@ -130,7 +130,7 @@ The referenced papers are:
 - [10] H. M. Gomes, et al. "Adaptive random forests for evolving data stream classification." in <em>Machine Learning</em> vol. 106, pp. 1469-1495, 2017.
 - [11] X. Pu and C. Li, "Online Semisupervised Broad Learning System for Industrial Fault Diagnosis," in <em>IEEE Transactions on Industrial Informatics</em>, vol. 17, no. 10, pp. 6644-6654, Oct. 2021.
 - [12] X. Jia, et al. "A semi-supervised online sequential extreme learning machine method." in <em>Neurocomputing</em> vol. 174, pp. 168-178, 2016.
-- 
+
 ---
 
 ## Note
