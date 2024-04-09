@@ -92,21 +92,26 @@ The specific implementations are encapsulated into a unified form. Further techn
 
 Before using this library, please ensure that you have the following essential packages and their corresponding versions installed.
 
-| Package       | Version       |
-|---------------|---------------|
-| numpy         | 1.21.6        |
-| matplotlib    | 3.2.2         |
-| scikit-learn  | 0.22.1        |
-| scikit-multiflow | 0.5.3       |
-| pandas        | 1.2.3         |
-| scipy         | 1.7.3         |
-| six           | 1.16.0        |
-| requests      | 2.28.1        |
-| python-dateutil | 2.8.2       |
-| pytz          | 2023.3.post1 |
-| setuptools    | 59.8.0        |
-| urllib3       | 1.26.14       |
-| wheel         | 0.38.4        |
+<center>
+
+| Package            | Version       |
+|--------------------|---------------|
+| numpy              | 1.21.6        |
+| matplotlib         | 3.2.2         |
+| scikit-learn       | 0.22.1        |
+| scikit-multiflow   | 0.5.3         |
+| pandas             | 1.2.3         |
+| scipy              | 1.7.3         |
+| six                | 1.16.0        |
+| requests           | 2.28.1        |
+| python-dateutil    | 2.8.2         |
+| pytz               | 2023.3.post1  |
+| setuptools         | 59.8.0        |
+| urllib3            | 1.26.14       |
+| wheel              | 0.38.4        |
+
+</center>
+
 
 Alternatively, for your convenience, you can set up the required environment by running the following command:
 
