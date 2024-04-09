@@ -73,7 +73,7 @@ Explore related resources and inspiration at:
 
 ---
 
-## Thank you for choosing Awesome_OL!
+## Note
 
 We hope this toolkit serves as a valuable asset in your online learning endeavors.
 
