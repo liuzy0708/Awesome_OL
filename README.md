@@ -1,5 +1,5 @@
 
-## <img src="https://github.com/liuzy0708/Awesome_OL/assets/115722686/4dd909e2-10d2-4d23-b0d6-cc38d910751" width="5%" alt="" align=center /> Awesome_OL: A General Toolkit for Online Learning Approaches
+## <img src="https://github.com/liuzy0708/liuzy0708.github.io/blob/main/assets/img/SL.png" width="5%" alt="" align=center /> Awesome_OL: A General Toolkit for Online Learning Approaches
 
 Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies and classifiers! This repository provides a collection of state-of-the-art strategies and classifiers for online active learning (OAL) and online semi-supervised learning (OSSL). Whether you're a researcher, practitioner, or enthusiast in machine learning, this toolkit offers valuable resources and implementations to enhance your projects.
 
