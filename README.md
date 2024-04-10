@@ -1,4 +1,6 @@
-## Awesome_OL: Online Learning Toolkit
+## Awesome_OL: A General Toolkit for Online Learning Approaches
+
+<img width="999" alt="stream" src="https://github.com/liuzy0708/Awesome_OL/assets/115722686/068f4613-f956-4424-8ba7-0640104eff48">
 
 Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies and classifiers! This repository provides a collection of state-of-the-art strategies and classifiers for online active learning (OAL) and online semi-supervised learning (OSSL). Whether you're a researcher, practitioner, or enthusiast in machine learning, this toolkit offers valuable resources and implementations to enhance your projects.
 
@@ -102,12 +104,6 @@ Before using this library, please ensure that you have the following essential p
 | scikit-multiflow   | 0.5.3         |
 | pandas             | 1.2.3         |
 | scipy              | 1.7.3         |
-| six                | 1.16.0        |
-| requests           | 2.28.1        |
-| python-dateutil    | 2.8.2         |
-| setuptools         | 59.8.0        |
-| urllib3            | 1.26.14       |
-| wheel              | 0.38.4        |
 
 </center>
 
@@ -134,5 +130,5 @@ We hope this toolkit serves as a valuable asset in your online learning endeavor
 
 Your feedback, questions, and contributions are invaluable to us. Whether you have suggestions for improvements, encounter issues, or wish to collaborate on enhancements, we welcome your participation. Together, we can continue to refine and expand this toolkit to empower researchers, practitioners, and enthusiasts in the field.
 
-Please feel free to reach out to us via email at [mailto:liuzy21@mails.tsinghua.edu.cn]. Here's to a fruitful learning journey!
+Please feel free to reach out to us via email at [mailto:liuzy21@mails.tsinghua.edu.cn, hsq23@mails.tsinghua.edu.cn]. Here's to a fruitful learning journey!
 
