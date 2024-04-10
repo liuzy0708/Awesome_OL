@@ -80,7 +80,7 @@ The **datasets** folder contains .csv files structured with attributes, headers,
 ### Visualization:
 
 The **visualization** folder contains implementations for visualizing metrics such as accuracy (acc), macro F1 score, and other relevant performance measures.
-
+<img width="400" alt="stream" src="https://github.com/songqiaohu/pictureandgif/blob/main/framework_plot.png?raw=true">
 ### Utility:
 
 - **utils.py**: This component file serves as the interface between classifiers and strategies, facilitating seamless interaction within the toolkit.
