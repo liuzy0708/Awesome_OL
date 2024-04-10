@@ -3,29 +3,29 @@ import pandas as pd
 import numpy as np
 import csv
 
+from OAL_classifier.clf_OALE import OALE_strategy
+from OAL_classifier.clf_ROALE_DI import ROALE_DI_strategy
+
 from OAL_strategies.str_MTSGQS import MTSGQS_strategy
 from OAL_strategies.str_DSA_AI import DSA_AI_strategy
 from OAL_strategies.str_US_fix import US_fix_strategy
 from OAL_strategies.str_US_var import US_var_strategy
 from OAL_strategies.str_CogDQS import CogDQS_strategy
-from OAL_strategies.str_ROALE_DI import ROALE_DI_strategy
 from OAL_strategies.str_RS import RS_strategy
-from OAL_strategies.str_OALE import OALE_strategy
 
 from classifier.clf_BLS import BLS
 from classifier.clf_SRP import SRP
 from classifier.clf_DES import DES_ICD
 from skmultiflow.bayes import NaiveBayes
-from classifier.clf_ACDWM.clf_ACDWM import ACDWM
-from classifier.clf_OLI2DS.clf_OLI2DS import OLI2DS
-# from classifier.clf_IWDA_Multi.clf_IWDA_Multi import IWDA_multi
-# from classifier.clf_IWDA_Multi.clf_IWDA_PL import IWDA_PL
+from classifier.clf_ACDWM import ACDWM
+from classifier.clf_OLI2DS import OLI2DS
+# from classifier.clf_IWDA_Multi import IWDA_multi
+# from classifier.clf_IWDA_PL import IWDA_PL
 
 from OSSL_classifier.clf_OSSBLS import OSSBLS
 from OSSL_classifier.clf_ISSBLS import ISSBLS
 from OSSL_classifier.clf_SOSELM import SOSELM
 from classifier.clf_ARF import ARF
-from skmultiflow.trees import HoeffdingTreeClassifier
 from skmultiflow.meta import LeveragingBaggingClassifier, OnlineUnderOverBaggingClassifier, OnlineUnderOverBagging,OzaBaggingClassifier, OzaBaggingADWINClassifier, DynamicWeightedMajorityClassifier
 from skmultiflow.meta import OnlineAdaC2Classifier
 def get_stream(name):
@@ -58,7 +58,6 @@ def get_stream(name):
         Y = data[:, col - 1]
         Y = np.array([int(i) for i in Y])
         stream = DataStream(X, Y)
-    # print('This dataset has {} columns of attributes and {} samples'.format(X.shape[1], X.shape[0]))
     return stream
 
 def get_pt(stream, n_pt):
@@ -67,7 +66,7 @@ def get_pt(stream, n_pt):
 
 class para_init:
 
-    def __init__(self, n_class=2, X_pt_source=np.array([[]]), y_pt_source=np.array([[]]), n_ratio_max=0.2, n_anchor=10, theta=0.2):
+    def __init__(self, X_pt_source=np.array([[]]), y_pt_source=np.array([[]]), n_class=2, n_ratio_max=0.2, n_anchor=10, theta=0.2):
         self.n_class = n_class
         self.X_pt_source = X_pt_source
         self.y_pt_source = y_pt_source
@@ -75,6 +74,11 @@ class para_init:
         self.n_anchor = n_anchor
         self.theta = theta
 
+    def get_method(self, name):
+        if name == "ROALE_DI":
+            return ROALE_DI_strategy(self.X_pt_source, self.y_pt_source, L=self.n_class)
+        if name == "OALE":
+            return OALE_strategy(self.X_pt_source, self.y_pt_source, L=self.n_class)
     def get_clf(self, name):
         if name == "clf_ARF":
             return ARF()
@@ -92,10 +96,10 @@ class para_init:
             return SRP(n_estimators=3, n_class=self.n_class)
         elif name == "clf_AdaC2":
             return OnlineAdaC2Classifier()
-        # elif name == "clf_IWDA_Multi":
-        #     return IWDA_multi(old_to_use=120, update_wm=150, whiten=False)
-        # elif name == "clf_IWDA_PL":
-        #     return IWDA_PL(old_to_use=120, update_wm=150, whiten=False)
+        elif name == "clf_IWDA_Multi":
+            return IWDA_multi(old_to_use=120, update_wm=150, whiten=False)
+        elif name == "clf_IWDA_PL":
+            return IWDA_PL(old_to_use=120, update_wm=150, whiten=False)
         elif name == "clf_BLS":
             return BLS(Nf=10,
                      Ne=10,
@@ -114,8 +118,8 @@ class para_init:
                      reg=0.001,
                      gamma=0.005,
                      n_anchor=10)
-        elif name == "clf_ODSSBLS":
-            return ODSSBLS(Nf=10,
+        elif name == "clf_OSSBLS":
+            return OSSBLS(Nf=10,
                          Ne=10,
                          N1=10,
                          N2=10,
@@ -153,6 +157,7 @@ class para_init:
         raise ValueError("Not valid")
 
     def get_str(self, name):
+        name = name + "_str"
         if name == "DSA_AI_str":
             return DSA_AI_strategy(n_class=self.n_class, X_memory_collection=self.X_pt_source,
                                  y_memory_collection=self.y_pt_source, d=self.X_pt_source.shape[1],
@@ -167,13 +172,8 @@ class para_init:
             return US_var_strategy(theta=0.5)
         elif name == "CogDQS_str":
             return CogDQS_strategy(B=0.25, n=1, c=3, cw_size=10, window_size=200, s=0.01)
-        elif name == "ROALE_DI_str":
-            return ROALE_DI_strategy(x_train=self.X_pt_source, y_train=self.y_pt_source, label_ratio=self.n_ratio_max, L=self.n_class, chunk_size=150,
-                                         step=0.01, theta=0.005, D=10, sigma_imbalance=0.01)
         elif name == "RS_str":
             return RS_strategy(label_ratio=self.n_ratio_max)
-        elif name == "OALE_str":
-            return OALE_strategy(x_train=self.X_pt_source, y_train=self.y_pt_source, r=0.05, I=200, L=2, s=0.01, theta=0.5, sigma = 0.01, D=10)
         raise ValueError("Not valid")
 
     def clf_init(self):
@@ -221,7 +221,6 @@ class para_init:
         US_fix_str = US_fix_strategy(theta=0.5)
         US_var_str = US_var_strategy(theta=0.5)
         CogDQS_str = CogDQS_strategy(B=0.25, n=1, c=2, cw_size=10, window_size=200, s=0.01)
-        ROALE_DI_str = ROALE_DI_strategy(x_train=self.X_pt_source, y_train=self.y_pt_source, label_ratio=self.n_ratio_max, L=self.n_class, chunk_size=150,
-                                         step=0.01, theta=0.005, D=10, sigma_imbalance=0.01)
         RS_str = RS_strategy(label_ratio=self.n_ratio_max)
-        return DSA_AI_str, MTSGQS_str, US_fix_str, US_var_str, CogDQS_str, ROALE_DI_str, RS_str
+        return DSA_AI_str, MTSGQS_str, US_fix_str, US_var_str, CogDQS_str, RS_str
+

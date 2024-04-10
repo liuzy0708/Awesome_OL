@@ -10,6 +10,7 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 #### Recent Progress:
 | Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
+| ROALE-DI          |  A reinforcement online active learning ensemble for drifting imbalanced data streams, which combines uncertainty and imbalance strategies to evaluate sample value. | [Paper](https://ieeexplore.ieee.org/abstract/document/9204849)     |   [Link](https://github.com/saferhand/ROALE-DI)    |  2022 | IEEE Transactions on Knowledge and Data Engineering
 | CogDQS            | A dual-query strategy using Ebbinghaus’s law of human memory cognition, enabling experts to annotate the most representative samples. It employs a fixed uncertainty strategy for auxiliary judgment. | [Paper](https://ieeexplore.ieee.org/abstract/document/9492291)      |    NA   | 2023 | IEEE Transactions on Neural Networks and Learning Systems
 | DSA-AI            |  A dynamic submodular-based learning strategy with activation interval for imbalanced drifting streams, which aims to address the challenges posed by concept drifts in nonstationary environments.| [Paper](https://ieeexplore.ieee.org/abstract/document/10195233/)     |   [Link](https://github.com/liuzy0708/DSLS-Demo)    | 2024 | IEEE Transactions on Neural Networks and Learning Systems
 | MTSGQS            | A memory-triggered submodularity-guided query strategy that evaluates sample value through residual analysis and limited retraining, effectively addressing imbalanced data stream issues. | [Paper](https://ieeexplore.ieee.org/abstract/document/10105849)       |  NA     | 2023 | IEEE Transactions on Intelligent Transportation Systems
@@ -22,20 +23,9 @@ Explore a variety of online active learning strategies located in the **OAL_stra
 | US_fix  | Uncertainty Sampling with Fixed Threshold (US_fix) selects samples with uncertainty scores exceeding a fixed threshold for labeling, effectively targeting uncertain regions of the data space. | [Paper](https://ieeexplore.ieee.org/abstract/document/6414645)      |   NA     | 2014 | IEEE Transactions on Neural Networks and Learning Systems
 | US_var  | Uncertainty Sampling with Variable Threshold (US_var) dynamically adjusts the uncertainty threshold based on model confidence and dataset characteristics, offering improved sample selection flexibility and performance in dynamic environments. | [Paper](https://ieeexplore.ieee.org/abstract/document/6414645)      |  NA   | 2014 | IEEE Transactions on Neural Networks and Learning Systems
 
-Of note, there are still some methods to embed active learning strategies in classifiers. Explore them in the **OAL_classifier** folder:
-#### Recent Progress:
-| Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| ROALE-DI          |  A reinforcement online active learning ensemble for drifting imbalanced data streams, which combines uncertainty and imbalance strategies to evaluate sample value. | [Paper](https://ieeexplore.ieee.org/abstract/document/9204849)     |   [Link](https://github.com/saferhand/ROALE-DI)    |  2022 | IEEE Transactions on Knowledge and Data Engineering
-| OALE            | |      |       |  | IEEE Transactions on 
-
-
-
-
-
 ### OSSL Classifiers:
 
-Discover online semi-supervised learning classifiers in the **OSSL_classifiers** folder:
+Discover online semi-supervised learning classifiers in the **OSSL_strategies** folder:
 #### Recent Progress:
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|

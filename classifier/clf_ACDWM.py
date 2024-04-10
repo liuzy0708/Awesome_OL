@@ -1,11 +1,11 @@
 """ ACDWM classifier"""
 import numpy as np
 
-from clf_ACDWM_subfile.underbagging import *
-from clf_ACDWM_subfile.underbagging import *
-from clf_ACDWM_subfile.chunk_size_select import *
-from clf_ACDWM_subfile.check_measure import *
-from clf_ACDWM_subfile.chunk_based_methods import ChunkBase
+from classifier.clf_ACDWM_subfile.underbagging import *
+from classifier.clf_ACDWM_subfile.underbagging import *
+from classifier.clf_ACDWM_subfile.chunk_size_select import *
+from classifier.clf_ACDWM_subfile.check_measure import *
+from classifier.clf_ACDWM_subfile.chunk_based_methods import ChunkBase
 from skmultiflow.bayes import NaiveBayes
 
 

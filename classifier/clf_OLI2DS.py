@@ -1,7 +1,7 @@
 """ OLI2DS classifier"""
 
-from clf_OLI2DS_subfile.toolbox import *
-from clf_OLI2DS_subfile import preprocess
+from classifier.clf_OLI2DS_subfile.toolbox import *
+from classifier.clf_OLI2DS_subfile import preprocess
 import numpy as np
 from tqdm import tqdm
 from sklearn.metrics import f1_score, confusion_matrix

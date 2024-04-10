@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from clf_IWDA_subfile.Environment import *
+from classifier.clf_IWDA_subfile.Environment import *
 from sklearn.naive_bayes import GaussianNB
 import copy
 class IWDA_PL(object):

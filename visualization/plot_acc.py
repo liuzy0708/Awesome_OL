@@ -25,11 +25,11 @@ class plot_tool():
         self.result_true = None
 
     def read_pred_result(self):
-        result_method = np.array(pd.read_csv('./Prediction_%s_supervised_str.csv' % self.pred_file_name, header=None))
+        result_method = np.array(pd.read_csv('./Prediction_%s.csv' % self.pred_file_name, header=None))
         self.result_method = result_method
 
     def read_true_result(self):
-        result_true = np.array(pd.read_csv('./True_%s_supervised_str.csv' % self.true_file_name, header=None))
+        result_true = np.array(pd.read_csv('./True_%s.csv' % self.true_file_name, header=None))
         self.result_true = result_true
 
     def update(self, score_prev, round, n_new, interval):
