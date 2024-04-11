@@ -85,7 +85,7 @@ The **datasets** folder contains .csv files structured with attributes, headers,
 
 The **visualization** folder contains implementations for visualizing metrics such as accuracy (acc), macro F1 score, and other relevant performance measures.  
 
-<img width="800" alt="stream" src="https://github.com/songqiaohu/pictureandgif/blob/main/framework_plot.png?raw=true">
+<img width="800" alt="stream" src="https://github.com/songqiaohu/pictureandgif/blob/main/Results_acc_LinearAbrupt-1.png?raw=true">
 
 ### Utility:
 
