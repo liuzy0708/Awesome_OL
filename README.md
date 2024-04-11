@@ -137,5 +137,5 @@ We hope this toolkit serves as a valuable asset in your online learning endeavor
 
 Your feedback, questions, and contributions are invaluable to us. Whether you have suggestions for improvements, encounter issues, or wish to collaborate on enhancements, we welcome your participation. Together, we can continue to refine and expand this toolkit to empower researchers, practitioners, and enthusiasts in the field.
 
-Please feel free to reach out to us via email with [Zeyi Liu](mailto:liuzy21@mails.tsinghua.edu.cn) and [Songqiao Hu](hsq23@mails.tsinghua.edu.cn). Here's to a fruitful learning journey!
+Please feel free to reach out to us via email with [Zeyi Liu](mailto:liuzy21@mails.tsinghua.edu.cn) and [Songqiao Hu](mailto:hsq23@mails.tsinghua.edu.cn). Here's to a fruitful learning journey!
 
