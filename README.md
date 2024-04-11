@@ -71,7 +71,8 @@ The following details are summarized for such implemented methods:
 | RS      |      ✅       |            |     ✅    |      ✅      |                          |          |
 | US-fix  |      ✅       |            |    ✅     |      ✅      |                          |          |
 | US-var  |      ✅       |            |     ✅    |      ✅      |                          |          |
-| OLI2DS  |              |     ✅       |    ✅     |             |               ✅           |          |
+| OLI2DS  |              |     ✅       |    ✅     |             |               ✅           |          |  
+| IWDA    |              |     ✅       |    ✅     |       ✅      |               ✅           |    ✅      |
 | DES   |              |       ✅     |    ✅     |             |              ✅            |    ✅      |
 | ACDWM   |              |     ✅       |    ✅     |             |              ✅            |    ✅      |
 | SRP  |              |        ✅    |     ✅    |      ✅      |               ✅           |     ✅     |
