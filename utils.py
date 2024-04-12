@@ -204,13 +204,15 @@ class para_init:
                      N2=10,
                      map_function='sigmoid',
                      enhence_function='sigmoid',
-                     reg=0.001)
+                     reg=0.001,
+                     gamma=0.05)
 
         clf_SOSELM = SOSELM(
                      Ne=20,
                      N2=10,
                      enhence_function='sigmoid',
-                     reg=0.001)
+                     reg=0.001,
+                     gamma=0.05)
 
         return clf_ARF, clf_SRP, clf_BLS, clf_OSSBLS, clf_ISSBLS, clf_SOSELM
 

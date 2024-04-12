@@ -114,16 +114,16 @@ class create_Graph:
 
 
 class SOSELM:
-    def __init__(self, Ne, N, enhence_function, reg):
+    def __init__(self, Ne, N2, enhence_function, reg, gamma):
         self._Ne = Ne
-        self._N = N
+        self._N2 = N2
         self._enhence_function = enhence_function
         self._reg = reg
+        self._gamma = gamma
 
         self.normalscaler = scaler()
         self.onehotencoder = preprocessing.OneHotEncoder(sparse=False)
-        self.enhence_generator = node_generator(whiten=False)
-        self.local_enhgeneratorlist = []
+        self.enhence_generator = node_generator(whiten=True)
 
         self.W = []
         self.K = []
@@ -133,17 +133,17 @@ class SOSELM:
         C_off = np.eye(len(X))
         X_enc = self.normalscaler.fit_transform(X)
         Y_enc = self.onehotencoder.fit_transform(np.mat(Y).T)
-
-        H_off = self.enhence_generator.generator_nodes(X_enc, self._Ne, self._N, self._enhence_function)
+        H_off = self.enhence_generator.generator_nodes(X_enc, self._Ne, self._N2, self._enhence_function)
 
         G_off = create_Graph(X_enc)
         L_off = G_off.laplacian()
 
-        r, w = H_off.T.dot(H_off).shape
+        r, w = H_off.T.dot(H_off).shape  # r = w = nEnhance
 
-        self.K = H_off.T.dot(C_off).dot(H_off) + np.eye(r) + self._reg * H_off.T.dot(L_off).dot(H_off)
+        self.K = H_off.T.dot(C_off).dot(H_off) + self._reg * np.eye(r) + self._gamma * H_off.T.dot(L_off).dot(H_off)
         self.P = np.linalg.inv(self.K)
         self.W = self.P.dot(H_off.T).dot(C_off).dot(Y_enc)
+
 
     def decode(self, Y_onehot):
         Y = []
@@ -167,7 +167,7 @@ class SOSELM:
         inputdata = self.enhence_generator.transform(data)
         return inputdata
 
-    def partial_fit(self, X_at, Y_at, label_flag=1):
+    def partial_fit(self, X_at, Y_at, label_flag=0):
         X_at_enc = self.normalscaler.transform(X_at)
         H_at = self.transform(X_at_enc)
         Y_at = Y_at.ravel()
@@ -182,7 +182,7 @@ class SOSELM:
         L_on = G_on.laplacian()
 
         self.P = self.P - self.P.dot(H_at.T).dot(
-            np.linalg.inv(np.eye(len(X_at)) + (C_at + self._reg * L_on).dot(H_at).dot(self.P).dot(H_at.T)).dot(
-                (C_at + self._reg * L_on).dot(H_at).dot(self.P)))
-        self.W = self.W + self.P.dot(H_at.T).dot(C_at.dot(Y_at_enc) - (C_at + self._reg * L_on).dot(H_at).dot(self.W))
+            np.linalg.inv(self._reg * np.eye(len(X_at)) + (C_at + self._gamma * L_on).dot(H_at).dot(self.P).dot(H_at.T)).dot(
+                (C_at + self._gamma * L_on).dot(H_at).dot(self.P)))
+        self.W = self.W + self.P.dot(H_at.T).dot(C_at.dot(Y_at_enc) - (C_at + self._gamma * L_on).dot(H_at).dot(self.W))
 

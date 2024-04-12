@@ -7,7 +7,6 @@ from scipy.spatial.distance import pdist, squareform
 from scipy.sparse import csgraph
 import numpy as np
 
-
 class scaler:
     def __init__(self):
         self._mean = 0
@@ -113,9 +112,8 @@ class create_Graph:
             laplacian_A = laplacian_A ** self.degree
         return laplacian_A.A
 
-
 class ISSBLS:
-    def __init__(self, Nf, Ne, N1, N2, map_function, enhence_function, reg):
+    def __init__(self, Nf, Ne, N1, N2, map_function, enhence_function, reg, gamma):
         self._Nf = Nf
         self._Ne = Ne
         self._N1 = N1
@@ -123,14 +121,13 @@ class ISSBLS:
         self._map_function = map_function
         self._enhence_function = enhence_function
         self._reg = reg
+        self._gamma = gamma
 
         self.normalscaler = scaler()
         self.normalscaler_K = scaler()
         self.onehotencoder = preprocessing.OneHotEncoder(sparse=False)
         self.mapping_generator = node_generator()
-        self.enhence_generator = node_generator(whiten=True)
-        self.local_mapgeneratorlist = []
-        self.local_enhgeneratorlist = []
+        self.enhence_generator = node_generator(whiten=False)
 
         self.W = []
         self.K = []
@@ -147,9 +144,9 @@ class ISSBLS:
         G_off = create_Graph(X_enc)
         L_off = G_off.laplacian()
 
-        r, w = self.A.T.dot(self.A).shape
+        r, w = self.A.T.dot(self.A).shape  # r = w = nEnhance + n_mapping * n_feature
 
-        self.K = self.A.T.dot(C_off).dot(self.A) + np.eye(r) + self._reg * self.A.T.dot(L_off).dot(self.A)
+        self.K = self.A.T.dot(C_off).dot(self.A) + self._reg * np.eye(r) + self._gamma * self.A.T.dot(L_off).dot(self.A)
         self.P = np.linalg.inv(self.K)
         self.W = self.P.dot(self.A.T).dot(C_off).dot(Y_enc)
 
@@ -175,12 +172,9 @@ class ISSBLS:
         mappingdata = self.mapping_generator.transform(data)
         enhencedata = self.enhence_generator.transform(mappingdata)
         inputdata = np.column_stack((mappingdata, enhencedata))
-        for elem1, elem2 in zip(self.local_mapgeneratorlist, self.local_enhgeneratorlist):
-            inputdata = np.column_stack((inputdata, elem1.transform(data)))
-            inputdata = np.column_stack((inputdata, elem2.transform(mappingdata)))
         return inputdata
 
-    def partial_fit(self, X_at, Y_at, label_flag=1):
+    def partial_fit(self, X_at, Y_at, label_flag=0):
         X_at_enc = self.normalscaler.transform(X_at)
         A_at = self.transform(X_at_enc)
         Y_at = Y_at.ravel()
@@ -195,6 +189,7 @@ class ISSBLS:
         L_on = G_on.laplacian()
 
         self.P = self.P - self.P.dot(A_at.T).dot(np.linalg.inv(
-            np.eye(len(X_at), len(X_at)) + (C_at + self._reg * L_on).dot(A_at).dot(self.P).dot(A_at.T)).dot(
-            (C_at + self._reg * L_on).dot(A_at).dot(self.P)))
-        self.W = self.W + self.P.dot(A_at.T).dot(C_at.dot(Y_at_enc) - (C_at + self._reg * L_on).dot(A_at).dot(self.W))
+            self._reg * np.eye(len(X_at), len(X_at)) + (C_at + self._gamma * L_on).dot(A_at).dot(self.P).dot(A_at.T)).dot(
+            (C_at + self._gamma * L_on).dot(A_at).dot(self.P)))
+        self.W = self.W + self.P.dot(A_at.T).dot(C_at.dot(Y_at_enc) - (C_at + self._gamma * L_on).dot(A_at).dot(self.W))
+
