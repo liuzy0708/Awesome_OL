@@ -6,7 +6,7 @@ from scipy import sparse
 from scipy.spatial.distance import pdist, squareform
 from scipy.sparse import csgraph
 import numpy as np
-
+# change test
 
 class scaler:
     def __init__(self):
