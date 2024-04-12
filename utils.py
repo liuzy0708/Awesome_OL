@@ -142,7 +142,7 @@ class para_init:
         elif name == "clf_SOSELM":
             return SOSELM(
                     Ne=20,
-                    N=10,
+                    N2=10,
                     enhence_function='sigmoid',
                     reg=0.001,
                     gamma=0.05)
