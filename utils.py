@@ -137,13 +137,15 @@ class para_init:
                         N2=10,
                         map_function='sigmoid',
                         enhence_function='sigmoid',
-                        reg=0.001)
+                        reg=0.001,
+                        gamma=0.05)
         elif name == "clf_SOSELM":
             return SOSELM(
                     Ne=20,
                     N=10,
                     enhence_function='sigmoid',
-                    reg=0.001)
+                    reg=0.001,
+                    gamma=0.05)
         elif name == "clf_NB":
             return NaiveBayes()
         elif name == "clf_DES":
