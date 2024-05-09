@@ -97,7 +97,7 @@ for n_clf in range(len(clf_name_list)):
                 for i in range(len(y_pred)):
                     y_pred_list.append(y_pred[i])
                     y_true_list.append(y[i])
-                clf.partial_fit(X, y)
+                
 
                 if n_ratio_max >= (n_annotation / count):
 
