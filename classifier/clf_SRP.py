@@ -269,7 +269,7 @@ class SRP(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
                     i = 0
                     while len(self._subspaces) < self.n_estimators:
                         i = 0 if i == len(self._subspaces) else i
-                        np.vstack((self._subspaces, self._subspaces[i]))
+                        self._subspaces = np.vstack((self._subspaces, self._subspaces[i]))
                         i += 1
                 # For high dimensionality we can't generate all combinations
                 # as it is too expensive (memory). On top of that, the chance
