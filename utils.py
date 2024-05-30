@@ -43,11 +43,11 @@ def get_stream(name):
             X = np.array(X, dtype=float)
             Y = np.array(Y, dtype=int)
         stream = DataStream(X, Y)
-    elif name == "waveform":
+    elif name == "Waveform":
         stream = WaveformGenerator(random_state=1)
     elif name == "SEA":
         stream = SEAGenerator(random_state=1)
-    elif name == "hyperplane":
+    elif name == "Hyperplane":
         stream = HyperplaneGenerator(random_state=1)
 
     else:
