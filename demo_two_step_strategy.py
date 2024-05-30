@@ -17,7 +17,7 @@ n_round = 3   #Number of run round
 n_pt = 100    #Number of train samples
 n_ratio_max = 1  #Annotation ratio
 theta = 0.15  #Parameter for US
-dataset_name = "covtype"
+dataset_name = "Hyperplane"
 clf_name_list = ["BLS", "NB", "DES"]
 str_name_list = ["US_fix", "CogDQS"]
 
@@ -39,11 +39,6 @@ directory_path = "./Results/Results_%s_%d_%d/" % (dataset_name, n_pt, max_sample
 if not os.path.exists(directory_path):
     os.makedirs(directory_path)
 
-
-stream_pt = get_stream(dataset_name)
-# stream_pt = SEAGenerator()
-
-X_pt_source, y_pt_source = get_pt(stream=stream_pt, n_pt=n_pt)
 
 for n_clf in range(len(clf_name_list)):
 
@@ -67,10 +62,10 @@ for n_clf in range(len(clf_name_list)):
 
             'stream initialization'
             stream = get_stream(dataset_name)
-
+            X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=n_pt)
             para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max)
 
-            X_pt, y_pt = copy.deepcopy(X_pt_source), copy.deepcopy(y_pt_source)
+
 
             str_name = str_name_list[n_str]
             str = para_str.get_str(str_name)
@@ -82,9 +77,9 @@ for n_clf in range(len(clf_name_list)):
 
             #Pretrain
             if clf_name == "DGEBLS":
-                clf.fit(X_pt, y_pt, np.eye(X_pt.shape[0]))
+                clf.fit(X_pt_source, y_pt_source, np.eye(X_pt_source.shape[0]))
             else:
-                clf.fit(X_pt, y_pt)
+                clf.fit(X_pt_source, y_pt_source)
             # Train the classifier with the samples provided by the data stream
             while count < max_samples and stream.has_more_samples():
 
