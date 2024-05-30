@@ -12,12 +12,12 @@ from visualization.plot_comparison import plot_comparison
 warnings.filterwarnings("ignore")
 
 #settings
-max_samples = 10000  # The range of tested stream
+max_samples = 100  # The range of tested stream
 n_round = 3   #Number of run round
 n_pt = 100    #Number of train samples
 n_ratio_max = 1  #Annotation ratio
 theta = 0.15  #Parameter for US
-dataset_name = "covtype"
+dataset_name = "Waveform"
 method_name_list = ["ROALE_DI", "OALE"]
 num_method = len(method_name_list)
 
@@ -32,11 +32,6 @@ if not os.path.exists(result_path):
 directory_path = "./Results/Results_%s_%d_%d/" % (dataset_name, n_pt, max_samples)
 if not os.path.exists(directory_path):
     os.makedirs(directory_path)
-
-
-stream_pt = get_stream(dataset_name)
-
-X_pt_source, y_pt_source = get_pt(stream=stream_pt, n_pt=n_pt)
 
 for n_method in range(len(method_name_list)):
 
@@ -53,8 +48,8 @@ for n_method in range(len(method_name_list)):
         y_true_list = []
         'stream initialization'
         stream = get_stream(dataset_name)
-        X_pt, y_pt = copy.deepcopy(X_pt_source), copy.deepcopy(y_pt_source)
-        para_method = para_init(X_pt, y_pt, n_class=stream.n_classes)
+        X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=n_pt)
+        para_method = para_init(X_pt_source, y_pt_source, n_class=stream.n_classes)
         method = para_method.get_method(method_name_list[n_method])
 
         # Setup Hyper-parameters
