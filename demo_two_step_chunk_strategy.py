@@ -15,18 +15,15 @@ warnings.filterwarnings("ignore")
 max_samples = 100  # The range of tested stream
 n_round = 3   #Number of run round
 n_pt = 100    #Number of train samples
-n_ratio_max = 1  #Annotation ratio
-theta = 0.15  #Parameter for US
-dataset_name = "Hyperplane"
-clf_name_list = ["BLS", "NB", "DES"]
-str_name_list = ["US_fix", "CogDQS"]
-
-
-
+n_ratio_max = 0.30  #Annotation ratio
+chunk_size = 20
+query_size = int(chunk_size * n_ratio_max)
+dataset_name = "SEA"
+clf_name_list = ["BLS"]
+str_name_list = ["DMI_DD"]
 
 num_str = len(str_name_list)
 num_clf = len(clf_name_list)
-
 
 acc_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range(num_str)]
 f1_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range(num_str)]
@@ -34,8 +31,9 @@ f1_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range
 result_path = "./Results/"
 if not os.path.exists(result_path):
     os.makedirs(result_path)
+
 #Result Record
-directory_path = "./Results/Results_%s_%d_%d/" % (dataset_name, n_pt, max_samples)
+directory_path = "./Results/Results_%s_%d_%d_%d/" % (dataset_name, n_pt, chunk_size, max_samples)
 if not os.path.exists(directory_path):
     os.makedirs(directory_path)
 
@@ -43,9 +41,7 @@ if not os.path.exists(directory_path):
 for n_clf in range(len(clf_name_list)):
 
     clf_name = clf_name_list[n_clf]
-
-    para_clf = para_init(theta=0.10)
-
+    para_clf = para_init()
 
     for n_str in range(len(str_name_list)):
 
@@ -54,6 +50,7 @@ for n_clf in range(len(clf_name_list)):
         y_true_all = []
         t1 = time.time()
         print("{} + {}".format(clf_name_list[n_clf], str_name_list[n_str]))
+
         for round in range(n_round):
             print('round:', round)
             clf = para_clf.get_clf("clf_" + clf_name)
@@ -65,44 +62,31 @@ for n_clf in range(len(clf_name_list)):
             X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=n_pt)
             para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max)
 
-
-
             str_name = str_name_list[n_str]
-            str = para_str.get_str(str_name)
+            str = para_str.get_str(str_name, chunk_size=chunk_size, query_size=query_size, clf=clf)
 
             # Setup Hyper-parameters
             count = 0
             n_annotation = 0
 
+            clf.fit(X_pt_source, y_pt_source)
 
-            #Pretrain
-            if clf_name == "DGEBLS":
-                clf.fit(X_pt_source, y_pt_source, np.eye(X_pt_source.shape[0]))
-            else:
-                clf.fit(X_pt_source, y_pt_source)
             # Train the classifier with the samples provided by the data stream
             while count < max_samples and stream.has_more_samples():
 
-                count += 1
-
-
-                X, y = stream.next_sample(1)
-
+                count += chunk_size
+                X, y = stream.next_sample(chunk_size)
                 y_pred = clf.predict(X)
-                for i in range(len(y_pred)):
-                    y_pred_list.append(y_pred[i])
-                    y_true_list.append(y[i])
-                
 
-                if n_ratio_max >= (n_annotation / count):
+                y_pred_list = y_pred_list + y_pred.tolist()
+                y_true_list = y_true_list + y.tolist()
 
-                    isLabel, clf = str.evaluation(X, y, clf)
+                clf = str.evaluation(X, y, clf)
 
-                    if isLabel == 1:
-                        n_annotation += 1
-                    elif isLabel == 0 and clf.__class__.__name__ in ['OSSBLS', 'ISSBLS', 'SOSELM']:
-                        clf.partial_fit(X, y, label_flag=isLabel)
+                n_annotation += query_size
 
+                print("n_annotation", n_annotation)
+                print("count", count)
 
             n_annotation_list.append(n_annotation / max_samples)
             acc_list[n_str][n_clf][round] = accuracy_score(y_true_list, y_pred_list)
@@ -112,12 +96,12 @@ for n_clf in range(len(clf_name_list)):
             y_true_all = y_true_all + y_true_list
 
         t2 = time.time()
-        # print(y_pred_all)
+
         result_pred = np.array(y_pred_all).reshape(n_round, max_samples)
         result_true = np.array(y_true_all).reshape(n_round, max_samples)
 
-        result_pred_name = './Results/Results_%s_%d_%d/Prediction_%s_%s.csv' % (dataset_name, n_pt, max_samples, clf_name_list[n_clf], str_name_list[n_str])
-        result_true_name = './Results/Results_%s_%d_%d/True_%s_%s.csv' % (dataset_name, n_pt, max_samples, clf_name_list[n_clf], str_name_list[n_str])
+        result_pred_name = './Results/Results_%s_%d_%d_%d/Prediction_%s_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
+        result_true_name = './Results/Results_%s_%d_%d_%d/True_%s_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
 
         with open(result_pred_name, mode='w', newline='') as file:
             writer = csv.writer(file)

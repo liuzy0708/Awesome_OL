@@ -7,11 +7,12 @@ Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies
 
 Explore a variety of online active learning strategies located in the **OAL_strategies** folder:
 #### Recent Progress:
-| Strategy          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
-|-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
-| CogDQS            | A dual-query strategy using Ebbinghaus’s law of human memory cognition, enabling experts to annotate the most representative samples. It employs a fixed uncertainty strategy for auxiliary judgment. | [Paper](https://ieeexplore.ieee.org/abstract/document/9492291)      |    NA   | 2023 | IEEE Transactions on Neural Networks and Learning Systems
-| DSA-AI            |  A dynamic submodular-based learning strategy with activation interval for imbalanced drifting streams, which aims to address the challenges posed by concept drifts in nonstationary environments.| [Paper](https://ieeexplore.ieee.org/abstract/document/10195233/)     |   [Link](https://github.com/liuzy0708/DSLS-Demo)    | 2024 | IEEE Transactions on Neural Networks and Learning Systems
-| MTSGQS            | A memory-triggered submodularity-guided query strategy that evaluates sample value through residual analysis and limited retraining, effectively addressing imbalanced data stream issues. | [Paper](https://ieeexplore.ieee.org/abstract/document/10105849)       |  NA     | 2023 | IEEE Transactions on Intelligent Transportation Systems
+| Strategy | Description                                                                                                                                                                                           | Reference            | Code Source    | Year | Journal/Conference|
+|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|------|--------------------|
+| CogDQS   | A dual-query strategy using Ebbinghaus’s law of human memory cognition, enabling experts to annotate the most representative samples. It employs a fixed uncertainty strategy for auxiliary judgment. | [Paper](https://ieeexplore.ieee.org/abstract/document/9492291)      |    NA   | 2023 | IEEE Transactions on Neural Networks and Learning Systems
+| DSA-AI   | A dynamic submodular-based learning strategy with activation interval for imbalanced drifting streams, which aims to address the challenges posed by concept drifts in nonstationary environments.    | [Paper](https://ieeexplore.ieee.org/abstract/document/10195233/)     |   [Link](https://github.com/liuzy0708/DSLS-Demo)    | 2024 | IEEE Transactions on Neural Networks and Learning Systems
+| MTSGQS   | A memory-triggered submodularity-guided query strategy that evaluates sample value through residual analysis and limited retraining, effectively addressing imbalanced data stream issues.            | [Paper](https://ieeexplore.ieee.org/abstract/document/10105849)       |  NA     | 2023 | IEEE Transactions on Intelligent Transportation Systems
+| DMI-DD   | A query strategy that evaluates chunk-level sample values based on model explanations.                                                                                                                | [Paper](https://ieeexplore.ieee.org/abstract/document/10375819)       |  [Link](https://github.com/liuzy0708/DMI-LS-Demo)     | 2024 | IEEE Transactions on Cybernetics
 
 ### OAL Classifiers:
 | Classifier          | Description                                                                                                           | Reference            | Code Source    | Year  | Journal/Conference|
@@ -62,21 +63,22 @@ Find various online learning classifiers in the **classifer** folder:
 
 The following details are summarized for such implemented methods:
 
-| Method  | OAL Strategy | Classifier | Binary Classification | Multi-class Classification | Concept Drift Adaptation | Ensemble |
-|---------|:------------:|:----------:|:-------:|:-----------:|:------------------------:|:--------:|
+| Method   | OAL Strategy | Classifier | Binary Classification | Multi-class Classification | Concept Drift Adaptation | Ensemble |
+|----------|:------------:|:----------:|:-------:|:-----------:|:------------------------:|:--------:|
 | ROALE-DI |      ✅       |     ✅      |    ✅    |      ✅      |            ✅             |    ✅     |
-| CogDQS  |      ✅       |            |    ✅     |      ✅      |              ✅            |          |
-| DSA-AI  |      ✅       |            |     ✅    |      ✅      |             ✅             |          |
-| MTSGQS  |      ✅       |            |    ✅     |      ✅      |            ✅              |          |
-| RS      |      ✅       |            |     ✅    |      ✅      |                          |          |
-| US-fix  |      ✅       |            |    ✅     |      ✅      |                          |          |
-| US-var  |      ✅       |            |     ✅    |      ✅      |                          |          |
-| OLI2DS  |              |     ✅       |    ✅     |             |               ✅           |          |  
-| IWDA    |              |     ✅       |    ✅     |       ✅      |               ✅           |    ✅      |
-| DES   |              |       ✅     |    ✅     |             |              ✅            |    ✅      |
-| ACDWM   |              |     ✅       |    ✅     |             |              ✅            |    ✅      |
-| SRP  |              |        ✅    |     ✅    |      ✅      |               ✅           |     ✅     |
-| ARF  |              |       ✅     |     ✅    |      ✅      |              ✅            |     ✅     |
+| CogDQS   |      ✅       |            |    ✅     |      ✅      |              ✅            |          |
+| DSA-AI   |      ✅       |            |     ✅    |      ✅      |             ✅             |          |
+| DMI-DD   |      ✅       |            |     ✅    |      ✅      |             ✅             |          |
+| MTSGQS   |      ✅       |            |    ✅     |      ✅      |            ✅              |          |
+| RS       |      ✅       |            |     ✅    |      ✅      |                          |          |
+| US-fix   |      ✅       |            |    ✅     |      ✅      |                          |          |
+| US-var   |      ✅       |            |     ✅    |      ✅      |                          |          |
+| OLI2DS   |              |     ✅       |    ✅     |             |               ✅           |          |  
+| IWDA     |              |     ✅       |    ✅     |       ✅      |               ✅           |    ✅      |
+| DES      |              |       ✅     |    ✅     |             |              ✅            |    ✅      |
+| ACDWM    |              |     ✅       |    ✅     |             |              ✅            |    ✅      |
+| SRP      |              |        ✅    |     ✅    |      ✅      |               ✅           |     ✅     |
+| ARF      |              |       ✅     |     ✅    |      ✅      |              ✅            |     ✅     |
 
 ### Datasets:
 

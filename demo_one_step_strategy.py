@@ -18,9 +18,8 @@ n_pt = 100    #Number of train samples
 n_ratio_max = 1  #Annotation ratio
 theta = 0.15  #Parameter for US
 dataset_name = "Waveform"
-method_name_list = ["ROALE_DI", "OALE"]
+method_name_list = ["ROALE_DI"]
 num_method = len(method_name_list)
-
 
 acc_list = [[[] for _ in range(n_round)] for _ in range(num_method)]
 f1_list = [[[] for _ in range(n_round)] for _ in range(num_method)]
@@ -68,8 +67,6 @@ for n_method in range(len(method_name_list)):
                 y_pred_list.append(y_pred[i])
                 y_true_list.append(y[i])
             method.evaluation(X, y)
-
-
 
         n_annotation_list.append(method.n_annotation / max_samples)
         acc_list[n_method][round] = accuracy_score(y_true_list, y_pred_list)
