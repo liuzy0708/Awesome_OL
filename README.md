@@ -1,12 +1,10 @@
 
 ## <img src="https://github.com/liuzy0708/liuzy0708.github.io/blob/main/assets/img/SL.png" width="5%" alt="" align=center /> Awesome_OL: A General Toolkit for Online Learning Approaches
 
-Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies and classifiers! This repository provides a collection of state-of-the-art strategies and classifiers for online active learning (OAL) and online semi-supervised learning (OSSL). Whether you're a researcher, practitioner, or enthusiast in machine learning, this toolkit offers valuable resources and implementations to enhance your projects.  
-
 <div align="center">
-    <img width="950" alt="stream" src="https://private-user-images.githubusercontent.com/115722686/320911890-068f4613-f956-4424-8ba7-0640104eff48.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTg5NDA4MzgsIm5iZiI6MTcxODk0MDUzOCwicGF0aCI6Ii8xMTU3MjI2ODYvMzIwOTExODkwLTA2OGY0NjEzLWY5NTYtNDQyNC04YmE3LTA2NDAxMDRlZmY0OC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNjIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDYyMVQwMzI4NThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01MDUxOThhNzRlODNhMWVhOGU1ZDNmMjNmNDA1OTViMGFhZDQyMDdkYTk1MDUzYWFlYTU3ZmUwODU4Y2RkMWYzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.yO1XPogpuols6EyIB7JYbsD1WnzY00R3OaNHj6b5Rwk">
+<img width="669" alt="Awesome_OL" src="https://github.com/liuzy0708/Awesome_OL/assets/115722686/63b2ae44-b2b4-433d-aafc-db650a46a691">
 </div>
-
+Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies and classifiers! This repository provides a collection of state-of-the-art strategies and classifiers for online active learning (OAL) and online semi-supervised learning (OSSL). Whether you're a researcher, practitioner, or enthusiast in machine learning, this toolkit offers valuable resources and implementations to enhance your projects.  
 
 ### OAL Strategies:
 
