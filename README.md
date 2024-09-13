@@ -144,3 +144,6 @@ Your feedback, questions, and contributions are invaluable to us. Whether you ha
 
 Please feel free to reach out to us via email with [Zeyi Liu](mailto:liuzy21@mails.tsinghua.edu.cn) and [Songqiao Hu](mailto:hsq23@mails.tsinghua.edu.cn). Here's to a fruitful learning journey!
 
+## Views
+![](http://profile-counter.glitch.me/Awesome_OL/count.svg)
+
