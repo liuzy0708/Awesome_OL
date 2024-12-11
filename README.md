@@ -6,6 +6,9 @@
 </div>
 Welcome to Awesome_OL, your comprehensive toolkit for online learning strategies and classifiers! This repository provides a collection of state-of-the-art strategies and classifiers for online active learning (OAL) and online semi-supervised learning (OSSL). Whether you're a researcher, practitioner, or enthusiast in machine learning, this toolkit offers valuable resources and implementations to enhance your projects.  
 
+### Update Plan
+This project will be continuously updated. Stay tuned!
+
 ### OAL Strategies:
 
 Explore a variety of online active learning strategies located in the **OAL_strategies** folder:
