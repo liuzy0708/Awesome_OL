@@ -56,16 +56,17 @@ Find various online learning classifiers in the **classifer** folder:
 | OLI2DS            | An online learning algorithm for imbalanced data streams that tackles dynamically evolving feature spaces and imbalances and empirical risk minimization using dynamic cost strategies. | [Paper](https://ieeexplore.ieee.org/abstract/document/10058539)     |   [Link](https://github.com/youdianlong/OLI2DS)    | 2023 | IEEE Transactions on Knowledge and Data Engineering
 | DES               | An online ensemble learning method designed to adapt to data drift in streams with class imbalance, employing an improved Synthetic Minority Oversampling TEchnique (SMOTE) concept. | [Paper](https://ieeexplore.ieee.org/abstract/document/9802893)      |   [Link](https://github.com/Jesen-BT/DES-ICD)   | 2024 | IEEE Transactions on Neural Networks and Learning Systems
 | BLS-W             | An online learning method based on the standard BLS architecture, utilizing the Sherman–Morrison Woodbury formula for incremental updates. | [Paper](https://ieeexplore.ieee.org/abstract/document/10375819)      |   [Link](https://github.com/liuzy0708/DMI-LS-Demo)   |   2023* | IEEE Transactions on Cybernetics
+| QRBLS               | An enhanced version of BLS incorporating QR factorization (QRF), referred to as QRBLS, which is known for improving numerical stability. | [Paper](https://ieeexplore.ieee.org/abstract/document/4012031)       |   [Link](https://github.com/Lichen0102/QRBLS)   | 2025 | IEEE Transactions on Neural Networks and Learning Systems
 | IWDA             | A novel learner-agnostic algorithm for drift adaptation, which estimates the joint probability density of input and target for the incoming data. As soon as drift is detected, it retrains the learner using importance-weighted empirical risk minimization. | [Paper](https://ieeexplore.ieee.org/abstract/document/10105220)    |   [Link](https://github.com/SirPopiel/IWDA)   |   2023* | IEEE Transactions on Neural Networks and Learning Systems
 | ACDWM             | An adaptive chunk-based incremental learning method is proposed for handling imbalanced streaming data with concept drift, utilizing statistical hypothesis tests to dynamically select chunk sizes for assessing classifier stability. | [Paper](https://ieeexplore.ieee.org/document/8924892)       |   [Link](https://github.com/jasonyanglu/ACDWM)    | 2020 | IEEE Transactions on Neural Networks and Learning Systems
 | ARF               | An advanced online ensemble learning method that addresses changing data streams by integrating effective resampling methods and adaptive operators with ADWIN. | [Paper](https://link.springer.com/article/10.1007/s10994-017-5642-8)       |  [Link](https://github.com/scikit-multiflow/scikit-multiflow) | 2017 | Machine Learning
 | SRP               | An ensemble method specially adapted to stream classification which combines random subspaces and online bagging. | [Paper](https://ieeexplore.ieee.org/document/8970784)       |   [Link](https://github.com/scikit-multiflow/scikit-multiflow)   | 2019 | ICDM
 
+
 #### Baseline Strategies:
 | Classifier        | Description                                                                                                           | Reference            | Code Source        | Year  | Journal/Conference|
 |-------------------|-----------------------------------------------------------------------------------------------------------------------|----------------------|--------------------|--------------------|--------------------|
 | OSELM               | An online sequential extreme learning machine model, which tries to iteratively update with the structure of extreme learning machines without the drift detection and adaption technique. | [Paper](https://ieeexplore.ieee.org/abstract/document/4012031)       |   [Link](https://github.com/leferrad/pyoselm)   | 2006 | IEEE Transactions on Neural Networks
-
 
 The following details are summarized for such implemented methods:
 
@@ -85,6 +86,7 @@ The following details are summarized for such implemented methods:
 | ACDWM    |              |     ✅       |    ✅     |             |              ✅            |    ✅      |
 | SRP      |              |        ✅    |     ✅    |      ✅      |               ✅           |     ✅     |
 | ARF      |              |       ✅     |     ✅    |      ✅      |              ✅            |     ✅     |
+| QRBLS      |              |       ✅     |     ✅    |      ✅      |                          |          |
 
 ### Datasets:
 
