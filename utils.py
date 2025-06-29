@@ -20,7 +20,7 @@ from classifier.clf_DES import DES_ICD
 from skmultiflow.bayes import NaiveBayes
 from classifier.clf_ACDWM import ACDWM
 from classifier.clf_OLI2DS import OLI2DS
-from classifier.clf_BLS_QR import BLS_QR
+from classifier.clf_QRBLS import QRBLS
 
 from OSSL_classifier.clf_OSSBLS import OSSBLS
 from OSSL_classifier.clf_ISSBLS import ISSBLS
@@ -67,13 +67,16 @@ def get_pt(stream, n_pt):
 
 class para_init:
 
-    def __init__(self, X_pt_source=np.array([[]]), y_pt_source=np.array([[]]), n_class=2, n_ratio_max=0.2, n_anchor=10, theta=0.2):
+    def __init__(self, X_pt_source=np.array([[]]), y_pt_source=np.array([[]]), n_class=2, n_ratio_max=0.2, n_anchor=10, theta=0.2, chunk_size=None, query_size=None, clf=None):
         self.n_class = n_class
         self.X_pt_source = X_pt_source
         self.y_pt_source = y_pt_source
         self.n_ratio_max = n_ratio_max
         self.n_anchor = n_anchor
         self.theta = theta
+        self.chunk_size = chunk_size
+        self.query_size = query_size
+        self.clf = clf
 
     def get_method(self, name):
         if name == "ROALE_DI":
@@ -97,10 +100,10 @@ class para_init:
             return SRP(n_estimators=3, n_class=self.n_class)
         elif name == "clf_AdaC2":
             return OnlineAdaC2Classifier()
-        elif name == "clf_BLS_QR":
-            return BLS_QR(Nf=20,
+        elif name == "clf_QRBLS":
+            return QRBLS(Nf=10,
                         Ne=10,
-                        N1=20,
+                        N1=10,
                         N2=10,
                         M1=1,
                         M2=5,
@@ -112,9 +115,9 @@ class para_init:
                         reg=0.001,
                         n_class=3)
         elif name == "clf_BLS":
-            return BLS(Nf=40,
+            return BLS(Nf=10,
                      Ne=10,
-                     N1=60,
+                     N1=10,
                      N2=10,
                      map_function='sigmoid',
                      enhence_function='sigmoid',
@@ -169,7 +172,7 @@ class para_init:
             return OLI2DS(C=0.0100000, Lambda=30, B=1, theta=8, gama=0, sparse=0, mode="capricious")
         raise ValueError("Not valid")
 
-    def get_str(self, name, chunk_size, query_size, clf):
+    def get_str(self, name):
         name = name + "_str"
         if name == "DSA_AI_str":
             return DSA_AI_strategy(n_class=self.n_class, X_memory_collection=self.X_pt_source,
@@ -188,55 +191,7 @@ class para_init:
         elif name == "RS_str":
             return RS_strategy(label_ratio=self.n_ratio_max)
         if name == "DMI_DD_str":
-            return DMI_DD_strategy(n_class=self.n_class, chunk_size=chunk_size, query_size=query_size, clf=clf, X_pt=self.X_pt_source, y_pt=self.y_pt_source)
+            return DMI_DD_strategy(n_class=self.n_class, chunk_size=self.chunk_size, query_size=self.query_size, clf=self.clf, X_pt=self.X_pt_source, y_pt=self.y_pt_source)
         raise ValueError("Not valid")
 
-    # def clf_init(self):
-    #     clf_ARF = ARF()
-    #     clf_SRP = SRP()
-    #     clf_BLS = BLS(Nf=10,
-    #                   Ne=10,
-    #                   N1=10,
-    #                   N2=10,
-    #                   map_function='sigmoid',
-    #                   enhence_function='sigmoid',
-    #                   reg=0.001)
-    #     clf_OSSBLS = OSSBLS(
-    #                  Nf=10,
-    #                  Ne=10,
-    #                  N1=10,
-    #                  N2=10,
-    #                  map_function='sigmoid',
-    #                  enhence_function='sigmoid',
-    #                  reg=0.001,
-    #                  gamma=0.05,
-    #                  n_anchor=10)
-    #     clf_ISSBLS = ISSBLS(
-    #                  Nf=10,
-    #                  Ne=10,
-    #                  N1=10,
-    #                  N2=10,
-    #                  map_function='sigmoid',
-    #                  enhence_function='sigmoid',
-    #                  reg=0.001,
-    #                  gamma=0.05)
-    #
-    #     clf_SOSELM = SOSELM(
-    #                  Ne=20,
-    #                  N2=10,
-    #                  enhence_function='sigmoid',
-    #                  reg=0.001,
-    #                  gamma=0.05)
-    #
-    #     return clf_ARF, clf_SRP, clf_BLS, clf_OSSBLS, clf_ISSBLS, clf_SOSELM
-
-    # def str_init(self):
-    #     DSA_AI_str = DSA_AI_strategy(n_class=self.n_class, X_memory_collection=self.X_pt_source, y_memory_collection=self.y_pt_source, d=self.X_pt_source.shape[1],
-    #                                  kappa=2, gamma=0.4)
-    #     MTSGQS_str = MTSGQS_strategy(n_class=self.n_class, kappa=2, gamma=0.4, n_capacity=100)
-    #     US_fix_str = US_fix_strategy(theta=0.5)
-    #     US_var_str = US_var_strategy(theta=0.5)
-    #     CogDQS_str = CogDQS_strategy(B=0.25, n=1, c=2, cw_size=10, window_size=200, s=0.01)
-    #     RS_str = RS_strategy(label_ratio=self.n_ratio_max)
-    #     return DSA_AI_str, MTSGQS_str, US_fix_str, US_var_str, CogDQS_str, RS_str
 

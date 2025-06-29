@@ -60,10 +60,10 @@ for n_clf in range(len(clf_name_list)):
             'stream initialization'
             stream = get_stream(dataset_name)
             X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=n_pt)
-            para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max)
+            para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max, clf=clf, query_size=query_size, chunk_size=chunk_size)
 
             str_name = str_name_list[n_str]
-            str = para_str.get_str(str_name, chunk_size=chunk_size, query_size=query_size, clf=clf)
+            str = para_str.get_str(str_name)
 
             # Setup Hyper-parameters
             count = 0
@@ -120,6 +120,6 @@ filename_list = []
 for n_str in range(len(str_name_list)):
     for n_clf in range(len(clf_name_list)):
         filename_list = filename_list + [clf_name_list[n_clf] + '_' + str_name_list[n_str]]
-plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, filename_list=filename_list)
+plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=chunk_size, filename_list=filename_list, n_pt=n_pt)
 
 

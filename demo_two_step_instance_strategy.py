@@ -17,8 +17,9 @@ n_round = 3   #Number of run round
 n_pt = 200    #Number of train samples
 n_ratio_max = 1  #Annotation ratio
 theta = 0.15  #Parameter for US
+chunk_size = 1
 dataset_name = "Hyperplane"
-clf_name_list = ["ARF"]
+clf_name_list = ["QRBLS"]
 str_name_list = ["RS"]
 
 num_str = len(str_name_list)
@@ -32,7 +33,7 @@ if not os.path.exists(result_path):
     os.makedirs(result_path)
 
 #Result Record
-directory_path = "./Results/Results_%s_%d_%d/" % (dataset_name, n_pt, max_samples)
+directory_path = "./Results/Results_%s_%d_%d_%d/" % (dataset_name, n_pt, chunk_size, max_samples)
 if not os.path.exists(directory_path):
     os.makedirs(directory_path)
 
@@ -59,7 +60,7 @@ for n_clf in range(len(clf_name_list)):
             'stream initialization'
             stream = get_stream(dataset_name)
             X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=n_pt)
-            para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max, clf=clf)
+            para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max)
 
             str_name = str_name_list[n_str]
             str = para_str.get_str(str_name)
@@ -99,8 +100,8 @@ for n_clf in range(len(clf_name_list)):
         result_pred = np.array(y_pred_all).reshape(n_round, max_samples)
         result_true = np.array(y_true_all).reshape(n_round, max_samples)
 
-        result_pred_name = './Results/Results_%s_%d_%d/Prediction_%s_%s.csv' % (dataset_name, n_pt, max_samples, clf_name_list[n_clf], str_name_list[n_str])
-        result_true_name = './Results/Results_%s_%d_%d/True_%s_%s.csv' % (dataset_name, n_pt, max_samples, clf_name_list[n_clf], str_name_list[n_str])
+        result_pred_name = './Results/Results_%s_%d_%d_%d/Prediction_%s_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
+        result_true_name = './Results/Results_%s_%d_%d_%d/True_%s_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
 
         with open(result_pred_name, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -119,6 +120,6 @@ filename_list = []
 for n_str in range(len(str_name_list)):
     for n_clf in range(len(clf_name_list)):
         filename_list = filename_list + [clf_name_list[n_clf] + '_' + str_name_list[n_str]]
-plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, filename_list=filename_list)
+plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=1, filename_list=filename_list, n_pt=n_pt)
 
 

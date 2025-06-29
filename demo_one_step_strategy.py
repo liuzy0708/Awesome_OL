@@ -16,6 +16,7 @@ max_samples = 100  # The range of tested stream
 n_round = 3   #Number of run round
 n_pt = 100    #Number of train samples
 n_ratio_max = 1  #Annotation ratio
+chunk_size = 1
 theta = 0.15  #Parameter for US
 dataset_name = "Waveform"
 method_name_list = ["ROALE_DI"]
@@ -28,7 +29,7 @@ result_path = "./Results/"
 if not os.path.exists(result_path):
     os.makedirs(result_path)
 #Result Record
-directory_path = "./Results/Results_%s_%d_%d/" % (dataset_name, n_pt, max_samples)
+directory_path = "./Results/Results_%s_%d_%d_%d/" % (dataset_name, n_pt, chunk_size, max_samples)
 if not os.path.exists(directory_path):
     os.makedirs(directory_path)
 
@@ -80,8 +81,8 @@ for n_method in range(len(method_name_list)):
     result_pred = np.array(y_pred_all).reshape(n_round, max_samples)
     result_true = np.array(y_true_all).reshape(n_round, max_samples)
 
-    result_pred_name = './Results/Results_%s_%d_%d/Prediction_%s.csv' % (dataset_name, n_pt, max_samples, method_name_list[n_method])
-    result_true_name = './Results/Results_%s_%d_%d/True_%s.csv' % (dataset_name, n_pt, max_samples, method_name_list[n_method])
+    result_pred_name = './Results/Results_%s_%d_%d_%d/Prediction_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, method_name_list[n_method])
+    result_true_name = './Results/Results_%s_%d_%d_%d/True_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, method_name_list[n_method])
 
     with open(result_pred_name, mode='w', newline='') as file:
         writer = csv.writer(file)
@@ -95,6 +96,6 @@ for n_method in range(len(method_name_list)):
     print("Annotation Rate %s: %.4f" % (method_name_list[n_method], np.mean(n_annotation_list)))
     print("Average Time %s: %.4f s\n" % (method_name_list[n_method], (t2 - t1) / n_round))
 
-plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, filename_list=method_name_list)
+plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=chunk_size, filename_list=method_name_list, n_pt=n_pt)
 
 
