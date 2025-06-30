@@ -92,7 +92,7 @@ for n_method in range(len(method_name_list)):
         writer.writerows(result_true)
 
     print("\nAccuracy %s: %.3f ± %.3f" % (method_name_list[n_method], np.mean(acc_list[n_method]), np.std(acc_list[n_method])))
-    print("macro-F1 %s: %.3f ± %.3f" % (method_name_list[n_method], np.mean(acc_list[n_method]), np.std(acc_list[n_method])))
+    print("macro-F1 %s: %.3f ± %.3f" % (method_name_list[n_method], np.mean(f1_list[n_method]), np.std(f1_list[n_method])))
     print("Annotation Rate %s: %.4f" % (method_name_list[n_method], np.mean(n_annotation_list)))
     print("Average Time %s: %.4f s\n" % (method_name_list[n_method], (t2 - t1) / n_round))
 
