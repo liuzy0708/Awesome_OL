@@ -4,14 +4,14 @@ import os
 from visualization import plot_acc, plot_macro_f1
 
 class plot_comparison:
-    def __init__(self, dataset, n_class, n_round, max_samples, interval, filename_list):
+    def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
         # 获取父目录的路径
         current_dir = os.path.dirname(os.path.abspath(__file__))
         parent_dir = os.path.dirname(current_dir)
         # 更改工作目录为父目录
         os.chdir(parent_dir)
-        os.chdir('./Results/Results_{}_100_{}/'.format(dataset, max_samples))
-        saving_path = './Results/Results_{}_100_{}/'.format(dataset, max_samples)
+        os.chdir('./Results/Results_{}_{}_{}_{}_{}/'.format(dataset, framework, n_pt, chunk_size, max_samples))
+        saving_path = './Results/Results_{}_{}_{}_{}_{}/'.format(dataset, framework, n_pt, chunk_size, max_samples)
         std_alpha = 0.2
 
         colors = ['#E8D3C0', '#D89C7A', '#D6C38B', '#849B91', '#C2CEDC', '#686789', '#AB545A', '#9A7549', '#B0B1B6', '#7D7465']

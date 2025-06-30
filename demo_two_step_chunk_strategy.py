@@ -21,7 +21,7 @@ query_size = int(chunk_size * n_ratio_max)
 dataset_name = "SEA"
 clf_name_list = ["BLS"]
 str_name_list = ["DMI_DD"]
-
+framework = "TWO-STEP-CHUNK"
 num_str = len(str_name_list)
 num_clf = len(clf_name_list)
 
@@ -33,7 +33,7 @@ if not os.path.exists(result_path):
     os.makedirs(result_path)
 
 #Result Record
-directory_path = "./Results/Results_%s_%d_%d_%d/" % (dataset_name, n_pt, chunk_size, max_samples)
+directory_path = "./Results/Results_%s_%s_%d_%d_%d/" % (dataset_name, framework, n_pt, chunk_size, max_samples)
 if not os.path.exists(directory_path):
     os.makedirs(directory_path)
 
@@ -100,8 +100,8 @@ for n_clf in range(len(clf_name_list)):
         result_pred = np.array(y_pred_all).reshape(n_round, max_samples)
         result_true = np.array(y_true_all).reshape(n_round, max_samples)
 
-        result_pred_name = './Results/Results_%s_%d_%d_%d/Prediction_%s_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
-        result_true_name = './Results/Results_%s_%d_%d_%d/True_%s_%s.csv' % (dataset_name, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
+        result_pred_name = './Results/Results_%s_%s_%d_%d_%d/Prediction_%s_%s.csv' % (dataset_name, framework, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
+        result_true_name = './Results/Results_%s_%s_%d_%d_%d/True_%s_%s.csv' % (dataset_name, framework, n_pt, chunk_size, max_samples, clf_name_list[n_clf], str_name_list[n_str])
 
         with open(result_pred_name, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -120,6 +120,6 @@ filename_list = []
 for n_str in range(len(str_name_list)):
     for n_clf in range(len(clf_name_list)):
         filename_list = filename_list + [clf_name_list[n_clf] + '_' + str_name_list[n_str]]
-plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=chunk_size, filename_list=filename_list, n_pt=n_pt)
+plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=chunk_size, filename_list=filename_list, n_pt=n_pt, framework=framework)
 
 
