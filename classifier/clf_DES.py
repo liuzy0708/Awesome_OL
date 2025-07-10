@@ -213,9 +213,9 @@ class DES_ICD(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
 
     def fit(self, X, y, classes=None, sample_weight=None):
         if len(set(y)) > 2 :
-            raise Exception("DES-ICD只能处理二分类问题")
+            raise Exception("DES-ICD can only handle binary classification problems")
         if X.shape[0] < self.window_size:
-            raise Exception("fit的样本数应该大于window_size")
+            raise Exception("The number of samples for fitting should be greater than the window_size")
         self.partial_fit(X, y)
 
         return self

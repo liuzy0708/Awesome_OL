@@ -1,20 +1,25 @@
 """ Demo of plots. """
 
 import os
+from pathlib import Path
 from visualization import plot_acc, plot_macro_f1
 
 class plot_comparison:
-    def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
-        # 获取父目录的路径
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        parent_dir = os.path.dirname(current_dir)
-        # 更改工作目录为父目录
-        os.chdir(parent_dir)
-        os.chdir('./Results/Results_{}_{}_{}_{}_{}/'.format(dataset, framework, n_pt, chunk_size, max_samples))
-        saving_path = './Results/Results_{}_{}_{}_{}_{}/'.format(dataset, framework, n_pt, chunk_size, max_samples)
+    def __init__(self,dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
+        # 获取项目根目录（假设脚本在项目子目录中）
+        project_root = Path(__file__).parent.parent  # 假设脚本在 /project/src/script.py
+
+        # 构建目标目录的绝对路径
+        target_dir = project_root / "Results" / f"Results_{dataset}_{framework}_{n_pt}_{chunk_size}_{max_samples}"
+
+        # 创建目录并切换
+        os.makedirs(target_dir, exist_ok=True)
+        os.chdir(target_dir)
         std_alpha = 0.2
 
         colors = ['#E8D3C0', '#D89C7A', '#D6C38B', '#849B91', '#C2CEDC', '#686789', '#AB545A', '#9A7549', '#B0B1B6', '#7D7465']
+
+        print("The result is being saved to %s" % target_dir)
 
         # filename_list = filename_list + []
         import matplotlib.pyplot as plt

@@ -1,34 +1,33 @@
 import csv
-import copy
 import numpy as np
 import warnings
 import os
 import time
-from visualization import plot_acc, plot_macro_f1
 from sklearn.metrics import accuracy_score, f1_score
-from utils import para_init
-from utils import get_stream, get_pt
+from Tools.utils import para_init
+from Tools.utils import get_stream, get_pt
 from visualization.plot_comparison import plot_comparison
 warnings.filterwarnings("ignore")
 
 #settings
-max_samples = 100  # The range of tested stream
+max_samples = 1000  # The range of tested stream
 n_round = 3   #Number of run round
-n_pt = 100    #Number of train samples
-n_ratio_max = 0.30  #Annotation ratio
+n_pt = 200    #Number of train samples
+n_ratio_max = 1  #Annotation ratio
+theta = 0.15  #Parameter for US
 chunk_size = 20
-query_size = int(chunk_size * n_ratio_max)
-dataset_name = "SEA"
-clf_name_list = ["BLS"]
-str_name_list = ["DMI_DD"]
-framework = "TWO-STEP-CHUNK"
+framework = "TWO-STEP-INSTANCE"
+dataset_name = "Hyperplane"
+clf_name_list = ["QRBLS"]
+str_name_list = ["RS"]
+
 num_str = len(str_name_list)
 num_clf = len(clf_name_list)
 
 acc_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range(num_str)]
 f1_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range(num_str)]
 
-result_path = "./Results/"
+result_path = "../Results/"
 if not os.path.exists(result_path):
     os.makedirs(result_path)
 
@@ -60,7 +59,7 @@ for n_clf in range(len(clf_name_list)):
             'stream initialization'
             stream = get_stream(dataset_name)
             X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=n_pt)
-            para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max, clf=clf, query_size=query_size, chunk_size=chunk_size)
+            para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source, n_ratio_max=n_ratio_max)
 
             str_name = str_name_list[n_str]
             str = para_str.get_str(str_name)
@@ -77,16 +76,16 @@ for n_clf in range(len(clf_name_list)):
                 count += chunk_size
                 X, y = stream.next_sample(chunk_size)
                 y_pred = clf.predict(X)
+                for i in range(len(y_pred)):
+                    y_pred_list.append(y_pred[i])
+                    y_true_list.append(y[i])
 
-                y_pred_list = y_pred_list + y_pred.tolist()
-                y_true_list = y_true_list + y.tolist()
-
-                clf = str.evaluation(X, y, clf)
-
-                n_annotation += query_size
-
-                print("n_annotation", n_annotation)
-                print("count", count)
+                if n_ratio_max >= (n_annotation / count):
+                    isLabel, clf = str.evaluation(X, y, clf)
+                    if isLabel == 1:
+                        n_annotation += 1
+                    elif isLabel == 0 and clf.__class__.__name__ in ['OSSBLS', 'ISSBLS', 'SOSELM']:
+                        clf.partial_fit(X, y, label_flag=isLabel)
 
             n_annotation_list.append(n_annotation / max_samples)
             acc_list[n_str][n_clf][round] = accuracy_score(y_true_list, y_pred_list)
@@ -120,6 +119,6 @@ filename_list = []
 for n_str in range(len(str_name_list)):
     for n_clf in range(len(clf_name_list)):
         filename_list = filename_list + [clf_name_list[n_clf] + '_' + str_name_list[n_str]]
-plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=chunk_size, filename_list=filename_list, n_pt=n_pt, framework=framework)
+plot_comparison(dataset=dataset_name, n_class=stream.n_classes, n_round=n_round, max_samples=max_samples, interval=1, chunk_size=1, filename_list=filename_list, n_pt=n_pt, framework=framework)
 
 

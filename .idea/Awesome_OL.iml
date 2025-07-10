@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="inheritedJdk" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/Results/Results" />
+      <excludeFolder url="file://$MODULE_DIR$/Results/Results_Waveform_OL_100_1_1000" />
+      <excludeFolder url="file://$MODULE_DIR$/Results/Results_Waveform_ONE-STEP_100_1_1000" />
+    </content>
+    <orderEntry type="jdk" jdkName="OL" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
