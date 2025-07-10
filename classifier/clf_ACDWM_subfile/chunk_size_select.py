@@ -1,6 +1,3 @@
-from numpy import *
-import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
 from scipy.stats import f
 from scipy.stats import chi2
 from .subunderbagging import *

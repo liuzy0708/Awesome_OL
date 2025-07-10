@@ -3,8 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, FFMpegWriter
-from sklearn.metrics import accuracy_score
+from matplotlib.animation import FuncAnimation
 from IPython.display import Image, Video, display
 
 

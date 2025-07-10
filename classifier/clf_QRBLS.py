@@ -3,8 +3,6 @@
 import numpy as np
 from sklearn import preprocessing
 from numpy import random
-import scipy
-import csv
 
 class scaler:
     def __init__(self):

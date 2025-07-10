@@ -1,5 +1,3 @@
-import csv
-import numpy as np
 import warnings
 import os
 import time
@@ -7,34 +5,46 @@ from enum import Enum
 from sklearn.metrics import accuracy_score, f1_score
 from Tools.utils import *
 from visualization.plot_comparison import plot_comparison
+from log_config import logger
 warnings.filterwarnings("ignore")
 
 class Two_Step_Instance:
     def __init__(self, max_samples=1000, n_round=3, n_pt=100,
                  dataset_name="Waveform", clf_name_list=None, str_name_list="RS"):
         self.max_samples = max_samples
+        logger.info(f"max_samples: {max_samples}")
         self.n_round = n_round
+        logger.info(f"n_round: {n_round}")
         self.n_pt = n_pt
+        logger.info(f"n_pt: {n_pt}")
         self.n_ratio_max = 1
+        logger.info(f"n_ratio_max: {self.n_ratio_max}")
         self.chunk_size = 1
+        logger.info(f"chunk_size: {self.chunk_size}")
         self.dataset_name = dataset_name
+        logger.info(f"dataset_name: {self.dataset_name}")
 
         if clf_name_list is None:
             self.clf_name_list = ['BLS']
         else:
             parsed_list = [name.strip() for name in clf_name_list.split(',')]
             self.clf_name_list = validate_classifier_names_TWO_STEP_INSTANCE(parsed_list)
+        logger.info(f"clf_name_list: {self.clf_name_list}")
 
         if str_name_list is None:
             self.str_name_list = ['DMI_DD']
         else:
             parsed_list = [name.strip() for name in str_name_list.split(',')]
             self.str_name_list = validate_strategies_names_TWO_STEP_INSTANCE(parsed_list)
+        logger.info(f"str_name_list: {self.str_name_list}")
 
         self.framework = "TWO-STEP-INSTANCE"
+        logger.info(f"framework: {self.framework}")
 
         self.num_str = len(str_name_list)
+        logger.info(f"num_str: {self.num_str}")
         self.num_clf = len(clf_name_list)
+        logger.info(f"num_clf: {self.num_clf}")
 
         self.acc_list = [[[[] for _ in range(n_round)] for _ in range(self.num_clf)] for _ in range(self.num_str)]
         self.f1_list = [[[[] for _ in range(n_round)] for _ in range(self.num_clf)] for _ in range(self.num_str)]
@@ -42,12 +52,14 @@ class Two_Step_Instance:
         self.result_path = "./Results/"
         if not os.path.exists(self.result_path):
             os.makedirs(self.result_path)
+        logger.info(f"result_path: {self.result_path}")
 
         self.directory_path = "./Results/Results_%s_%s_%d_%d_%d/" % (
             self.dataset_name, self.framework, self.n_pt, self.chunk_size, self.max_samples
         )
         if not os.path.exists(self.directory_path):
             os.makedirs(self.directory_path)
+        logger.info(f"directory_path: {self.directory_path}")
 
     def run(self):
         for n_clf in range(len(self.clf_name_list)):

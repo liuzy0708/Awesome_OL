@@ -1,15 +1,12 @@
-import csv
-import copy
 from enum import Enum
 
-import numpy as np
 import warnings
 import os
 import time
-from visualization import plot_acc, plot_macro_f1
 from sklearn.metrics import accuracy_score, f1_score
 from Tools.utils import *
 from visualization.plot_comparison import plot_comparison
+from log_config import logger
 
 warnings.filterwarnings("ignore")
 
@@ -18,28 +15,39 @@ class Two_Step_Chunk:
     def __init__(self, max_samples=1000, n_round=3, n_pt=100, n_ratio_max=0.3, chunk_size=20,
                  dataset_name="Waveform", clf_name_list=None, str_name_list="DMI_DD"):
         self.max_samples = max_samples
+        logger.info(f"max_samples: {max_samples}")
         self.n_round = n_round
+        logger.info(f"n_round: {n_round}")
         self.n_pt = n_pt
+        logger.info(f"n_pt: {n_pt}")
         self.n_ratio_max = n_ratio_max
+        logger.info(f"n_ratio_max: {n_ratio_max}")
         self.chunk_size = chunk_size
+        logger.info(f"chunk_size: {chunk_size}")
         self.query_size = int(chunk_size * n_ratio_max)
+        logger.info(f"query_size: {self.query_size}")
         self.dataset_name = dataset_name
+        logger.info(f"dataset_name: {self.dataset_name}")
 
         if clf_name_list is None:
             self.clf_name_list = ['BLS']
         else:
             parsed_list = [name.strip() for name in clf_name_list.split(',')]
             self.clf_name_list = validate_classifier_names_TWO_STEP_CHUNK(parsed_list)
+        logger.info(f"clf_name_list: {self.clf_name_list}")
 
         if str_name_list is None:
             self.str_name_list = ['DMI_DD']
         else:
             parsed_list = [name.strip() for name in str_name_list.split(',')]
             self.str_name_list = validate_strategies_names_TWO_STEP_CHUNK(parsed_list)
+        logger.info(f"str_name_list: {self.str_name_list}")
 
         self.framework = "TWO-STEP-CHUNK"
+        logger.info(f"framework: {self.framework}")
         self.result_dir = f"./Results/Results_{dataset_name}_{self.framework}_{n_pt}_{chunk_size}_{max_samples}/"
         os.makedirs(self.result_dir, exist_ok=True)
+        logger.info(f"result_dir: {self.result_dir}")
 
     def run(self):
         for n_clf in range(len(self.clf_name_list)):

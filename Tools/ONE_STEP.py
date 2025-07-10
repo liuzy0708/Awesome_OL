@@ -1,12 +1,11 @@
 import os
-import csv
 import time
-import numpy as np
 import warnings
 from enum import Enum
 from sklearn.metrics import accuracy_score, f1_score
 from Tools.utils import *
 from visualization.plot_comparison import plot_comparison
+from log_config import logger
 
 warnings.filterwarnings("ignore")
 
@@ -22,28 +21,39 @@ class One_Step:
                  theta=0.15):
 
         self.max_samples = max_samples
+        logger.info(f"max_samples: {max_samples}")
         self.n_round = n_round
+        logger.info(f"n_round: {n_round}")
         self.n_pt = n_pt
+        logger.info(f"n_pt: {n_pt}")
         self.chunk_size = chunk_size
+        logger.info(f"chunk_size: {chunk_size}")
         self.framework = framework
+        logger.info(f"framework: {framework}")
         self.dataset_name = dataset_name
+        logger.info(f"dataset_name: {dataset_name}")
         self.theta = theta
+        logger.info(f"theta: {theta}")
 
         if method_name_list is None:
             self.method_name_list = ["OALE"]
         else:
             parsed_list = [name.strip() for name in method_name_list.split(',')]
             self.method_name_list = validate_classifier_names_ONE_STEP(parsed_list)
+        logger.info(f"method_name_list: {self.method_name_list}")
 
         self.num_method = len(self.method_name_list)
+        logger.info(f"num_method: {self.num_method}")
         self.acc_list = [[[] for _ in range(n_round)] for _ in range(self.num_method)]
         self.f1_list = [[[] for _ in range(n_round)] for _ in range(self.num_method)]
 
         self.result_path = "../Results/"
         os.makedirs(self.result_path, exist_ok=True)
+        logger.info(f"result_path: {self.result_path}")
 
         self.directory_path = f"./Results/Results_{self.dataset_name}_{self.framework}_{self.n_pt}_{self.chunk_size}_{self.max_samples}/"
         os.makedirs(self.directory_path, exist_ok=True)
+        logger.info(f"directory_path: {self.directory_path}")
 
     def run(self):
         for n_method, method_name in enumerate(self.method_name_list):

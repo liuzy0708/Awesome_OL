@@ -6,7 +6,6 @@ from skmultiflow.utils.data_structures import ConfusionMatrix
 import warnings
 from matplotlib.animation import FuncAnimation
 from IPython.display import Image, Video, display
-import seaborn as sns
 
 warnings.filterwarnings("ignore")
 

@@ -4,9 +4,7 @@ import copy as cp
 import numpy as np
 import random
 from skmultiflow.core import BaseSKMObject, ClassifierMixin, MetaEstimatorMixin
-from skmultiflow.trees import HoeffdingTreeClassifier
 from skmultiflow.bayes import NaiveBayes
-from imblearn.over_sampling import SMOTE
 import math
 
 

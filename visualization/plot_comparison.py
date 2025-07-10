@@ -8,6 +8,7 @@ from IPython.display import Image, display
 from visualization import plot_acc, plot_macro_f1
 import matplotlib.cm as cm
 import matplotlib.colors as mcolors
+from log_config import logger
 
 class plot_comparison:
     def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
@@ -16,6 +17,7 @@ class plot_comparison:
         os.makedirs(target_dir, exist_ok=True)
         os.chdir(target_dir)
 
+        logger.info(f"Saving results to: {target_dir}")
         print("Saving results to:", target_dir)
         std_alpha = 0.2
 
@@ -24,7 +26,8 @@ class plot_comparison:
         all_labels = []
 
         for idx, filename in enumerate(filename_list):
-            print(f"[{idx+1}/{len(filename_list)}] Processing {filename}...")
+            logger.info(f"[{idx+1}/{len(filename_list)}] Processing {filename}...")
+            print(f"[{idx + 1}/{len(filename_list)}] Processing {filename}...")
 
             # === Accuracy ===
             plot_analyzer_acc = plot_acc.plot_tool(
@@ -54,6 +57,8 @@ class plot_comparison:
             plot_analyzer_acc.show_in_notebook(gif_acc, filetype='gif')
             plot_analyzer_acc.save_final_curve_as_pdf(pdf_acc, interval, color='black')
             plt.close()
+            logger.info(f"Saved accuracy gif: {gif_acc}")
+            logger.info(f"Saved accuracy pdf: {pdf_acc}")
 
             all_acc_tools.append(plot_analyzer_acc)
             all_labels.append(filename)
@@ -87,35 +92,43 @@ class plot_comparison:
             plot_analyzer_f1.save_final_curve_as_pdf(pdf_f1, interval, color='black')
             plot_analyzer_f1.save_and_show_avg_confusion_matrix(filename_prefix=f"ConfMatrix_{dataset}_{filename}")
             plt.close()
+            logger.info(f"Saved macro-F1 gif: {gif_f1}")
+            logger.info(f"Saved macro-F1 pdf: {pdf_f1}")
 
             all_f1_tools.append(plot_analyzer_f1)
 
-        # === 多模型 Accuracy 联合动图 ===
-        print("\n[ALL] Generating combined multi-model Accuracy animation...")
-        self.animate_multi_model_curve(
-            tools=all_acc_tools,
-            labels=all_labels,
-            interval=10,
-            frame_interval=100,
-            save_path=f"Results_acc_{dataset}_all_models.gif",
-            ylabel='Accuracy'
-        )
-        display(Image(filename=f"Results_acc_{dataset}_all_models.gif"))
+        if len(all_acc_tools) > 1:
+            # === 多模型 Accuracy 联合动图 ===
+            logger.info("[ALL] Generating combined multi-model Accuracy animation...")
+            print("\n[ALL] Generating combined multi-model Accuracy animation...")
+            self.animate_multi_model_curve(
+                tools=all_acc_tools,
+                labels=all_labels,
+                interval=10,
+                frame_interval=100,
+                save_path=f"Results_acc_{dataset}_all_models.gif",
+                ylabel='Accuracy'
+            )
+            display(Image(filename=f"Results_acc_{dataset}_all_models.gif"))
+            logger.info("Combined Accuracy animation saved.")
 
-        # === 多模型 macro-F1 联合动图 ===
-        print("\n[ALL] Generating combined multi-model macro-F1 animation...")
-        self.animate_multi_model_curve(
-            tools=all_f1_tools,
-            labels=all_labels,
-            interval=10,
-            frame_interval=100,
-            save_path=f"Results_f1_{dataset}_all_models.gif",
-            ylabel='macro-F1'
-        )
-        display(Image(filename=f"Results_f1_{dataset}_all_models.gif"))
+        if len(all_f1_tools) > 1:
+            # === 多模型 macro-F1 联合动图 ===
+            logger.info("[ALL] Generating combined multi-model macro-F1 animation...")
+            print("\n[ALL] Generating combined multi-model macro-F1 animation...")
+            self.animate_multi_model_curve(
+                tools=all_f1_tools,
+                labels=all_labels,
+                interval=10,
+                frame_interval=100,
+                save_path=f"Results_f1_{dataset}_all_models.gif",
+                ylabel='macro-F1'
+            )
+            display(Image(filename=f"Results_f1_{dataset}_all_models.gif"))
+            logger.info("Combined macro-F1 animation saved.")
 
     def animate_multi_model_curve(self, tools, labels, interval, frame_interval, save_path, ylabel):
-        cmap = cm.get_cmap('Set2', len(tools))
+        cmap = cm.get_cmap('tab20', len(tools))
         colors = [mcolors.to_hex(cmap(i)) for i in range(len(tools))]
 
         plot_size = math.ceil(tools[0].n_size / interval)
@@ -173,3 +186,4 @@ class plot_comparison:
                             blit=False, interval=frame_interval, cache_frame_data=False)
         ani.save(save_path, writer='pillow')
         plt.close()
+        logger.info(f"Saved combined animation: {save_path}")

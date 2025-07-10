@@ -2,6 +2,7 @@ from skmultiflow.bayes import NaiveBayes
 import numpy as np
 import copy
 import random
+
 class ROALE_DI_strategy(object):
     def __init__(self, x_train, y_train, label_ratio = 0.05, chunk_size = 150, L = 3,  step = 0.01, theta = 0.5, D = 10, sigma_imbalance = 0.01, clf = NaiveBayes()):
         self.label_ratio = label_ratio

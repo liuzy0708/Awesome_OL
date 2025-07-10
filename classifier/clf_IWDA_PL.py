@@ -1,7 +1,5 @@
 """ IWDA-PL classifier"""
 
-import pandas as pd
-
 from classifier.clf_IWDA_subfile.Environment import *
 from sklearn.naive_bayes import GaussianNB
 import copy

@@ -1,0 +1,8 @@
+2025-07-10 21:03:54 [INFO] OnlineLearningFramework: Saving results to: C:\Users\Alpha\PycharmProjects\Online-Learning-Framework\Results\Results_Waveform_OL_100_1_1000
+2025-07-10 21:03:54 [INFO] OnlineLearningFramework: [1/1] Processing BLS...
+2025-07-10 21:03:54 [INFO] matplotlib.animation: Animation.save using <class 'matplotlib.animation.PillowWriter'>
+2025-07-10 21:03:56 [INFO] OnlineLearningFramework: Saved accuracy gif: Results_acc_Waveform_BLS.gif
+2025-07-10 21:03:56 [INFO] OnlineLearningFramework: Saved accuracy pdf: Results_acc_Waveform_BLS.pdf
+2025-07-10 21:03:56 [INFO] matplotlib.animation: Animation.save using <class 'matplotlib.animation.PillowWriter'>
+2025-07-10 21:03:59 [INFO] OnlineLearningFramework: Saved macro-F1 gif: Results_f1_Waveform_BLS.gif
+2025-07-10 21:03:59 [INFO] OnlineLearningFramework: Saved macro-F1 pdf: Results_f1_Waveform_BLS.pdf

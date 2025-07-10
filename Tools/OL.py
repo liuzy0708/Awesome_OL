@@ -1,5 +1,3 @@
-import csv
-import numpy as np
 import warnings
 import os
 import time
@@ -8,7 +6,7 @@ from sklearn.metrics import accuracy_score, f1_score
 
 from Tools.utils import *
 from visualization.plot_comparison import plot_comparison
-
+from log_config import logger
 warnings.filterwarnings("ignore")
 
 
@@ -16,20 +14,29 @@ class OL:
     def __init__(self, max_samples=1000, n_round=3, n_pt=100, dataset_name="Waveform",
                  clf_name_list=None, chunk_size=1, framework="OL",stream=None):
         self.max_samples = max_samples
+        logger.info(f"Max samples: {max_samples}")
         self.n_round = n_round
+        logger.info(f"n_round: {n_round}")
         self.n_pt = n_pt
+        logger.info(f"n_pt: {n_pt}")
         self.dataset_name = dataset_name
+        logger.info(f"dataset_name: {dataset_name}")
         self.chunk_size = chunk_size
+        logger.info(f"chunk_size: {chunk_size}")
         self.framework = framework
+        logger.info(f"framework: {framework}")
         self.stream = stream
+        logger.info(f"stream: {stream}")
 
         if clf_name_list is None:
             self.clf_name_list = ["BLS"]
         else:
             parsed_list = [name.strip() for name in clf_name_list.split(',')]
             self.clf_name_list = validate_classifier_names_OL(parsed_list)
+        logger.info(f"clf_name_list: {self.clf_name_list}")
 
         self.num_method = len(self.clf_name_list)
+        logger.info(f"num_method: {self.num_method}")
         self.acc_list = [[[] for _ in range(n_round)] for _ in range(self.num_method)]
         self.f1_list = [[[] for _ in range(n_round)] for _ in range(self.num_method)]
 
@@ -37,6 +44,7 @@ class OL:
         self.result_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Results")
         if not os.path.exists(self.result_path):
             os.makedirs(self.result_path)
+        logger.info(f"result_path: {self.result_path}")
 
         #self.directory_path = "./Results/Results_%s_%s_%d_%d_%d/" % (self.dataset_name, self.framework,
                                                                      #self.n_pt, self.chunk_size, self.max_samples)
@@ -47,6 +55,7 @@ class OL:
 
         if not os.path.exists(self.directory_path):
             os.makedirs(self.directory_path)
+        logger.info(f"directory_path: {self.directory_path}")
 
     def run(self):
         for n_clf in range(len(self.clf_name_list)):
