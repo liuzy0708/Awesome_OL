@@ -90,7 +90,7 @@ class plot_tool():
         return plt
 
 
-    def animate_learning_curve(self, std_area=True, color='blue', interval=100, frame_interval=300, max_frames=None,
+    def animate_learning_curve(self, std_area=True, color='black', interval=100, frame_interval=300, max_frames=None,
                                save_as=None):
         """
         动态绘制macro-F1学习曲线
@@ -151,7 +151,7 @@ class plot_tool():
 
         return ani
 
-    def save_final_curve_as_pdf(self, filename, interval, color='blue'):
+    def save_final_curve_as_pdf(self, filename, interval, color='black'):
         self.read_pred_result()
         self.read_true_result()
 

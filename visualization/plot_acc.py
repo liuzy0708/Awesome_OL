@@ -45,10 +45,12 @@ class plot_tool():
             acc.append(correct / total)
         return copy.deepcopy(acc)
 
-    def animate_learning_curve(self, std_area=True, color='blue', interval=100, frame_interval=300, max_frames=None,
+    def animate_learning_curve(self, std_area=True, color='black', interval=100, frame_interval=300, max_frames=None,
                                save_as='gif'):
         self.read_pred_result()
         self.read_true_result()
+
+        fill = None  # 添加这个变量用于缓存阴影对象
 
         plot_size = math.ceil(self.n_size / interval)
         acc_method = np.zeros((self.n_round, plot_size))
@@ -76,20 +78,27 @@ class plot_tool():
             return line,
 
         def update(frame):
+            nonlocal fill
             x = x_axis[:frame + 1] + self.x_shift
             y = means_points[:frame + 1]
             line.set_data(x, y)
-            ax.collections.clear()
+
+            if fill:
+                fill.remove()  # 删除上一帧的阴影
+
             if std_area:
-                ax.fill_between(x, y - std_points[:frame + 1], y + std_points[:frame + 1], color=color,
-                                alpha=self.std_alpha)
+                fill = ax.fill_between(
+                    x, y - std_points[:frame + 1], y + std_points[:frame + 1],
+                    color=color, alpha=self.std_alpha
+                )
+
             return line,
 
         ani = FuncAnimation(fig, update, frames=plot_size, init_func=init, blit=False, interval=frame_interval,cache_frame_data=False)
         plt.legend()
         return ani
 
-    def save_final_curve_as_pdf(self, filename, interval, color='blue'):
+    def save_final_curve_as_pdf(self, filename, interval, color='black'):
         self.read_pred_result()
         self.read_true_result()
 

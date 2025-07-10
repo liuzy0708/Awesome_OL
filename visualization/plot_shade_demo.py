@@ -36,7 +36,7 @@ def plot_accuracy_curves():
             plt.plot(x, mean_data, label=label)
             plt.fill_between(x, y_upper, y_lower, facecolor=colors[idx], edgecolor=colors[idx], alpha=alpha_reg)
 
-    plt.hlines(0.959, xmin=1, xmax=8, colors='blue', linestyles='dashed', label="DSLS Line")
+    plt.hlines(0.959, xmin=1, xmax=8, colors='black', linestyles='dashed', label="DSLS Line")
 
     plt.legend(loc="lower right", fontsize=8)
     plt.xlabel('Probability Parameter of Bernoulli Variable')
