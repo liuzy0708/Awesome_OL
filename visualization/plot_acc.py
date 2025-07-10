@@ -89,6 +89,30 @@ class plot_tool():
         plt.legend()
         return ani
 
+    def save_final_curve_as_pdf(self, filename, interval, color='blue'):
+        self.read_pred_result()
+        self.read_true_result()
+
+        x_axis = np.arange(int(self.n_size / interval)) * interval
+        acc_data = np.zeros((self.n_round, len(x_axis)))
+        for r in range(self.n_round):
+            acc_data[r] = self.prequential(self.result_method[r], self.result_true[r], interval)
+
+        mean_curve = np.mean(acc_data, axis=0)
+        std_curve = np.std(acc_data, axis=0)
+
+        fig, ax = plt.subplots()
+        ax.plot(x_axis, mean_curve, color=color, label='Accuracy', linewidth=self.linewidth)
+        ax.fill_between(x_axis, mean_curve - std_curve, mean_curve + std_curve,
+                        alpha=self.std_alpha, color=color)
+        ax.set_xlim(0, self.n_size)
+        ax.set_ylim(0, 1.05)
+        ax.set_xlabel("Instances")
+        ax.set_ylabel("Accuracy")
+        ax.legend()
+        plt.savefig(filename, format='pdf')
+        plt.close()
+
     def show_in_notebook(self, path, filetype='gif'):
         if filetype == 'gif':
             display(Image(filename=path))
