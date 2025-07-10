@@ -1,15 +1,14 @@
-""" plot for accuracy."""
-
 import copy
-
-import matplotlib.pyplot as plt
-import numpy as np
 import math
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation, FFMpegWriter
 from sklearn.metrics import accuracy_score
+from IPython.display import Image, Video, display
+
 
 class plot_tool():
-
     def __init__(self, n_class, n_round, n_size, method, pred_file_name, true_file_name, plot_interval, std_alpha, linewidth):
         self.n_class = n_class
         self.n_round = n_round
@@ -25,67 +24,73 @@ class plot_tool():
         self.result_true = None
 
     def read_pred_result(self):
-        result_method = np.array(pd.read_csv('./Prediction_%s.csv' % self.pred_file_name, header=None))
-        self.result_method = result_method
+        self.result_method = np.array(pd.read_csv(f'./Prediction_{self.pred_file_name}.csv', header=None))
 
     def read_true_result(self):
-        result_true = np.array(pd.read_csv('./True_%s.csv' % self.true_file_name, header=None))
-        self.result_true = result_true
-
-    def update(self, score_prev, round, n_new, interval):
-        score = (n_new - 1) * interval * score_prev + accuracy_score(self.result_method[round, (n_new - 1)  * interval :n_new * interval], self.result_true[round, (n_new - 1) * interval: n_new * interval]) * interval
-        n_new = n_new * interval
-        metric_new = score / n_new
-        return metric_new
+        self.result_true = np.array(pd.read_csv(f'./True_{self.true_file_name}.csv', header=None))
 
     def prequential(self, y_true, y_pred, interval):
-        n_all_samples = len(y_true)
-        n_now_samples = 0
-        n_correct = 0
-        prequential_acc = []
+        n_all = len(y_true)
+        correct = 0
+        total = 0
+        acc = []
 
-        if interval >= n_all_samples:
-            round = 1
-        else:
-            if n_all_samples % interval == 0:
-                round = int(n_all_samples / interval)
-            else:
-                round = int(n_all_samples / interval) + 1
+        for i in range(0, n_all, interval):
+            y_t = y_true[i:i+interval]
+            y_p = y_pred[i:i+interval]
+            for yt, yp in zip(y_t, y_p):
+                if yt == yp:
+                    correct += 1
+            total += len(y_t)
+            acc.append(correct / total)
+        return copy.deepcopy(acc)
 
-        for plot_interval in range(round):
-            y_true_per = y_true[plot_interval * interval: min(int(plot_interval + 1) * interval, n_all_samples + 1)]
-            y_pred_per = y_pred[plot_interval * interval: min(int(plot_interval + 1) * interval, n_all_samples + 1)]
-            for i in range(len(y_true_per)):
-                if y_true_per[i] == y_pred_per[i]:
-                    n_correct += 1
-            n_now_samples += len(y_true_per)
-            acc_now = n_correct / n_now_samples
-            prequential_acc.append(acc_now)
-        return copy.deepcopy(prequential_acc)
-
-
-
-    def plot_learning_curve(self, std_area, color, interval):
+    def animate_learning_curve(self, std_area=True, color='blue', interval=100, frame_interval=300, max_frames=None,
+                               save_as='gif'):
         self.read_pred_result()
         self.read_true_result()
 
         plot_size = math.ceil(self.n_size / interval)
         acc_method = np.zeros((self.n_round, plot_size))
-        for round in range(self.n_round):
-            acc_method[round] = [i for i in self.prequential(self.result_method[round], self.result_true[round], interval)]
-        x_axis = np.arange(plot_size, step=1)
+        for r in range(self.n_round):
+            acc_method[r] = self.prequential(self.result_method[r], self.result_true[r], interval)
+
         std_points = np.std(acc_method, axis=0)
         means_points = np.mean(acc_method, axis=0)
+        # 修改这里：x_axis 乘以 interval 来反映实际样本数量
+        x_axis = np.arange(plot_size) * interval
 
-        # plt.ylim(-0.2, 1.05)
-        # plt.xlim(-10, 1050)
+        if max_frames is not None:
+            plot_size = min(plot_size, max_frames)
 
-        plt.plot(x_axis + self.x_shift, means_points, label="%s" % self.method, color=color, linewidth=self.linewidth)
-        plt.xlabel("Instances")
-        plt.ylabel("Accuracy")
-        # plt.title('')
+        fig, ax = plt.subplots()
+        line, = ax.plot([], [], color=color, label=self.method, linewidth=self.linewidth)
+        # 修改这里：xlim 上限乘以 interval
+        ax.set_xlim(0, self.n_size)
+        ax.set_ylim(0, 1.05)
+        ax.set_xlabel("Instances")
+        ax.set_ylabel("Accuracy")
 
-        if std_area:
-            plt.fill_between(np.arange(x_axis.shape[0]) + self.x_shift, means_points - std_points,
-                             means_points + std_points, interpolate=True, alpha=self.std_alpha, color=color)
-        return plt
+        def init():
+            line.set_data([], [])
+            return line,
+
+        def update(frame):
+            x = x_axis[:frame + 1] + self.x_shift
+            y = means_points[:frame + 1]
+            line.set_data(x, y)
+            ax.collections.clear()
+            if std_area:
+                ax.fill_between(x, y - std_points[:frame + 1], y + std_points[:frame + 1], color=color,
+                                alpha=self.std_alpha)
+            return line,
+
+        ani = FuncAnimation(fig, update, frames=plot_size, init_func=init, blit=False, interval=frame_interval,cache_frame_data=False)
+        plt.legend()
+        return ani
+
+    def show_in_notebook(self, path, filetype='gif'):
+        if filetype == 'gif':
+            display(Image(filename=path))
+        elif filetype == 'mp4':
+            display(Video(filename=path, embed=True))

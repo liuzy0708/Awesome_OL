@@ -1,42 +1,54 @@
-""" Demo of plots. """
-
 import os
 from pathlib import Path
-from visualization import plot_acc, plot_macro_f1
+
+from matplotlib import pyplot as plt
+
+from visualization import plot_acc  # 确保你的 plot_tool 文件在此模块中
 
 class plot_comparison:
-    def __init__(self,dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
-        # 获取项目根目录（假设脚本在项目子目录中）
-        project_root = Path(__file__).parent.parent  # 假设脚本在 /project/src/script.py
-
-        # 构建目标目录的绝对路径
+    def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
+        project_root = Path(__file__).parent.parent
         target_dir = project_root / "Results" / f"Results_{dataset}_{framework}_{n_pt}_{chunk_size}_{max_samples}"
-
-        # 创建目录并切换
         os.makedirs(target_dir, exist_ok=True)
         os.chdir(target_dir)
-        std_alpha = 0.2
 
+        print("Saving results to:", target_dir)
+        std_alpha = 0.2
         colors = ['#E8D3C0', '#D89C7A', '#D6C38B', '#849B91', '#C2CEDC', '#686789', '#AB545A', '#9A7549', '#B0B1B6', '#7D7465']
 
-        print("The result is being saved to %s" % target_dir)
+        for idx, filename in enumerate(filename_list):
+            print(f"[{idx+1}/{len(filename_list)}] Processing {filename}...")
 
-        # filename_list = filename_list + []
-        import matplotlib.pyplot as plt
-        fig_acc = plt.figure(figsize=(9, 4))
-        for idx in range(len(filename_list)):
-            filename = filename_list[idx]
-            plot_analyzer = plot_acc.plot_tool(pred_file_name=filename, true_file_name=filename, n_class=n_class, n_round=n_round, n_size=max_samples, linewidth=1.5, method="%s" % (filename), plot_interval=interval, std_alpha=std_alpha)
-            plt = plot_analyzer.plot_learning_curve(std_area=True, color=colors[idx], interval=interval)
-        plt.legend(fancybox=True, framealpha=0.5, loc='lower right', fontsize=9, ncol=2)
-        plt.savefig('Results_acc_{}.pdf'.format(dataset))
+            plot_analyzer = plot_acc.plot_tool(
+                pred_file_name=filename,
+                true_file_name=filename,
+                n_class=n_class,
+                n_round=n_round,
+                n_size=max_samples,
+                linewidth=1.5,
+                method=filename,
+                plot_interval=interval,
+                std_alpha=std_alpha
+            )
 
+            # ✅ 调参优化
+            ani = plot_analyzer.animate_learning_curve(
+                std_area=True,
+                color=colors[idx % len(colors)],
+                interval=10,          # 抽稀数据点，提高速度
+                frame_interval=10,    # 每帧 400ms，播放更慢
+                max_frames=None,         # 限制最大帧数，加速生成
+                save_as='gif'          # 可改为 'mp4'
+            )
 
-        fig_f1 = plt.figure(figsize=(9, 4))
-        for idx in range(len(filename_list)):
-            filename = filename_list[idx]
-            plot_analyzer = plot_macro_f1.plot_tool(pred_file_name=filename, true_file_name=filename, n_class=n_class, n_round=n_round, n_size=max_samples, linewidth=1.5, method="%s" % (filename), plot_interval=interval, std_alpha=std_alpha)
-            plt = plot_analyzer.plot_learning_curve(std_area=True, color=colors[idx], interval=interval)
-        plt.legend(fancybox=True, framealpha=0.5, loc='lower right', fontsize=9, ncol=2)
-        plt.savefig('Results_macro_F1_{}.pdf'.format(dataset))
-        plt.show()
+            # ✅ 文件名
+            outfile = f"Results_acc_{dataset}_{filename}.gif"
+
+            # ✅ 保存动画
+            ani.save(outfile, writer='pillow')
+
+            # ✅ Notebook 中显示
+            plot_analyzer.show_in_notebook(outfile, filetype='gif')
+
+            # ✅ 释放内存
+            plt.close()
