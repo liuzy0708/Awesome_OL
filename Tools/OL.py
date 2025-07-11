@@ -130,10 +130,10 @@ class OL:
                                                 np.mean(self.f1_list[n_clf]), np.std(self.f1_list[n_clf])))
             print("Average Time %s: %.4f s\n" % (self.clf_name_list[n_clf], (t2 - t1) / self.n_round))
 
-    def show(self):
+    def show(self,need_matrix):
         plot_comparison(dataset=self.dataset_name, n_class=self.stream.n_classes, n_round=self.n_round,
                             max_samples=self.max_samples, interval=1, chunk_size=self.chunk_size,
-                            filename_list=self.clf_name_list, n_pt=self.n_pt, framework=self.framework)
+                            filename_list=self.clf_name_list, n_pt=self.n_pt, framework=self.framework, need_matrix=need_matrix)
 
 
 

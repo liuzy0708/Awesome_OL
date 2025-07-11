@@ -11,7 +11,7 @@ import matplotlib.colors as mcolors
 from log_config import logger
 
 class plot_comparison:
-    def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework):
+    def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework,need_matrix):
         project_root = Path(__file__).parent.parent
         target_dir = project_root / "Results" / f"Results_{dataset}_{framework}_{n_pt}_{chunk_size}_{max_samples}"
         os.makedirs(target_dir, exist_ok=True)
@@ -42,24 +42,6 @@ class plot_comparison:
                 std_alpha=std_alpha
             )
 
-            ani_acc = plot_analyzer_acc.animate_learning_curve(
-                std_area=True,
-                color=None,
-                interval=10,
-                frame_interval=100,
-                max_frames=None,
-                save_as='gif'
-            )
-
-            gif_acc = f"Results_acc_{dataset}_{filename}.gif"
-            pdf_acc = f"Results_acc_{dataset}_{filename}.pdf"
-            ani_acc.save(gif_acc, writer='pillow')
-            plot_analyzer_acc.show_in_notebook(gif_acc, filetype='gif')
-            plot_analyzer_acc.save_final_curve_as_pdf(pdf_acc, interval, color='black')
-            plt.close()
-            logger.info(f"Saved accuracy gif: {gif_acc}")
-            logger.info(f"Saved accuracy pdf: {pdf_acc}")
-
             all_acc_tools.append(plot_analyzer_acc)
             all_labels.append(filename)
 
@@ -76,28 +58,12 @@ class plot_comparison:
                 std_alpha=std_alpha
             )
 
-            ani_f1 = plot_analyzer_f1.animate_learning_curve(
-                std_area=True,
-                color=None,
-                interval=10,
-                frame_interval=10,
-                max_frames=None,
-                save_as='gif'
-            )
-
-            gif_f1 = f"Results_f1_{dataset}_{filename}.gif"
-            pdf_f1 = f"Results_f1_{dataset}_{filename}.pdf"
-            ani_f1.save(gif_f1, writer='pillow')
-            plot_analyzer_f1.show_in_notebook(gif_f1, filetype='gif')
-            plot_analyzer_f1.save_final_curve_as_pdf(pdf_f1, interval, color='black')
-            plot_analyzer_f1.save_and_show_avg_confusion_matrix(filename_prefix=f"ConfMatrix_{dataset}_{filename}")
-            plt.close()
-            logger.info(f"Saved macro-F1 gif: {gif_f1}")
-            logger.info(f"Saved macro-F1 pdf: {pdf_f1}")
+            if need_matrix:
+                plot_analyzer_f1.save_and_show_avg_confusion_matrix(filename_prefix=f"ConfMatrix_{dataset}_{filename}")
 
             all_f1_tools.append(plot_analyzer_f1)
 
-        if len(all_acc_tools) > 1:
+        if len(all_acc_tools) >= 1:
             # === 多模型 Accuracy 联合动图 ===
             logger.info("[ALL] Generating combined multi-model Accuracy animation...")
             print("\n[ALL] Generating combined multi-model Accuracy animation...")
@@ -112,7 +78,7 @@ class plot_comparison:
             display(Image(filename=f"Results_acc_{dataset}_all_models.gif"))
             logger.info("Combined Accuracy animation saved.")
 
-        if len(all_f1_tools) > 1:
+        if len(all_f1_tools) >= 1:
             # === 多模型 macro-F1 联合动图 ===
             logger.info("[ALL] Generating combined multi-model macro-F1 animation...")
             print("\n[ALL] Generating combined multi-model macro-F1 animation...")
@@ -144,11 +110,13 @@ class plot_comparison:
             all_means.append(np.mean(acc_data, axis=0))
             all_stds.append(np.std(acc_data, axis=0))
 
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(12, 6))
         ax.set_xlim(0, tools[0].n_size)
         ax.set_ylim(0, 1.05)
-        ax.set_xlabel("Instances")
-        ax.set_ylabel(ylabel)
+        ax.set_xlabel("Instances", fontsize=16)
+        ax.set_ylabel(ylabel, fontsize=16)
+        ax.tick_params(axis='both', labelsize=14)
+        plt.legend(fontsize=14)
 
         lines = []
         fills = []
