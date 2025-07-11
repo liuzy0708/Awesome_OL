@@ -12,16 +12,12 @@ class ACDWM(ChunkBase):
 
     def __init__(self, chunk_size=1000, theta=0.1, err_func='gm', r=1, max_ensemble_size = 10):
         ChunkBase.__init__(self)
-        logger.info("These are the initial parameters of the ACDWM model.")
         self.acss = ChunkSizeSelect()
         self.chunk_size = chunk_size
         self.theta = theta
         self.err_func = err_func
-        logger.info(f"error func: {self.err_func}")
         self.r = r
-        logger.info(f"r: {self.r}")
         self.max_ensmeble_size = max_ensemble_size
-        logger.info(f"max_ensmeble_size: {self.max_ensmeble_size}")
 
         self.ensemble_size_record = array([])
 

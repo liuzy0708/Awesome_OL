@@ -62,7 +62,7 @@ class plot_comparison:
             all_f1_tools.append(plot_analyzer_f1)
             all_labels.append(filename)
 
-            if need_matrix == 'y':
+            if need_matrix == 'Y':
                 cm_df = plot_analyzer_f1.save_and_show_avg_confusion_matrix(
                     filename_prefix=f"ConfMatrix_{dataset}_{filename}")
                 all_confusion_matrices.append((filename, cm_df))
