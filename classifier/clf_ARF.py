@@ -13,6 +13,7 @@ from skmultiflow.trees.arf_hoeffding_tree import ARFHoeffdingTreeClassifier
 from skmultiflow.metrics import ClassificationPerformanceEvaluator
 from skmultiflow.utils import get_dimensions, normalize_values_in_dict, check_random_state,\
     check_weights
+from log_config import logger
 
 
 def ARF(n_estimators=10,
@@ -86,10 +87,15 @@ class AdaptiveRandomForestClassifier(BaseSKMObject, ClassifierMixin, MetaEstimat
                  random_state=None):
 
         super().__init__()
+        logger.info("These are the initial parameters of the AdaptiveRandomForestClassifier model.")
         self.n_estimators = n_estimators
+        logger.info(f"n_estimators: {n_estimators}")
         self.max_features = max_features
+        logger.info(f"max_features: {max_features}")
         self.disable_weighted_vote = disable_weighted_vote
+        logger.info(f"disable_weighted_vote: {disable_weighted_vote}")
         self.lambda_value = lambda_value
+        logger.info(f"lambda_value: {lambda_value}")
         if isinstance(drift_detection_method, BaseDriftDetector):
             self.drift_detection_method = drift_detection_method
         else:
@@ -103,6 +109,7 @@ class AdaptiveRandomForestClassifier(BaseSKMObject, ClassifierMixin, MetaEstimat
         self._train_weight_seen_by_model = 0.0
         self.ensemble = None
         self.random_state = random_state
+        logger.info(f"random_state: {random_state}")
         self._random_state = check_random_state(self.random_state)
         if performance_metric in ['acc', 'kappa']:
             self.performance_metric = performance_metric
@@ -110,18 +117,31 @@ class AdaptiveRandomForestClassifier(BaseSKMObject, ClassifierMixin, MetaEstimat
             raise ValueError('Invalid performance metric: {}'.format(performance_metric))
 
         self.max_byte_size = max_byte_size
+        logger.info(f"max_byte_size: {max_byte_size}")
         self. memory_estimate_period = memory_estimate_period
+        logger.info(f"memory_estimate_period: {memory_estimate_period}")
         self.grace_period = grace_period
+        logger.info(f"grace_period: {grace_period}")
         self.split_criterion = split_criterion
+        logger.info(f"split_criterion: {split_criterion}")
         self.split_confidence = split_confidence
+        logger.info(f"split_confidence: {split_confidence}")
         self.tie_threshold = tie_threshold
+        logger.info(f"tie_threshold: {tie_threshold}")
         self.binary_split = binary_split
+        logger.info(f"binary_split: {binary_split}")
         self.stop_mem_management = stop_mem_management
+        logger.info(f"stop_mem_management: {stop_mem_management}")
         self.remove_poor_atts = remove_poor_atts
+        logger.info(f"remove_poor_atts: {remove_poor_atts}")
         self.no_preprune = no_preprune
+        logger.info(f"no_preprune: {no_preprune}")
         self.leaf_prediction = leaf_prediction
+        logger.info(f"leaf_prediction: {leaf_prediction}")
         self.nb_threshold = nb_threshold
+        logger.info(f"nb_threshold: {nb_threshold}")
         self.nominal_attributes = nominal_attributes
+        logger.info(f"nominal_attributes: {nominal_attributes}")
 
     def partial_fit(self, X, y, classes=None, sample_weight=None):
         if self.classes is None and classes is not None:

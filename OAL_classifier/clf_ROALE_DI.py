@@ -2,6 +2,7 @@ from skmultiflow.bayes import NaiveBayes
 import numpy as np
 import copy
 import random
+from log_config import logger
 
 class ROALE_DI_strategy(object):
     def __init__(self, x_train, y_train, label_ratio = 0.05, chunk_size = 150, L = 3,  step = 0.01, theta = 0.5, D = 10, sigma_imbalance = 0.01, clf = NaiveBayes()):
@@ -9,10 +10,13 @@ class ROALE_DI_strategy(object):
         self.I = chunk_size # chunk size
         self.L = L #number of the classes
         self.s = step # adjustment step
+        logger.info(f"adjustment step: {self.s}")
         self.D = D # the number of classifiers
         self.theta = theta
         self.theta_m = theta / 2
+        logger.info(f"theta m: {self.theta_m}")
         self.sigma_imbalance = sigma_imbalance
+        logger.info(f"sigma imbalance: {self.sigma_imbalance}")
         self.DCIR = [0.0 for i in range(self.L)]
         self.A = [0 * i for i in range(self.I)] # x of instances
         self.A_y = [0 * i for i in range(self.I)] # y of instances, sketch when labeled

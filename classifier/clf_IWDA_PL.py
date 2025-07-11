@@ -1,4 +1,5 @@
 """ IWDA-PL classifier"""
+from skmultiflow.drift_detection import HDDM_W
 
 from classifier.clf_IWDA_subfile.Environment import *
 from sklearn.naive_bayes import GaussianNB

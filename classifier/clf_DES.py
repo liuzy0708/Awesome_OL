@@ -7,6 +7,8 @@ from skmultiflow.core import BaseSKMObject, ClassifierMixin, MetaEstimatorMixin
 from skmultiflow.bayes import NaiveBayes
 import math
 
+from log_config import logger
+
 
 class Knn:
 
@@ -196,9 +198,13 @@ def AKS(refB, refBy, newB, newBy):
 class DES_ICD(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
 
     def __init__(self, base_classifier=NaiveBayes(), window_size=200, max_classifier=20):
+        logger.info("These are the initial parameters of the DES model.")
         self.base_classifier = base_classifier
+        logger.info(f"base_classifier: {self.base_classifier}")
         self.window_size = window_size
+        logger.info(f"window_size: {self.window_size}")
         self.max_classifier = max_classifier
+        logger.info(f"max_classifier: {self.max_classifier}")
 
         self.ensemble = []
         self.X_block = None

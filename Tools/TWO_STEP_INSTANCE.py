@@ -11,6 +11,7 @@ warnings.filterwarnings("ignore")
 class Two_Step_Instance:
     def __init__(self, max_samples=1000, n_round=3, n_pt=100,
                  dataset_name="Waveform", clf_name_list=None, str_name_list="RS"):
+        self.stream = None
         self.max_samples = max_samples
         logger.info(f"max_samples: {max_samples}")
         self.n_round = n_round

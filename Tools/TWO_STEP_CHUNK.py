@@ -14,6 +14,7 @@ warnings.filterwarnings("ignore")
 class Two_Step_Chunk:
     def __init__(self, max_samples=1000, n_round=3, n_pt=100, n_ratio_max=0.3, chunk_size=20,
                  dataset_name="Waveform", clf_name_list=None, str_name_list="DMI_DD"):
+        self.stream = None
         self.max_samples = max_samples
         logger.info(f"max_samples: {max_samples}")
         self.n_round = n_round
@@ -49,6 +50,12 @@ class Two_Step_Chunk:
         os.makedirs(self.result_dir, exist_ok=True)
         logger.info(f"result_dir: {self.result_dir}")
 
+        num_str = len(str_name_list)
+        num_clf = len(clf_name_list)
+        self.acc_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range(num_str)]
+        self.f1_list = [[[[] for _ in range(n_round)] for _ in range(num_clf)] for _ in range(num_str)]
+
+
     def run(self):
         for n_clf in range(len(self.clf_name_list)):
 
@@ -70,9 +77,9 @@ class Two_Step_Chunk:
                     y_true_list = []
 
                     'stream initialization'
-                    stream = get_stream(self.dataset_name)
-                    X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=self.n_pt)
-                    para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source,
+                    self.stream = get_stream(self.dataset_name)
+                    X_pt_source, y_pt_source = get_pt(stream=self.stream, n_pt=self.n_pt)
+                    para_str = para_init(n_class=self.stream.n_classes, X_pt_source=X_pt_source, y_pt_source=y_pt_source,
                                          n_ratio_max=self.n_ratio_max, clf=clf, query_size=self.query_size,
                                          chunk_size=self.chunk_size)
 
@@ -86,9 +93,9 @@ class Two_Step_Chunk:
                     clf.fit(X_pt_source, y_pt_source)
 
                     # Train the classifier with the samples provided by the data stream
-                    while count < self.max_samples and stream.has_more_samples():
+                    while count < self.max_samples and self.stream.has_more_samples():
                         count += self.chunk_size
-                        X, y = stream.next_sample(self.chunk_size)
+                        X, y = self.stream.next_sample(self.chunk_size)
                         y_pred = clf.predict(X)
 
                         y_pred_list = y_pred_list + y_pred.tolist()
@@ -104,7 +111,7 @@ class Two_Step_Chunk:
                     n_annotation_list.append(n_annotation / self.max_samples)
                     self.acc_list[n_str][n_clf][round] = accuracy_score(y_true_list, y_pred_list)
                     self.f1_list[n_str][n_clf][round] = f1_score(y_true_list, y_pred_list,
-                                                                 labels=list(range(0, stream.n_classes)),
+                                                                 labels=list(range(0, self.stream.n_classes)),
                                                                  average='macro')
 
                     y_pred_all = y_pred_all + y_pred_list
@@ -146,9 +153,9 @@ class Two_Step_Chunk:
             for n_clf in range(len(self.clf_name_list)):
                 filename_list = filename_list + [self.clf_name_list[n_clf] + '_' + self.str_name_list[n_str]]
 
-        plot_comparison(dataset=self.dataset_name, n_class=self.n_class, n_round=self.n_round,
+        plot_comparison(dataset=self.dataset_name, n_class=self.stream.n_classes, n_round=self.n_round,
                         max_samples=self.max_samples, interval=1, chunk_size=self.chunk_size,
-                        filename_list=self.clf_name_list, n_pt=self.n_pt, framework=self.framework,
+                        filename_list=filename_list, n_pt=self.n_pt, framework=self.framework,
                         need_matrix=need_matrix)
 
 
@@ -195,6 +202,6 @@ class StrategyEnum(Enum):
 def validate_strategies_names_TWO_STEP_CHUNK(input_list):
     valid_names = [clf.value for clf in StrategyEnum]
     for name in input_list:
-        if name != StrategyEnum.DMI_DD.value:
+        if name not in valid_names:
             raise ValueError(f"Invalid classifier name: '{name}'. Valid options are: {valid_names}")
     return input_list
