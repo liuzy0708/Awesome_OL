@@ -66,22 +66,11 @@ class plot_tool():
         return copy.deepcopy(prequential_macro_f1)
 
     def save_and_show_avg_confusion_matrix(self, filename_prefix):
-        """
-        输出 n_round 轮的平均混淆矩阵（以整数显示），并显示+保存为 CSV 和 PDF
-        """
-        from IPython.display import display
-        import seaborn as sns
-        import matplotlib.pyplot as plt
-        import pandas as pd
-        import numpy as np
-        from skmultiflow.utils.data_structures import ConfusionMatrix
-
         self.read_pred_result()
         self.read_true_result()
 
         matrix_sum = np.zeros((self.n_class, self.n_class), dtype=np.float64)
 
-        # 累加所有轮的混淆矩阵
         for round_idx in range(self.n_round):
             cm = ConfusionMatrix(n_targets=self.n_class)
             y_true = self.result_true[round_idx]
@@ -92,32 +81,17 @@ class plot_tool():
 
             matrix_sum += cm.confusion_matrix
 
-        # 求平均混淆矩阵，并四舍五入为整数
         avg_matrix = np.round(matrix_sum / self.n_round).astype(int)
 
-        # 构造 DataFrame
-        df = pd.DataFrame(avg_matrix,
-                          index=[f'True_{i}' for i in range(self.n_class)],
-                          columns=[f'Pred_{i}' for i in range(self.n_class)])
+        df = pd.DataFrame(
+            avg_matrix,
+            index=[f'True_{i}' for i in range(self.n_class)],
+            columns=[f'Pred_{i}' for i in range(self.n_class)]
+        )
 
-        # 保存 CSV
+        # 只保存 CSV，不画图
         df.to_csv(f"{filename_prefix}_avg.csv")
+        return df  # 返回 DataFrame，供外部统一绘图
 
-        # 显示表格
-        display(df)
 
-        # 画热力图 + 显示
-        fig, ax = plt.subplots(figsize=(6, 5))
-        sns.heatmap(df, annot=True, fmt='d', cmap='Blues', ax=ax)
-        ax.set_title("Average Confusion Matrix (across all rounds)")
-        plt.xlabel("Predicted label")
-        plt.ylabel("True label")
-        plt.tight_layout()
-
-        # 显示图像
-        display(fig)
-
-        # 保存 PDF
-        plt.savefig(f"{filename_prefix}_avg.pdf")
-        plt.close()
 
