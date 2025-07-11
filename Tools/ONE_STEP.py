@@ -49,7 +49,7 @@ class One_Step:
 
         self.result_path = "../Results/"
         os.makedirs(self.result_path, exist_ok=True)
-        logger.info(f"result_path: {self.result_path}")
+        #logger.info(f"result_path: {self.result_path}")
 
         self.directory_path = f"./Results/Results_{self.dataset_name}_{self.framework}_{self.n_pt}_{self.chunk_size}_{self.max_samples}/"
         os.makedirs(self.directory_path, exist_ok=True)
@@ -68,16 +68,16 @@ class One_Step:
                 y_pred_list = []
                 y_true_list = []
 
-                stream = get_stream(self.dataset_name)
-                X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=self.n_pt)
-                para_method = para_init(X_pt_source, y_pt_source, n_class=stream.n_classes)
+                self.stream = get_stream(self.dataset_name)
+                X_pt_source, y_pt_source = get_pt(stream=self.stream, n_pt=self.n_pt)
+                para_method = para_init(X_pt_source, y_pt_source, n_class=self.stream.n_classes)
                 method = para_method.get_method(method_name)
 
                 count = 0
 
-                while count < self.max_samples and stream.has_more_samples():
+                while count < self.max_samples and self.stream.has_more_samples():
                     count += self.chunk_size
-                    X, y = stream.next_sample(self.chunk_size)
+                    X, y = self.stream.next_sample(self.chunk_size)
 
                     y_pred = method.predict(X)
                     y_pred_list.extend(y_pred)
@@ -87,7 +87,7 @@ class One_Step:
 
                 # 保存单轮结果
                 acc = accuracy_score(y_true_list, y_pred_list)
-                f1 = f1_score(y_true_list, y_pred_list, labels=list(range(stream.n_classes)), average='macro')
+                f1 = f1_score(y_true_list, y_pred_list, labels=list(range(self.stream.n_classes)), average='macro')
                 ann_ratio = method.n_annotation / self.max_samples
 
                 self.acc_list[n_method][round_id] = acc
@@ -116,18 +116,11 @@ class One_Step:
             print(f"Annotation % : {np.mean(n_annotation_list):.4f}")
             print(f"Avg Time     : {(t2 - t1) / self.n_round:.4f} s\n")
 
-        # 最终统一画图
-        plot_comparison(
-            dataset=self.dataset_name,
-            n_class=stream.n_classes,
-            n_round=self.n_round,
-            max_samples=self.max_samples,
-            interval=1,
-            chunk_size=self.chunk_size,
-            filename_list=self.method_name_list,
-            n_pt=self.n_pt,
-            framework=self.framework
-        )
+    def show(self,need_matrix):
+        plot_comparison(dataset=self.dataset_name, n_class=self.stream.n_classes, n_round=self.n_round,
+                            max_samples=self.max_samples, interval=1, chunk_size=self.chunk_size,
+                            filename_list=self.method_name_list, n_pt=self.n_pt, framework=self.framework, need_matrix=need_matrix)
+
 
 class ClassifierEnum(Enum):
     ROALE_DI = "ROALE_DI"

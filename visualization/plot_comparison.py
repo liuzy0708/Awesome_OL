@@ -27,7 +27,7 @@ class plot_comparison:
         all_confusion_matrices = []
 
         for idx, filename in enumerate(filename_list):
-            logger.info(f"[{idx+1}/{len(filename_list)}] Processing {filename}...")
+            #logger.info(f"[{idx+1}/{len(filename_list)}] Processing {filename}...")
             print(f"[{idx + 1}/{len(filename_list)}] Processing {filename}...")
 
             # === Accuracy ===
@@ -62,7 +62,7 @@ class plot_comparison:
             all_f1_tools.append(plot_analyzer_f1)
             all_labels.append(filename)
 
-            if need_matrix:
+            if need_matrix == 'y':
                 cm_df = plot_analyzer_f1.save_and_show_avg_confusion_matrix(
                     filename_prefix=f"ConfMatrix_{dataset}_{filename}")
                 all_confusion_matrices.append((filename, cm_df))
@@ -112,16 +112,16 @@ class plot_comparison:
         assert len(acc_tools) == len(f1_tools), "Accuracy 和 F1 工具数量不一致"
 
         custom_colors = [
-            '#E8D3C0',  # SU-NB (浅米色)
-            '#D89C7A',  # NB-Cog (橙棕色)
-            '#D6C38B',  # ACDWM-Cog (浅卡其色)
-            '#849B91',  # OLI2DS-Cog (灰绿色)
-            '#C2CEDC',  # IWDA_PL-Cog (淡蓝色)
-            '#686789',  # CPSSDS (灰蓝色)
-            '#AB545A',  # DES-Cog (酒红色)
-            '#9A7549',  # IWDA_Multi-Cog (棕褐色)
-            '#B0B1B6',  # CADM+ (银灰色)
-            '#7D7465'  # 其他未标注曲线 (深灰褐色)
+            '#006400',  # 浅绿色 (薄荷绿)
+            '#4682B4',  # 标准蓝色 (钢蓝)
+            '#FF8C00',  # 橙色 (深橙)
+            '#FF0000'  # 纯红色
+            '#87CEEB',  # 浅蓝色 (天蓝)
+            '#D2B48C',  # 棕色 (茶色)
+            '#228B22',  # 深绿色 (森林绿)
+            '#9370DB',  # 紫色 (中紫色)
+            '#2E8B57',  # 深绿色 (海绿色)
+
         ]
         colors = [custom_colors[i % len(custom_colors)] for i in range(len(acc_tools))]
 

@@ -140,14 +140,16 @@ class Two_Step_Chunk:
                 print("Average Time %s + %s: %.4f s\n" % (
                     self.clf_name_list[n_clf], self.str_name_list[n_str], (t2 - t1) / self.n_round))
 
+    def show(self, need_matrix):
         filename_list = []
         for n_str in range(len(self.str_name_list)):
             for n_clf in range(len(self.clf_name_list)):
                 filename_list = filename_list + [self.clf_name_list[n_clf] + '_' + self.str_name_list[n_str]]
-        plot_comparison(dataset=self.dataset_name, n_class=stream.n_classes, n_round=self.n_round,
-                        max_samples=self.max_samples,
-                        interval=1, chunk_size=self.chunk_size, filename_list=filename_list, n_pt=self.n_pt,
-                        framework=self.framework)
+
+        plot_comparison(dataset=self.dataset_name, n_class=self.n_class, n_round=self.n_round,
+                        max_samples=self.max_samples, interval=1, chunk_size=self.chunk_size,
+                        filename_list=self.clf_name_list, n_pt=self.n_pt, framework=self.framework,
+                        need_matrix=need_matrix)
 
 
 class ClassifierEnum(Enum):

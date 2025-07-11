@@ -52,7 +52,7 @@ class Two_Step_Instance:
         self.result_path = "./Results/"
         if not os.path.exists(self.result_path):
             os.makedirs(self.result_path)
-        logger.info(f"result_path: {self.result_path}")
+        #logger.info(f"result_path: {self.result_path}")
 
         self.directory_path = "./Results/Results_%s_%s_%d_%d_%d/" % (
             self.dataset_name, self.framework, self.n_pt, self.chunk_size, self.max_samples
@@ -82,9 +82,9 @@ class Two_Step_Instance:
                     y_true_list = []
 
                     # stream initialization
-                    stream = get_stream(self.dataset_name)
-                    X_pt_source, y_pt_source = get_pt(stream=stream, n_pt=self.n_pt)
-                    para_str = para_init(n_class=stream.n_classes, X_pt_source=X_pt_source,
+                    self.stream = get_stream(self.dataset_name)
+                    X_pt_source, y_pt_source = get_pt(stream=self.stream, n_pt=self.n_pt)
+                    para_str = para_init(n_class=self.stream.n_classes, X_pt_source=X_pt_source,
                                          y_pt_source=y_pt_source, n_ratio_max=self.n_ratio_max)
 
                     str_name = self.str_name_list[n_str]
@@ -96,9 +96,9 @@ class Two_Step_Instance:
 
                     clf.fit(X_pt_source, y_pt_source)
 
-                    while count < self.max_samples and stream.has_more_samples():
+                    while count < self.max_samples and self.stream.has_more_samples():
                         count += self.chunk_size
-                        X, y = stream.next_sample(self.chunk_size)
+                        X, y = self.stream.next_sample(self.chunk_size)
                         y_pred = clf.predict(X)
                         for i in range(len(y_pred)):
                             y_pred_list.append(y_pred[i])
@@ -115,7 +115,7 @@ class Two_Step_Instance:
                     self.acc_list[n_str][n_clf][round] = accuracy_score(y_true_list, y_pred_list)
                     self.f1_list[n_str][n_clf][round] = f1_score(
                         y_true_list, y_pred_list,
-                        labels=list(range(0, stream.n_classes)),
+                        labels=list(range(0, self.stream.n_classes)),
                         average='macro'
                     )
 
@@ -154,6 +154,8 @@ class Two_Step_Instance:
                 print("Average Time %s + %s: %.4f s\n" % (
                     self.clf_name_list[n_clf], self.str_name_list[n_str], (t2 - t1) / self.n_round))
 
+
+    def show(self,need_matrix):
         # plot
         filename_list = []
         for n_str in range(len(self.str_name_list)):
@@ -161,17 +163,9 @@ class Two_Step_Instance:
                 filename_list.append(self.clf_name_list[n_clf] + '_' + self.str_name_list[n_str])
 
         stream = get_stream(self.dataset_name)  # Re-acquire for class count
-        plot_comparison(
-            dataset=self.dataset_name,
-            n_class=stream.n_classes,
-            n_round=self.n_round,
-            max_samples=self.max_samples,
-            interval=1,
-            chunk_size=1,
-            filename_list=filename_list,
-            n_pt=self.n_pt,
-            framework=self.framework
-        )
+        plot_comparison(dataset=self.dataset_name, n_class=stream.n_classes, n_round=self.n_round,
+                            max_samples=self.max_samples, interval=1, chunk_size=self.chunk_size,
+                            filename_list=filename_list, n_pt=self.n_pt, framework=self.framework, need_matrix=need_matrix)
 
 class ClassifierEnum(Enum):
     ARF = "ARF"
