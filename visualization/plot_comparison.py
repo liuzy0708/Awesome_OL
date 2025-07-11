@@ -91,12 +91,12 @@ class plot_comparison:
             combined_path = f"ConfMatrix_{dataset}_all_models.png"
             plt.savefig(combined_path, dpi=300)
             display(Image(filename=combined_path))
-            logger.info(f"Saved combined confusion matrix figure: {combined_path}")
+            #logger.info(f"Saved combined confusion matrix figure: {combined_path}")
             plt.close()
 
 
         if len(all_acc_tools) >= 1 and len(all_f1_tools) >= 1:
-            logger.info("[ALL] Generating combined Accuracy + macro-F1 animation in subplots...")
+            #logger.info("[ALL] Generating combined Accuracy + macro-F1 animation in subplots...")
             print("\n[ALL] Generating combined Accuracy + macro-F1 animation in subplots...")
             self.animate_multi_metric_curve(
                 acc_tools=all_acc_tools,
@@ -206,4 +206,4 @@ class plot_comparison:
                             blit=False, interval=frame_interval, cache_frame_data=False)
         ani.save(save_path, writer='pillow')
         plt.close()
-        logger.info(f"Saved combined animation: {save_path}")
+        #logger.info(f"Saved combined animation: {save_path}")

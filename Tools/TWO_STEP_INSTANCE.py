@@ -43,9 +43,9 @@ class Two_Step_Instance:
         logger.info(f"framework: {self.framework}")
 
         self.num_str = len(str_name_list)
-        logger.info(f"num_str: {self.num_str}")
+        #logger.info(f"num_str: {self.num_str}")
         self.num_clf = len(clf_name_list)
-        logger.info(f"num_clf: {self.num_clf}")
+        #logger.info(f"num_clf: {self.num_clf}")
 
         self.acc_list = [[[[] for _ in range(n_round)] for _ in range(self.num_clf)] for _ in range(self.num_str)]
         self.f1_list = [[[[] for _ in range(n_round)] for _ in range(self.num_clf)] for _ in range(self.num_str)]
