@@ -24,7 +24,7 @@
 - [📖 Table of Contents](#-table-of-contents)
 - [🌟 Overview](#-overview)
 - [🧠 OAL Strategies](#-oal-strategies)
-- [⚙️ OAL Classifiers](#️-oal-classifiers)
+- [⚙️ OAL Classifiers](#-oal-classifiers)
 - [🔍 OSSL Classifiers](#-ossl-classifiers)
 - [📊 Supervised Classifiers](#-supervised-classifiers)
 - [🧩 Summary of Features](#-summary-of-features)
@@ -258,7 +258,7 @@ Project contributors include:
 - Songqiao Hu: 
   - hsq23@mails.tsinghua.edu.cn 
 - Pengyu Han:
-  - ????@mails.tsinghua.edu.cn
+  - hpy24@mails.tsinghua.edu.cn
 - Jiaming Liu:
   - 23371007@buaa.edu.cn
 
@@ -266,8 +266,7 @@ Project contributors include:
 
 - 🏫 We Are From
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Alpha0629/Alpha0629.github.io/main/assests/TsingHua.png" width="200" />
-  <img src="https://raw.githubusercontent.com/Alpha0629/Alpha0629.github.io/main/assests/Buaa.png" width="200" />
+  <img src="https://raw.githubusercontent.com/Alpha0629/Alpha0629.github.io/main/assets/logo.svg" width="200" />
 </p>
 
 ---
