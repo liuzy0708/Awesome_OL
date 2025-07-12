@@ -31,7 +31,7 @@ from skmultiflow.meta import OnlineAdaC2Classifier
 
 def get_stream(name):
     if name == "Jiaolong":
-        with open('./datasets/Jiaolong_DSMS_V2.csv', 'r') as csvfile:
+        with open('../datasets/Jiaolong_DSMS_V2.csv', 'r') as csvfile:
             csvreader = csv.reader(csvfile)
             next(csvreader, None)
             X = []
@@ -193,5 +193,4 @@ class para_init:
         if name == "DMI_DD_str":
             return DMI_DD_strategy(n_class=self.n_class, chunk_size=self.chunk_size, query_size=self.query_size, clf=self.clf, X_pt=self.X_pt_source, y_pt=self.y_pt_source)
         raise ValueError("Not valid")
-
 

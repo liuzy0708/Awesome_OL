@@ -1,13 +1,12 @@
 import csv
-import copy
+
 import numpy as np
 import warnings
 import os
 import time
-from visualization import plot_acc, plot_macro_f1
 from sklearn.metrics import accuracy_score, f1_score
-from utils import para_init
-from utils import get_stream, get_pt
+from Tools.utils import para_init
+from Tools.utils import get_stream, get_pt
 from visualization.plot_comparison import plot_comparison
 warnings.filterwarnings("ignore")
 
@@ -23,7 +22,7 @@ framework = "OL"
 acc_list = [[[] for _ in range(n_round)] for _ in range(num_method)]
 f1_list = [[[] for _ in range(n_round)] for _ in range(num_method)]
 
-result_path = "./Results/"
+result_path = "../Results/"
 if not os.path.exists(result_path):
     os.makedirs(result_path)
 #Result Record

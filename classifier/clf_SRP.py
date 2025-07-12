@@ -15,6 +15,8 @@ from skmultiflow.drift_detection import ADWIN
 from skmultiflow.utils import check_random_state, get_dimensions
 from skmultiflow.metrics import ClassificationPerformanceEvaluator
 
+from log_config import logger
+
 
 class SRP(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
 
@@ -43,8 +45,11 @@ class SRP(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
                  random_state=None,
                  n_class=2):
 
+        #logger.info("These are the initial parameters of the SRP model.")
         self.base_estimator = base_estimator   # Not restricted to a specific base estimator.
+        #logger.info(f"base_estimator: {self.base_estimator}")
         self.n_estimators = n_estimators
+        #logger.info(f"n_estimators: {n_estimators}")
         if subspace_mode not in {self._FEATURES_SQRT, self._FEATURES_SQRT_INV,
                                  self._FEATURES_PERCENT, self._FEATURES_M}:
             raise ValueError("Invalid subspace_mode: {}.\n"
@@ -53,7 +58,9 @@ class SRP(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
                                                              self._FEATURES_SQRT_INV,
                                                              self._FEATURES_PERCENT}))
         self.subspace_mode = subspace_mode
+        #logger.info(f"subspace_mode: {self.subspace_mode}")
         self.subspace_size = subspace_size
+        #logger.info(f"subspace_size: {self.subspace_size}")
         if training_method not in {self._TRAIN_RESAMPLING, self._TRAIN_RANDOM_PATCHES,
                                    self._TRAIN_RANDOM_SUBSPACES}:
             raise ValueError("Invalid training_method: {}.\n"
@@ -62,12 +69,19 @@ class SRP(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
                                                              self._TRAIN_RANDOM_SUBSPACES,
                                                              self._TRAIN_RESAMPLING}))
         self.training_method = training_method
+        #logger.info(f"training_method: {self.training_method}")
         self.lam = lam
+        #logger.info(f"lam: {self.lam}")
         self.drift_detection_method = drift_detection_method
+        #logger.info(f"drift_detection_method: {self.drift_detection_method}")
         self.warning_detection_method = warning_detection_method
+        #logger.info(f"warning_detection_method: {self.warning_detection_method}")
         self.disable_weighted_vote = disable_weighted_vote
+        #logger.info(f"disable_weighted_vote: {self.disable_weighted_vote}")
         self.disable_drift_detection = disable_drift_detection
+       #logger.info(f"disable_drift_detection: {self.disable_drift_detection}")
         self.disable_background_learner = disable_background_learner
+        #logger.info(f"disable_background_learner: {self.disable_background_learner}")
         # Single option (accuracy) for drift detection criteria. Could be extended in the future.
         self.drift_detection_criteria = 'accuracy'
         self.nominal_attributes = nominal_attributes if nominal_attributes else []

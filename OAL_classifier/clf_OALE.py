@@ -4,19 +4,24 @@ from skmultiflow.bayes import NaiveBayes
 import numpy as np
 import copy
 import random
+from log_config import logger
 
 class OALE_strategy(object):
     def __init__(self, x_train, y_train, r=0.05, I=150, L=2, s=0.01, theta=0.4, sigma = 0.01, D=10):
         self.I = I  # chunk size
         self.L = L  # number of the classes
         self.s = s  # adjustment step
+        logger.info(f"adjustment step: {self.s}")
         self.D = D  # the number of classifiers
         self.p = 0 # counter for processed instances
         self.k = 0 # counter for created dynamic classifiers
         self.theta = theta
         self.theta_m = theta * 2 / L # set θm for UncertaintyStrategy
+        logger.info(f"theta m: {self.theta_m}")
         self.r = r
+        logger.info(f"r: {self.r}")
         self.sigma = sigma
+        logger.info(f"sigma: {self.sigma}")
         self.w = []
         self.E = []
         self.U_x = [[] for i in range(self.L)]  # instances buffer
@@ -29,6 +34,7 @@ class OALE_strategy(object):
         self.i = 0
         self.n_annotation = 0
         clf = NaiveBayes()
+        logger.info(clf)
         clf.fit(x_train, y_train)
         self.k += 1
         self.C_stable = copy.deepcopy(clf)

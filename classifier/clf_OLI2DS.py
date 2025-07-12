@@ -3,21 +3,31 @@
 from classifier.clf_OLI2DS_subfile.toolbox import *
 from classifier.clf_OLI2DS_subfile import preprocess
 import numpy as np
-from tqdm import tqdm
 from sklearn.metrics import f1_score, confusion_matrix
 import copy
+
+from log_config import logger
+
 np.seterr(all="ignore")
 
 
 class OLI2DS:
     def __init__(self, C=0.0100000, Lambda=30, B=1, theta=8, gama=0, sparse=0, mode="capricious"):
+        #logger.info("These are the initial parameters of the OLI2DS model.")
         self.C = C
+        #logger.info(f"C: {C}")
         self.Lambda = Lambda
+        #logger.info(f"Lambda: {Lambda}")
         self.B = B
+        #logger.info(f"B: {B}")
         self.mode = mode
+        #logger.info(f"mode: {mode}")
         self.theta = theta
+        #logger.info(f"theta: {theta}")
         self.gama = gama
+        #logger.info(f"gama: {gama}")
         self.sparse = sparse
+        #logger.info(f"sparse: {sparse}")
         self.count_sample = 0
         self.column_mean = 0
         self.column_std = 0

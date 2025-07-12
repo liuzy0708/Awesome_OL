@@ -4,10 +4,10 @@ import copy as cp
 import numpy as np
 import random
 from skmultiflow.core import BaseSKMObject, ClassifierMixin, MetaEstimatorMixin
-from skmultiflow.trees import HoeffdingTreeClassifier
 from skmultiflow.bayes import NaiveBayes
-from imblearn.over_sampling import SMOTE
 import math
+
+from log_config import logger
 
 
 class Knn:
@@ -198,9 +198,13 @@ def AKS(refB, refBy, newB, newBy):
 class DES_ICD(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
 
     def __init__(self, base_classifier=NaiveBayes(), window_size=200, max_classifier=20):
+        #logger.info("These are the initial parameters of the DES model.")
         self.base_classifier = base_classifier
+        #logger.info(f"base_classifier: {self.base_classifier}")
         self.window_size = window_size
+        #logger.info(f"window_size: {self.window_size}")
         self.max_classifier = max_classifier
+        #logger.info(f"max_classifier: {self.max_classifier}")
 
         self.ensemble = []
         self.X_block = None
@@ -213,9 +217,9 @@ class DES_ICD(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
 
     def fit(self, X, y, classes=None, sample_weight=None):
         if len(set(y)) > 2 :
-            raise Exception("DES-ICD只能处理二分类问题")
+            raise Exception("DES-ICD can only handle binary classification problems")
         if X.shape[0] < self.window_size:
-            raise Exception("fit的样本数应该大于window_size")
+            raise Exception("The number of samples for fitting should be greater than the window_size")
         self.partial_fit(X, y)
 
         return self

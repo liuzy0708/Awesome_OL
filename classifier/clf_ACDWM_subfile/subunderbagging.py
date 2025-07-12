@@ -1,5 +1,4 @@
 from numpy import *
-from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 
 

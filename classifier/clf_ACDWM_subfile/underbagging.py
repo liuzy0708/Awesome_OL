@@ -1,5 +1,4 @@
 from numpy import *
-from sklearn.tree import DecisionTreeClassifier
 import math
 from sklearn.naive_bayes import GaussianNB
 

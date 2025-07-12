@@ -45,9 +45,7 @@ class CogDQS_strategy():
         tao_xi = sample_count
         f_xi = 1
         new_xi = [xi, s_xi, lambda_xi, tao_xi, f_xi, np.inf]
-        Dis_xi = np.inf
         row = len(self.cw_x_s_lambda_tao_f_minDis.keys())
-        col = len(new_xi[0])
         ld = 0
 
         for j in range(row):
@@ -80,13 +78,13 @@ class CogDQS_strategy():
 
     def evaluation(self, xi, yi, clf):
         self.i += 1
-        labeling = 0
+        islabel = 0
         a = self.ld(xi, self.i)
         if self.B_vary < self.B and a >= self.n:
             p_xi = clf.predict_proba(xi)
             p_xi_max = max(p_xi[0])
-            labeling = self.uncertaintySample_VarUn(p_xi_max)
-            if labeling:
+            islabel = self.uncertaintySample_VarUn(p_xi_max)
+            if islabel:
                 self.n_annotation += 1
                 clf.partial_fit(xi, yi)
                 self.label_list = self.label_list + [1]
@@ -110,6 +108,6 @@ class CogDQS_strategy():
                 self.label_list.pop(0)
                 v_hat = sum(self.label_list)
 
-        v_hat = v_hat * (self.window_size - 1) / self.window_size + labeling
+        v_hat = v_hat * (self.window_size - 1) / self.window_size + islabel
         self.B_vary = v_hat / self.window_size
-        return labeling, clf
+        return islabel, clf

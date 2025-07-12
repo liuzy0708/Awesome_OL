@@ -1,10 +1,8 @@
 """ QRBLS classifier."""
 
 import numpy as np
-from sklearn import preprocessing
+from sklearn import preprocessing, logger
 from numpy import random
-import scipy
-import csv
 
 class scaler:
     def __init__(self):
@@ -195,18 +193,31 @@ class QRBLS:
                  reg=0.001,
                  n_class=0):
 
+        #logger.info("These are the initial parameters of the QRBLS model.")
         self._Nf = Nf
+        #logger.info(f"Nf: {Nf}")
         self._Ne = Ne
+        #logger.info(f"Ne: {Ne}")
         self._map_function = map_function
+        #logger.info(f"map_function: {map_function}")
         self._enhence_function = enhence_function
+        #logger.info(f"enhence_function: {enhence_function}")
         self._reg = reg
+        #logger.info(f"reg: {reg}")
         self._N1 = N1
+        #logger.info(f"N1: {N1}")
         self._N2 = N2
+        #logger.info(f"N2: {N2}")
         self._M1 = M1
+        #logger.info(f"M1: {M1}")
         self._M2 = M2
+        #logger.info(f"M2: {M2}")
         self._E1 = E1
+        #logger.info(f"E1: {E1}")
         self._E2 = E2
+        #logger.info(f"E2: {E2}")
         self._E3 = E3
+        #logger.info(f"E3: {E3}")
         self._n_class = n_class
 
 

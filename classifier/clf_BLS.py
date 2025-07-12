@@ -3,6 +3,7 @@
 import numpy as np
 from sklearn import preprocessing
 from numpy import random
+from log_config import logger
 
 class scaler:
     def __init__(self):
@@ -97,10 +98,15 @@ class BLS:
         self._Nf = Nf
         self._Ne = Ne
         self._map_function = map_function
+
         self._enhence_function = enhence_function
+
         self._reg = reg
+
         self._N1 = N1
+
         self._N2 = N2
+
         self._n_class = n_class
 
         self.W = 0

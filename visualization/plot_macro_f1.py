@@ -1,11 +1,11 @@
-""" plot for macro-F1."""
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import copy
 from skmultiflow.utils.data_structures import ConfusionMatrix
 import warnings
+from matplotlib.animation import FuncAnimation
+from IPython.display import Image, Video, display
 
 warnings.filterwarnings("ignore")
 
@@ -39,16 +39,16 @@ class plot_tool():
         prequential_macro_f1 = []
 
         if interval >= n_all_samples:
-            round = 1
+            rounds = 1
         else:
             if n_all_samples % interval == 0:
-                round = int(n_all_samples / interval)
+                rounds = int(n_all_samples / interval)
             else:
-                round = int(n_all_samples / interval) + 1
+                rounds = int(n_all_samples / interval) + 1
 
-        for plot_interval in range(round):
-            y_true_per = y_true[plot_interval * interval: min(int(plot_interval + 1) * interval, n_all_samples + 1)]
-            y_pred_per = y_pred[plot_interval * interval: min(int(plot_interval + 1) * interval, n_all_samples + 1)]
+        for plot_i in range(rounds):
+            y_true_per = y_true[plot_i * interval: min(int(plot_i + 1) * interval, n_all_samples)]
+            y_pred_per = y_pred[plot_i * interval: min(int(plot_i + 1) * interval, n_all_samples)]
             for true_label, predicted_label in zip(y_true_per, y_pred_per):
                 confusion_matrix.update(int(true_label), int(predicted_label))
 
@@ -65,28 +65,33 @@ class plot_tool():
             prequential_macro_f1.append(macro_f1)
         return copy.deepcopy(prequential_macro_f1)
 
-
-    def plot_learning_curve(self, std_area, color, interval):
+    def save_and_show_avg_confusion_matrix(self, filename_prefix):
         self.read_pred_result()
         self.read_true_result()
 
-        plot_size = int(self.n_size / interval)
-        f1_method = np.zeros((self.n_round, plot_size))
-        for round in range(self.n_round):
-            f1_method[round] = [i for i in self.prequential(self.result_true[round], self.result_method[round], interval)]
-        x_axis = np.arange(plot_size, step=1)
-        std_points = np.std(f1_method, axis=0)
-        means_points = np.mean(f1_method, axis=0)
+        matrix_sum = np.zeros((self.n_class, self.n_class), dtype=np.float64)
 
-        # plt.ylim(-0.2, 1.05)
-        # plt.xlim(-10, 1050)
-        plt.plot(x_axis + self.x_shift, means_points, label="%s" % self.method, color=color, linewidth=self.linewidth)
+        for round_idx in range(self.n_round):
+            cm = ConfusionMatrix(n_targets=self.n_class)
+            y_true = self.result_true[round_idx]
+            y_pred = self.result_method[round_idx]
 
-        plt.xlabel("Instances")
-        plt.ylabel("macro-F1")
-        # plt.title('macro-F1')
+            for true_label, pred_label in zip(y_true, y_pred):
+                cm.update(int(true_label), int(pred_label))
 
-        if std_area:
-            plt.fill_between(np.arange(x_axis.shape[0]) + self.x_shift, means_points - std_points,
-                             means_points + std_points, interpolate=True, alpha=self.std_alpha, color=color)
-        return plt
+            matrix_sum += cm.confusion_matrix
+
+        avg_matrix = np.round(matrix_sum / self.n_round).astype(int)
+
+        df = pd.DataFrame(
+            avg_matrix,
+            index=[f'True_{i}' for i in range(self.n_class)],
+            columns=[f'Pred_{i}' for i in range(self.n_class)]
+        )
+
+        # 只保存 CSV，不画图
+        df.to_csv(f"{filename_prefix}_avg.csv")
+        return df  # 返回 DataFrame，供外部统一绘图
+
+
+
