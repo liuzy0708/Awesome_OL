@@ -276,7 +276,4 @@ We look forward to your participation and collaboration to push this project for
 ---
 
 ## 👀 Views
-![](http://profile-counter.glitch.me/Awesome_OL/count.svg)
-
-
-
+[![Visitor Map](https://www.clustrmaps.com/map_v2.png?d=LQnBrfl-6T3YvcDDjJwmTwvPbQNLlm52G2eMPCf-LfE&cl=ffffff)](https://clustrmaps.com/site/1c72l)
