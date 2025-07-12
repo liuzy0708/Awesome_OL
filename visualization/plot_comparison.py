@@ -6,8 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 from IPython.display import Image, display
 from visualization import plot_acc, plot_macro_f1
-import matplotlib.cm as cm
-import matplotlib.colors as mcolors
+from tqdm import tqdm
 from log_config import logger
 
 class plot_comparison:
@@ -115,13 +114,12 @@ class plot_comparison:
             '#006400',  # 浅绿色 (薄荷绿)
             '#4682B4',  # 标准蓝色 (钢蓝)
             '#FF8C00',  # 橙色 (深橙)
-            '#FF0000'  # 纯红色
+            '#8b0000',  # 纯红色
             '#87CEEB',  # 浅蓝色 (天蓝)
             '#D2B48C',  # 棕色 (茶色)
             '#228B22',  # 深绿色 (森林绿)
             '#9370DB',  # 紫色 (中紫色)
             '#2E8B57',  # 深绿色 (海绿色)
-
         ]
         colors = [custom_colors[i % len(custom_colors)] for i in range(len(acc_tools))]
 
@@ -151,6 +149,21 @@ class plot_comparison:
         # 子图布局
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
 
+        # 设置背景样式
+        fig.patch.set_facecolor('#f5f5f5')
+        for ax in [ax1, ax2]:
+            ax.set_facecolor('#ffffff')
+            ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.7)
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.spines['bottom'].set_color('#cccccc')
+            ax.spines['left'].set_color('#cccccc')
+            ax.minorticks_on()
+            ax.tick_params(which='both', direction='out', length=4)
+            ax.tick_params(which='major', length=6)
+            for y in [0.2, 0.4, 0.6, 0.8, 1.0]:
+                ax.axhline(y=y, color='#eeeeee', linestyle='-', linewidth=0.5, alpha=0.5)
+
         for ax, ylabel in zip([ax1, ax2], ['Accuracy', 'macro-F1']):
             ax.set_xlim(0, acc_tools[0].n_size)
             ax.set_ylim(0, 1.05)
@@ -172,13 +185,22 @@ class plot_comparison:
             f1_lines.append(f1_line)
             f1_fills.append(None)
 
-        ax1.legend(fontsize=14)
-        ax2.legend(fontsize=14)
+        ax1.legend(fontsize=12, framealpha=0.9, edgecolor='#dddddd',
+                   bbox_to_anchor=(1.02, 1), loc='upper left')
+        ax2.legend(fontsize=12, framealpha=0.9, edgecolor='#dddddd',
+                   bbox_to_anchor=(1.02, 1), loc='upper left')
+
+        plt.tight_layout()
+        plt.subplots_adjust(right=0.85)
 
         def init():
             for line in acc_lines + f1_lines:
                 line.set_data([], [])
             return acc_lines + f1_lines
+
+        # 添加进度条
+        pbar = tqdm(total=plot_size, desc="Generating GIF", unit="frame",
+                    bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
 
         def update(frame):
             for i in range(len(acc_tools)):
@@ -200,10 +222,17 @@ class plot_comparison:
                 f1_fills[i] = ax2.fill_between(x, y_f1 - f1_stds[i][:frame + 1], y_f1 + f1_stds[i][:frame + 1],
                                                color=colors[i], alpha=f1_tools[i].std_alpha)
 
+            # 更新进度条
+            pbar.update(1)
+            if frame == plot_size - 1:
+                pbar.close()
+
             return acc_lines + f1_lines
 
         ani = FuncAnimation(fig, update, frames=plot_size, init_func=init,
                             blit=False, interval=frame_interval, cache_frame_data=False)
-        ani.save(save_path, writer='pillow')
+
+        # 保存动画时显示进度条
+        print(f"\nSaving GIF to: {save_path}")
+        ani.save(save_path, writer='pillow', progress_callback=lambda i, n: None)
         plt.close()
-        #logger.info(f"Saved combined animation: {save_path}")
