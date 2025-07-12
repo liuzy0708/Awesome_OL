@@ -205,11 +205,11 @@ Visualization tools are provided in the `visualization` folder, including:
 The following example results can be viewed directly in the `main.ipynb`:
 
 <p align="center">
-  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assests/Results_combined_Waveform_all_models.gif" alt="Combined Waveform Animation" />
+  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/Results_combined_Waveform_all_models.gif" alt="Combined Waveform Animation" />
 </p>
 
 <p align="center">
-  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assests/ConfMatrix_Waveform_all_models.png" alt="Confusion Matrix Waveform" />
+  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/ConfMatrix_Waveform_all_models.png" alt="Confusion Matrix Waveform" />
 </p>
 
 ---
