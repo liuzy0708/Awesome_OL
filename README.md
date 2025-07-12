@@ -250,6 +250,8 @@ xplore related resources and inspiration at:
 ## 📝 Note
 We sincerely hope this toolkit becomes a valuable resource in your journey with online learning. Our dedicated team at the **THUFDD Research Group**, led by **Prof. Xiao He** and **Prof. Donghua Zhou** from the Department of Automation at Tsinghua University, is committed to driving innovation and excellence in machine learning applications for industry.
 
+_Wishing you a rewarding and inspiring learning experience!_
+
 Project contributors include:
 - Zeyi Liu: 
   - liuzy21@mails.tsinghua.edu.cn
@@ -260,7 +262,13 @@ Project contributors include:
 - Jiaming Liu:
   - 23371007@buaa.edu.cn
 
-_Wishing you a rewarding and inspiring learning experience!_
+--- 
+
+- 🏫 We Are From
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Alpha0629/Alpha0629.github.io/main/assests/TsingHua.png" width="200" />
+  <img src="https://raw.githubusercontent.com/Alpha0629/Alpha0629.github.io/main/assests/Buaa.png" width="200" />
+</p>
 
 ---
 
