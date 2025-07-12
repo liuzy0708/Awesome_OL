@@ -240,9 +240,8 @@ You can find detailed log information for each demo run in the `Logs` folder loc
 ---
 
 ## 📚 References
-xplore related resources and inspiration at:
+explore related resources and inspiration at:
 
-- [GitHub - deep-active-learning](https://github.com/ej0cl6/deep-active-learning)
 - [GitHub - scikit-multiflow](https://github.com/scikit-multiflow/scikit-multiflow)
 
 ---
@@ -262,9 +261,6 @@ Project contributors include:
 - Jiaming Liu:
   - 23371007@buaa.edu.cn
 
---- 
-
-- 🏫 We Are From
 <p align="center">
   <img src="https://raw.githubusercontent.com/Alpha0629/Alpha0629.github.io/main/assets/logo.svg" width="200" />
 </p>
@@ -275,7 +271,7 @@ Project contributors include:
 If you are interested in becoming a **contributor** to this project, we welcome your participation. Together, we can continue to refine and expand this toolkit to empower researchers, practitioners, and enthusiasts in the field.
 
 Please feel free to get in touch!
-- **Contact Person**: Zeyi Liu  
+- **Contact**: Zeyi Liu  
 - **Email**: [liuzy21@mails.tsinghua.edu.cn](mailto:liuzy21@mails.tsinghua.edu.cn)
 
 We look forward to your participation and collaboration to push this project forward! 💪
