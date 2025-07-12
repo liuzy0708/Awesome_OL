@@ -6,13 +6,15 @@
 <p align="center">
   <img src="https://img.shields.io/github/stars/liuzy0708/Awesome_OL?style=social" />
   <img src="https://img.shields.io/github/forks/liuzy0708/Awesome_OL?style=social" />
-  <img src="https://img.shields.io/github/license/liuzy0708/Awesome_OL" />
-  <img src="https://img.shields.io/badge/python-3.7-blue.svg" />
+  <img src="https://img.shields.io/badge/python-3.7%20%7C%203.8-blue.svg" />
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg" />
+  <img src="https://img.shields.io/badge/Anaconda-supported-success.svg" />
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
 </p>
 
+
 <p align="center">
-  <img width="80%" alt="Awesome_OL" src="https://github.com/liuzy0708/Awesome_OL/assets/115722686/63b2ae44-b2b4-433d-aafc-db650a46a691">
+  <img width="80%" alt="Awesome_OL" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assests/logo.png" />
 </p>
 
 ---
