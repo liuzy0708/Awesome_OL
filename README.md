@@ -14,7 +14,7 @@
 
 
 <p align="center">
-  <img width="80%" alt="Awesome_OL" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assests/logo.png" />
+  <img width="80%" alt="Awesome_OL" src="https://github.com/liuzy0708/Awesome_OL/assets/115722686/63b2ae44-b2b4-433d-aafc-db650a46a691" />
 </p>
 
 ---
@@ -37,6 +37,7 @@
   - [🧰 Utility](#-utility)
 - [📚 References](#-references)
 - [📝 Note](#-note)
+- [✨ Contributor Declaration](#-contributor-declaration)
 - [👀 Views](#-views)
 
 ---
@@ -54,16 +55,16 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 **Explore a variety of online active learning strategies in the `OAL_strategies/` folder.**
 
-| 🧩 Strategy | 📝 Description | 📚 Reference | 💾 Code | 📅 Year | 🏛️ Venue |
-|:-----------|:---------------|:-------------|:--------|:-------:|:---------|
-| **CogDQS** | Dual-query strategy using human memory cognition | [IEEE](https://ieeexplore.ieee.org/abstract/document/9492291) | — | **2023** | *TNNLS* |
-| **DSA-AI** | Dynamic submodular learning for imbalanced drifting streams | [IEEE](https://ieeexplore.ieee.org/abstract/document/10195233/) | [GitHub](https://github.com/liuzy0708/DSLS-Demo) | **2024** | *TNNLS* |
-| **MTSGQS** | Memory-triggered submodularity-guided strategy | [IEEE](https://ieeexplore.ieee.org/abstract/document/10105849) | — | **2023** | *TITS* |
-| **DMI-DD** | Explanation-based query strategy at chunk level | [IEEE](https://ieeexplore.ieee.org/abstract/document/10375819) | [GitHub](https://github.com/liuzy0708/DMI-LS-Demo) | **2024** | *TCYB* |
+| 🧩 Strategy | 📝 Description | 📚 Reference | 💾 Code | 📅 Year | 🏛️ Journal/Conference |
+|:-----------|:---------------|:-------------|:--------|:-------:|:-----------------------|
+| **CogDQS** | Dual-query strategy using human memory cognition | [IEEE](https://ieeexplore.ieee.org/abstract/document/9492291) | — | **2023** | *TNNLS*                |
+| **DSA-AI** | Dynamic submodular learning for imbalanced drifting streams | [IEEE](https://ieeexplore.ieee.org/abstract/document/10195233/) | [GitHub](https://github.com/liuzy0708/DSLS-Demo) | **2024** | *TNNLS*                |
+| **MTSGQS** | Memory-triggered submodularity-guided strategy | [IEEE](https://ieeexplore.ieee.org/abstract/document/10105849) | — | **2023** | *TITS*                 |
+| **DMI-DD** | Explanation-based query strategy at chunk level | [IEEE](https://ieeexplore.ieee.org/abstract/document/10375819) | [GitHub](https://github.com/liuzy0708/DMI-LS-Demo) | **2024** | *TCYB*                 |
 
 **Baseline Strategies**
 
-| 🧩 Strategy  | 📝 Description                              | 📚 Reference                                                                 | 💾 Code  | 📅 Year | 🏛️ Venue |
+| 🧩 Strategy  | 📝 Description                              | 📚 Reference                                                                 | 💾 Code  | 📅 Year | 🏛️ Journal/Conference |
 |:------------|:-------------------------------------------|:----------------------------------------------------------------------------|:--------:|:-------:|:---------:|
 | **RS**      | Random Sampling                            | —                                                                          | —        | —       | —         |
 | **US_fix**  | Uncertainty sampling with fixed threshold | [IEEE](https://ieeexplore.ieee.org/abstract/document/6414645)               | —        | **2014**| *TNNLS*   |
@@ -73,7 +74,7 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 ## ⚙️ OAL Classifiers
 
-| 🤖 Classifier    | 📝 Description                                  | 📚 Reference                                                               | 💾 Source                                              | 📅 Year | 🏛️ Venue |
+| 🤖 Classifier    | 📝 Description                                  | 📚 Reference                                                               | 💾 Source                                              | 📅 Year | 🏛️ Journal/Conference |
 |:----------------|:-----------------------------------------------|:--------------------------------------------------------------------------|:------------------------------------------------------|:-------:|:---------:|
 | **ROALE-DI**    | Reinforcement-based ensemble for drifting imbalanced data | [IEEE](https://ieeexplore.ieee.org/abstract/document/9204849)        | [GitHub](https://github.com/saferhand/ROALE-DI)       | **2022**| *TKDE*    |
 | **OALE**        | Online ensemble with hybrid labeling            | [IEEE](https://ieeexplore.ieee.org/abstract/document/8401336)        | —                                                     | **2019**| *TNNLS*   |
@@ -82,13 +83,13 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 ## 🔍 OSSL Classifiers
 
-| 🤖 Classifier  | 📝 Description                                  | 📚 Reference                                                               | 💾 Source | 📅 Year | 🏛️ Venue |
+| 🤖 Classifier  | 📝 Description                                  | 📚 Reference                                                               | 💾 Source | 📅 Year | 🏛️ Journal/Conference |
 |:--------------|:-----------------------------------------------|:--------------------------------------------------------------------------|:---------:|:-------:|:---------:|
 | **OSSBLS**    | Semi-supervised BLS with static anchors         | [IEEE](https://ieeexplore.ieee.org/abstract/document/9314231)        | —         | **2021**| *TII*    |
 | **ISSBLS**    | Semi-supervised BLS without historical dependency| [IEEE](https://ieeexplore.ieee.org/abstract/document/9314231)        | —         | **2021**| *TII*    |
 
 **Baseline Strategy**
-| 🤖 Classifier  | 📝 Description          | 📚 Reference                                                                                     | 📅 Year | 🏛️ Venue      |
+| 🤖 Classifier  | 📝 Description          | 📚 Reference                                                                                     | 📅 Year | 🏛️ Journal/Conference  |
 |:--------------|:------------------------|:------------------------------------------------------------------------------------------------|:-------:|:--------------:|
 | **SOSELM**    | Semi-supervised ELM     | [ScienceDirect Paper](https://www.sciencedirect.com/science/article/pii/S0925231215011212)       | **2016**| *Neurocomputing* |
 
@@ -97,7 +98,7 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 ## 📊 Supervised Classifiers
 
-| 🤖 Classifier  | 📝 Description                                       | 📚 Reference                                                                 | 💾 Source                                                           | 📅 Year | 🏛️ Venue          |
+| 🤖 Classifier  | 📝 Description                                       | 📚 Reference                                                                 | 💾 Source                                                           | 📅 Year | 🏛️ Journal/Conference       |
 |:--------------|:----------------------------------------------------|:----------------------------------------------------------------------------|:-------------------------------------------------------------------|:-------:|:------------------:|
 | **OLI2DS**    | Imbalanced data stream learner with dynamic costs    | [IEEE](https://ieeexplore.ieee.org/abstract/document/10058539)        | [GitHub](https://github.com/youdianlong/OLI2DS)                    | **2023**| *TKDE*             |
 | **IWDA**      | Learner-agnostic drift adaptation using density estimation | [IEEE](https://ieeexplore.ieee.org/abstract/document/10105220)    | [GitHub](https://github.com/SirPopiel/IWDA)                        | **2023**| *TNNLS*            |
@@ -110,9 +111,9 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 **Baseline Classifier**
 
-| 🤖 Classifier  | 📝 Description                                    | 📚 Reference                                                                 | 💾 Source                                                       | 📅 Year | 🏛️ Venue |
-|:--------------|:-------------------------------------------------|:----------------------------------------------------------------------------|:---------------------------------------------------------------|:-------:|:---------:|
-| **OSELM**     | Sequential ELM without drift detection            | [IEEE](https://ieeexplore.ieee.org/abstract/document/4012031)         | [GitHub](https://github.com/leferrad/pyoselm)                   | **2006**| *TNNLS*  |
+| 🤖 Classifier  | 📝 Description                                    | 📚 Reference                                                                 | 💾 Source                                                       | 📅 Year |  🏛️ Journal/Conference   |
+|:--------------|:-------------------------------------------------|:----------------------------------------------------------------------------|:---------------------------------------------------------------|:-------:|:-------:|
+| **OSELM**     | Sequential ELM without drift detection            | [IEEE](https://ieeexplore.ieee.org/abstract/document/4012031)         | [GitHub](https://github.com/leferrad/pyoselm)                   | **2006**| *TNNLS* |
 
 ---
 
@@ -204,10 +205,6 @@ Visualization tools are provided in the `visualization` folder, including:
 The following example results can be viewed directly in the `main.ipynb`:
 
 <p align="center">
-  <img width="80%" src="https://github.com/songqiaohu/pictureandgif/blob/main/Results_acc_LinearAbrupt-1.png?raw=true" alt="Accuracy Curve" />
-</p>
-
-<p align="center">
   <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assests/Results_combined_Waveform_all_models.gif" alt="Combined Waveform Animation" />
 </p>
 
@@ -253,15 +250,33 @@ xplore related resources and inspiration at:
 ## 📝 Note
 We sincerely hope this toolkit becomes a valuable resource in your journey with online learning. Our dedicated team at the **THUFDD Research Group**, led by **Prof. Xiao He** and **Prof. Donghua Zhou** from the Department of Automation at Tsinghua University, is committed to driving innovation and excellence in machine learning applications for industry.
 
-Your feedback, questions, and contributions are highly appreciated. Whether you have suggestions for improvements, encounter any issues, or are interested in collaborating on further enhancements, we warmly welcome your engagement. Together, we can continuously refine and expand this toolkit to better empower researchers, practitioners, and enthusiasts alike.
-
-Please don’t hesitate to get in touch with us via email:  
-- [Zeyi Liu](mailto:liuzy21@mails.tsinghua.edu.cn)  
-- [Songqiao Hu](mailto:hsq23@mails.tsinghua.edu.cn)  
+Project contributors include:
+- Zeyi Liu: 
+  - liuzy21@mails.tsinghua.edu.cn
+- Songqiao Hu: 
+  - hsq23@mails.tsinghua.edu.cn 
+- Pengyu Han:
+  - ????@mails.tsinghua.edu.cn
+- Jiaming Liu:
+  - 23371007@buaa.edu.cn
 
 _Wishing you a rewarding and inspiring learning experience!_
 
 ---
 
+## ✨ Contributor Declaration
+If you are interested in becoming a **contributor** to this project, we welcome your participation. Together, we can continue to refine and expand this toolkit to empower researchers, practitioners, and enthusiasts in the field.
+
+Please feel free to get in touch!
+- **Contact Person**: Zeyi Liu  
+- **Email**: [liuzy21@mails.tsinghua.edu.cn](mailto:liuzy21@mails.tsinghua.edu.cn)
+
+We look forward to your participation and collaboration to push this project forward! 💪
+
+---
+
 ## 👀 Views
 ![](http://profile-counter.glitch.me/Awesome_OL/count.svg)
+
+
+
