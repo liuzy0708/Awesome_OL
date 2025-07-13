@@ -1,8 +1,11 @@
 <h1 align="center">
-  <img src="https://github.com/liuzy0708/liuzy0708.github.io/blob/main/assets/img/SL.png" width="5%" alt="" />
-  Awesome_OL: A General Toolkit for Online Learning Approaches
+  <img src="https://github.com/liuzy0708/liuzy0708.github.io/blob/main/assets/img/SL.png" width="15%" alt="" />
 </h1>
 
+<h1 align="center">
+  Awesome_OL: A General Toolkit for Online Learning Approaches
+</h1>
+  
 <p align="center">
   <img src="https://img.shields.io/github/stars/liuzy0708/Awesome_OL?style=social" />
   <img src="https://img.shields.io/github/forks/liuzy0708/Awesome_OL?style=social" />
