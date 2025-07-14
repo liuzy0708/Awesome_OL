@@ -7,6 +7,8 @@ from scipy.spatial.distance import pdist, squareform
 from scipy.sparse import csgraph
 import numpy as np
 
+from OSSL_classifier.MyOneHotEncoder import MyOneHotEncoder
+
 
 class scaler:
     def __init__(self):
@@ -122,7 +124,7 @@ class SOSELM:
         self._gamma = gamma
 
         self.normalscaler = scaler()
-        self.onehotencoder = preprocessing.OneHotEncoder(sparse=False)
+        self.onehotencoder = MyOneHotEncoder()
         self.enhence_generator = node_generator(whiten=True)
 
         self.W = []
@@ -132,7 +134,7 @@ class SOSELM:
     def fit(self, X, Y):
         C_off = np.eye(len(X))
         X_enc = self.normalscaler.fit_transform(X)
-        Y_enc = self.onehotencoder.fit_transform(np.mat(Y).T)
+        Y_enc = self.onehotencoder.fit_transform(Y)
         H_off = self.enhence_generator.generator_nodes(X_enc, self._Ne, self._N2, self._enhence_function)
 
         G_off = create_Graph(X_enc)
@@ -171,7 +173,7 @@ class SOSELM:
         X_at_enc = self.normalscaler.transform(X_at)
         H_at = self.transform(X_at_enc)
         Y_at = Y_at.ravel()
-        Y_at_enc = self.onehotencoder.transform(np.mat(Y_at).T)
+        Y_at_enc = self.onehotencoder.transform(Y_at)
 
         if label_flag == 1:
             C_at = np.eye(len(X_at))

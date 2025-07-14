@@ -1,9 +1,11 @@
 """ OSSBLS classifier."""
 
 import numpy as np
-from sklearn import preprocessing
 from numpy import random
 from scipy.spatial.distance import cdist
+
+from OSSL_classifier.MyOneHotEncoder import MyOneHotEncoder
+
 
 class scaler:
     def __init__(self):
@@ -103,7 +105,7 @@ class OSSBLS:
         self.pesuedoinverse = 0
         self.normalscaler = scaler()
         self.normalscaler_K = scaler()
-        self.onehotencoder = preprocessing.OneHotEncoder(sparse=False)
+        self.onehotencoder = MyOneHotEncoder()
         self.mapping_generator = node_generator()
         self.enhence_generator = node_generator(whiten=True)
         self.local_mapgeneratorlist = []
@@ -139,7 +141,7 @@ class OSSBLS:
 
     def fit(self, X, Y):
         X_enc = self.normalscaler.fit_transform(X)
-        Y_enc = self.onehotencoder.fit_transform(np.mat(Y).T)
+        Y_enc = self.onehotencoder.fit_transform(Y)
         Z = self.mapping_generator.generator_nodes(X_enc, self._Nf, self._N1, self._map_function)
         H = self.enhence_generator.generator_nodes(Z, self._Ne, self._N2, self._enhence_function)
         self.A = np.column_stack((Z, H))
@@ -200,7 +202,7 @@ class OSSBLS:
         X_at_enc = self.normalscaler.transform(X_at)
         A_at = self.transform(X_at_enc)
         Y_at = Y_at.ravel()
-        Y_at_enc = self.onehotencoder.transform(np.mat(Y_at).T)
+        Y_at_enc = self.onehotencoder.transform(Y_at)
         S_at = self.cal_S(X_at, self.X_K)
 
         if label_flag == 1:
