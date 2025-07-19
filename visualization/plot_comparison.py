@@ -95,6 +95,17 @@ class plot_comparison:
 
 
         if len(all_acc_tools) >= 1 and len(all_f1_tools) >= 1:
+            # 先生成静态图
+            static_path = f"Results_static_{dataset}_all_models.png"
+            self.plot_static_comparison(
+                acc_tools=all_acc_tools,
+                f1_tools=all_f1_tools,
+                labels=all_labels,
+                interval=interval,
+                save_path=static_path
+            )
+            display(Image(filename=static_path))
+
             #logger.info("[ALL] Generating combined Accuracy + macro-F1 animation in subplots...")
             print("\n[ALL] Generating combined Accuracy + macro-F1 animation in subplots...")
             self.animate_multi_metric_curve(
@@ -106,6 +117,83 @@ class plot_comparison:
                 save_path=f"Results_combined_{dataset}_all_models.gif"
             )
             display(Image(filename=f"Results_combined_{dataset}_all_models.gif"))
+
+    def plot_static_comparison(self, acc_tools, f1_tools, labels, interval, save_path):
+        """生成静态对比图（Accuracy + F1）"""
+        assert len(acc_tools) == len(f1_tools), "Accuracy 和 F1 工具数量不一致"
+
+        # 使用和动图相同的颜色方案
+        custom_colors = [
+            '#006400', '#4682B4', '#FF8C00', '#8b0000',
+            '#87CEEB', '#D2B48C', '#228B22', '#9370DB', '#2E8B57'
+        ]
+        colors = [custom_colors[i % len(custom_colors)] for i in range(len(acc_tools))]
+
+        # 准备数据
+        plot_size = math.ceil(acc_tools[0].n_size / interval)
+        x_axis = np.arange(plot_size) * interval
+
+        # 创建画布
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
+
+        # 设置样式（与动图一致）
+        fig.patch.set_facecolor('#f5f5f5')
+        for ax in [ax1, ax2]:
+            ax.set_facecolor('#ffffff')
+            ax.grid(True, linestyle='--', alpha=0.7)
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax.set_ylim(0, 1.05)
+            ax.tick_params(axis='both', labelsize=12)
+
+        ax1.set_ylabel("Accuracy", fontsize=14)
+        ax2.set_ylabel("macro-F1", fontsize=14)
+        ax2.set_xlabel("Instances", fontsize=14)
+
+        # 绘制所有数据
+        for i, (acc_tool, f1_tool) in enumerate(zip(acc_tools, f1_tools)):
+            acc_tool.read_pred_result()
+            acc_tool.read_true_result()
+
+            f1_tool.read_pred_result()
+            f1_tool.read_true_result()
+            # 计算均值和标准差
+            acc_mean = np.mean([acc_tool.prequential(acc_tool.result_true[r], acc_tool.result_method[r], interval)
+                                for r in range(acc_tool.n_round)], axis=0)
+            f1_mean = np.mean([f1_tool.prequential(f1_tool.result_true[r], f1_tool.result_method[r], interval)
+                               for r in range(f1_tool.n_round)], axis=0)
+
+            # 绘制Accuracy
+            ax1.plot(x_axis, acc_mean, color=colors[i], label=labels[i], linewidth=2)
+            ax1.fill_between(x_axis,
+                             acc_mean - np.std(
+                                 [acc_tool.prequential(acc_tool.result_true[r], acc_tool.result_method[r], interval)
+                                  for r in range(acc_tool.n_round)], axis=0),
+                             acc_mean + np.std(
+                                 [acc_tool.prequential(acc_tool.result_true[r], acc_tool.result_method[r], interval)
+                                  for r in range(acc_tool.n_round)], axis=0),
+                             color=colors[i], alpha=0.2)
+
+            # 绘制F1
+            ax2.plot(x_axis, f1_mean, color=colors[i], label=labels[i], linewidth=2)
+            ax2.fill_between(x_axis,
+                             f1_mean - np.std(
+                                 [f1_tool.prequential(f1_tool.result_true[r], f1_tool.result_method[r], interval)
+                                  for r in range(f1_tool.n_round)], axis=0),
+                             f1_mean + np.std(
+                                 [f1_tool.prequential(f1_tool.result_true[r], f1_tool.result_method[r], interval)
+                                  for r in range(f1_tool.n_round)], axis=0),
+                             color=colors[i], alpha=0.2)
+
+        # 添加图例
+        ax1.legend(fontsize=12, bbox_to_anchor=(1.02, 1), loc='upper left')
+        plt.tight_layout()
+        plt.subplots_adjust(right=0.85)
+
+        # 保存静态图
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        print(f"Saved static plot to: {save_path}")
 
     def animate_multi_metric_curve(self, acc_tools, f1_tools, labels, interval, frame_interval, save_path):
         assert len(acc_tools) == len(f1_tools), "Accuracy 和 F1 工具数量不一致"
