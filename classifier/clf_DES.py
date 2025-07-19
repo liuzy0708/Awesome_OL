@@ -7,8 +7,6 @@ from skmultiflow.core import BaseSKMObject, ClassifierMixin, MetaEstimatorMixin
 from skmultiflow.bayes import NaiveBayes
 import math
 
-from log_config import logger
-
 
 class Knn:
 

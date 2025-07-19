@@ -6,7 +6,7 @@ from enum import Enum
 from matplotlib import pyplot as plt
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from Tools.utils import *
-from log_config import logger
+from Tools.log_config import logger
 
 warnings.filterwarnings("ignore")
 

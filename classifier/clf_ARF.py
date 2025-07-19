@@ -13,7 +13,6 @@ from skmultiflow.trees.arf_hoeffding_tree import ARFHoeffdingTreeClassifier
 from skmultiflow.metrics import ClassificationPerformanceEvaluator
 from skmultiflow.utils import get_dimensions, normalize_values_in_dict, check_random_state,\
     check_weights
-from log_config import logger
 
 
 def ARF(n_estimators=10,

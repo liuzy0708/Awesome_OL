@@ -6,8 +6,6 @@ import numpy as np
 from sklearn.metrics import f1_score, confusion_matrix
 import copy
 
-from log_config import logger
-
 np.seterr(all="ignore")
 
 

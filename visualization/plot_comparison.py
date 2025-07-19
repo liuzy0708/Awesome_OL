@@ -7,7 +7,7 @@ from matplotlib.animation import FuncAnimation
 from IPython.display import Image, display
 from visualization import plot_acc, plot_macro_f1
 from tqdm import tqdm
-from log_config import logger
+from Tools.log_config import logger
 
 class plot_comparison:
     def __init__(self, dataset, n_class, n_round, n_pt, max_samples, interval, chunk_size, filename_list, framework,need_matrix):

@@ -4,7 +4,7 @@ from skmultiflow.bayes import NaiveBayes
 import numpy as np
 import copy
 import random
-from log_config import logger
+from Tools.log_config import logger
 
 class OALE_strategy(object):
     def __init__(self, x_train, y_train, r=0.05, I=150, L=2, s=0.01, theta=0.4, sigma = 0.01, D=10):

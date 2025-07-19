@@ -15,8 +15,6 @@ from skmultiflow.drift_detection import ADWIN
 from skmultiflow.utils import check_random_state, get_dimensions
 from skmultiflow.metrics import ClassificationPerformanceEvaluator
 
-from log_config import logger
-
 
 class SRP(BaseSKMObject, ClassifierMixin, MetaEstimatorMixin):
 

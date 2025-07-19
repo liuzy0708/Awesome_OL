@@ -5,7 +5,6 @@ from classifier.clf_ACDWM_subfile.underbagging import *
 from classifier.clf_ACDWM_subfile.chunk_size_select import *
 from classifier.clf_ACDWM_subfile.check_measure import *
 from classifier.clf_ACDWM_subfile.chunk_based_methods import ChunkBase
-from log_config import logger
 
 
 class ACDWM(ChunkBase):

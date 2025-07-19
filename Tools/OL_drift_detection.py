@@ -1,5 +1,5 @@
 from Tools.utils import *
-from log_config import logger
+from Tools.log_config import logger
 
 
 class Drift_Detector:

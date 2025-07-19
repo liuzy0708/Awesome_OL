@@ -6,7 +6,7 @@ import time
 from sklearn.metrics import accuracy_score, f1_score
 from Tools.utils import *
 from visualization.plot_comparison import plot_comparison
-from log_config import logger
+from Tools.log_config import logger
 
 warnings.filterwarnings("ignore")
 
