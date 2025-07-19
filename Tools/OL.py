@@ -40,14 +40,10 @@ class OL:
         self.acc_list = [[[] for _ in range(n_round)] for _ in range(self.num_method)]
         self.f1_list = [[[] for _ in range(n_round)] for _ in range(self.num_method)]
 
-        #self.result_path = "../Results/"
         self.result_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Results")
         if not os.path.exists(self.result_path):
             os.makedirs(self.result_path)
-        #logger.info(f"result_path: {self.result_path}")
 
-        #self.directory_path = "./Results/Results_%s_%s_%d_%d_%d/" % (self.dataset_name, self.framework,
-                                                                     #self.n_pt, self.chunk_size, self.max_samples)
         self.directory_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"Results","Results_%s_%s_%d_%d_%d" % (
             self.dataset_name, self.framework,
             self.n_pt, self.chunk_size, self.max_samples
@@ -156,6 +152,8 @@ class ClassifierEnum(Enum):
     DES_5 = "DES_5"
     ACDWM = "ACDWM"
     OLI2DS = "OLI2DS"
+    MLP_OGD = "MLP_OGD"
+    MLP_OMD = "MLP_OMD"
 
 
 def validate_classifier_names_OL(input_list):

@@ -3,7 +3,6 @@
 import numpy as np
 from sklearn import preprocessing
 from numpy import random
-from log_config import logger
 
 class scaler:
     def __init__(self):

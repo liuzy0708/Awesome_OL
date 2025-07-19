@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import csv
 
+from skmultiflow.drift_detection import KSWIN
+
 from OAL_classifier.clf_OALE import OALE_strategy
 from OAL_classifier.clf_ROALE_DI import ROALE_DI_strategy
 
@@ -15,19 +17,39 @@ from OAL_strategies.str_RS import RS_strategy
 from OAL_strategies.str_DMI_DD import DMI_DD_strategy
 
 from classifier.clf_BLS import BLS
+from classifier.clf_MLP_OGD import MLP_OGD
+from classifier.clf_MLP_OMD import MLP_OMD
 from classifier.clf_SRP import SRP
 from classifier.clf_DES import DES_ICD
 from skmultiflow.bayes import NaiveBayes
 from classifier.clf_ACDWM import ACDWM
 from classifier.clf_OLI2DS import OLI2DS
 from classifier.clf_QRBLS import QRBLS
+from sklearn.neural_network import MLPClassifier
 
 from OSSL_classifier.clf_OSSBLS import OSSBLS
 from OSSL_classifier.clf_ISSBLS import ISSBLS
 from OSSL_classifier.clf_SOSELM import SOSELM
 from classifier.clf_ARF import ARF
-from skmultiflow.meta import LeveragingBaggingClassifier, OnlineUnderOverBaggingClassifier,OzaBaggingClassifier, OzaBaggingADWINClassifier, DynamicWeightedMajorityClassifier
+from skmultiflow.meta import LeveragingBaggingClassifier, OnlineUnderOverBaggingClassifier, OzaBaggingClassifier, \
+    OzaBaggingADWINClassifier, DynamicWeightedMajorityClassifier
 from skmultiflow.meta import OnlineAdaC2Classifier
+
+from regression.reg_KNN import KNN
+from regression.reg_Linear import Linear
+from regression.reg_Lasso import Lasso
+from regression.reg_Ridge import Ridge
+from skmultiflow.trees import HoeffdingTreeRegressor
+from skmultiflow.trees import HoeffdingAdaptiveTreeRegressor
+from skmultiflow.trees import iSOUPTreeRegressor
+from skmultiflow.trees import StackedSingleTargetHoeffdingTreeRegressor
+from skmultiflow.meta import AdaptiveRandomForestRegressor
+
+from Drift_detection.det_DDM import DDM
+from Drift_detection.det_EDDM import EDDM
+from Drift_detection.det_KSWIN import KSWIN
+from Drift_detection.det_PageHinkley import PageHinkley
+
 
 def get_stream(name):
     if name == "Jiaolong":
@@ -61,13 +83,28 @@ def get_stream(name):
         stream = DataStream(X, Y)
     return stream
 
+
 def get_pt(stream, n_pt):
     data, labels = stream.next_sample(n_pt)
     return data, labels
 
+def get_det(name):
+    name = "det_" + name
+    if name == "det_DDM":
+        return DDM()
+    elif name == "det_EDDM":
+        return EDDM()
+    elif name == "det_KSWIN":
+        return KSWIN(alpha=0.01)
+    elif name == "det_PageHinkley":
+        return PageHinkley()
+    raise ValueError("Not valid")
+
+
 class para_init:
 
-    def __init__(self, X_pt_source=np.array([[]]), y_pt_source=np.array([[]]), n_class=2, n_ratio_max=0.2, n_anchor=10, theta=0.2, chunk_size=None, query_size=None, clf=None):
+    def __init__(self, X_pt_source=np.array([[]]), y_pt_source=np.array([[]]), n_class=2, n_ratio_max=0.2, n_anchor=10,
+                 theta=0.2, chunk_size=None, query_size=None, clf=None):
         self.n_class = n_class
         self.X_pt_source = X_pt_source
         self.y_pt_source = y_pt_source
@@ -83,16 +120,17 @@ class para_init:
             return ROALE_DI_strategy(self.X_pt_source, self.y_pt_source, L=self.n_class)
         if name == "OALE":
             return OALE_strategy(self.X_pt_source, self.y_pt_source, L=self.n_class)
+
     def get_clf(self, name):
         if name == "clf_ARF":
             return ARF()
         elif name == "clf_LB":
             return LeveragingBaggingClassifier()
-        elif name=="clf_OB":
+        elif name == "clf_OB":
             return OzaBaggingClassifier()
-        elif name=="clf_OBADWIN":
+        elif name == "clf_OBADWIN":
             return OzaBaggingADWINClassifier()
-        elif name=='clf_DWM':
+        elif name == 'clf_DWM':
             return DynamicWeightedMajorityClassifier()
         elif name == "clf_OOB":
             return OnlineUnderOverBaggingClassifier()
@@ -102,64 +140,64 @@ class para_init:
             return OnlineAdaC2Classifier()
         elif name == "clf_QRBLS":
             return QRBLS(Nf=10,
-                        Ne=10,
-                        N1=10,
-                        N2=10,
-                        M1=1,
-                        M2=5,
-                        E1=1,
-                        E2=100,
-                        E3=1,
-                        map_function='sigmoid',
-                        enhence_function='sigmoid',
-                        reg=0.001,
-                        n_class=3)
-        elif name == "clf_BLS":
-            return BLS(Nf=10,
-                     Ne=10,
-                     N1=10,
-                     N2=10,
-                     map_function='sigmoid',
-                     enhence_function='sigmoid',
-                     reg=0.001)
-        elif name == "clf_OSSBLS":
-            return OSSBLS(Nf=10,
-                     Ne=10,
-                     N1=10,
-                     N2=10,
-                     map_function='sigmoid',
-                     enhence_function='sigmoid',
-                     reg=0.001,
-                     gamma=0.005,
-                     n_anchor=10)
-        elif name == "clf_OSSBLS":
-            return OSSBLS(Nf=10,
                          Ne=10,
                          N1=10,
                          N2=10,
+                         M1=1,
+                         M2=5,
+                         E1=1,
+                         E2=100,
+                         E3=1,
                          map_function='sigmoid',
                          enhence_function='sigmoid',
                          reg=0.001,
-                         gamma=0.001,
-                        n_anchor=self.n_anchor,
-                        n_class=3)
+                         n_class=3)
+        elif name == "clf_BLS":
+            return BLS(Nf=10,
+                       Ne=10,
+                       N1=10,
+                       N2=10,
+                       map_function='sigmoid',
+                       enhence_function='sigmoid',
+                       reg=0.001)
+        elif name == "clf_OSSBLS":
+            return OSSBLS(Nf=10,
+                          Ne=10,
+                          N1=10,
+                          N2=10,
+                          map_function='sigmoid',
+                          enhence_function='sigmoid',
+                          reg=0.001,
+                          gamma=0.005,
+                          n_anchor=10)
+        elif name == "clf_OSSBLS":
+            return OSSBLS(Nf=10,
+                          Ne=10,
+                          N1=10,
+                          N2=10,
+                          map_function='sigmoid',
+                          enhence_function='sigmoid',
+                          reg=0.001,
+                          gamma=0.001,
+                          n_anchor=self.n_anchor,
+                          n_class=3)
         elif name == "clf_ISSBLS":
             return ISSBLS(
-                        Nf=10,
-                        Ne=10,
-                        N1=10,
-                        N2=10,
-                        map_function='sigmoid',
-                        enhence_function='sigmoid',
-                        reg=0.001,
-                        gamma=0.05)
+                Nf=10,
+                Ne=10,
+                N1=10,
+                N2=10,
+                map_function='sigmoid',
+                enhence_function='sigmoid',
+                reg=0.001,
+                gamma=0.05)
         elif name == "clf_SOSELM":
             return SOSELM(
-                    Ne=20,
-                    N2=10,
-                    enhence_function='sigmoid',
-                    reg=0.001,
-                    gamma=0.05)
+                Ne=20,
+                N2=10,
+                enhence_function='sigmoid',
+                reg=0.001,
+                gamma=0.05)
         elif name == "clf_NB":
             return NaiveBayes()
         elif name == "clf_DES":
@@ -170,14 +208,18 @@ class para_init:
             return ACDWM(chunk_size=0, max_ensemble_size=10)
         elif name == "clf_OLI2DS":
             return OLI2DS(C=0.0100000, Lambda=30, B=1, theta=8, gama=0, sparse=0, mode="capricious")
+        elif name == "clf_MLP_OGD":
+            return MLP_OGD()
+        elif name == "clf_MLP_OMD":
+            return MLP_OMD()
         raise ValueError("Not valid")
 
     def get_str(self, name):
         name = name + "_str"
         if name == "DSA_AI_str":
             return DSA_AI_strategy(n_class=self.n_class, X_memory_collection=self.X_pt_source,
-                                 y_memory_collection=self.y_pt_source, d=self.X_pt_source.shape[1],
-                                 kappa=3, gamma=0.4)
+                                   y_memory_collection=self.y_pt_source, d=self.X_pt_source.shape[1],
+                                   kappa=3, gamma=0.4)
         elif name == "Supervised_str":
             return None
         elif name == "MTSGQS_str":
@@ -191,6 +233,28 @@ class para_init:
         elif name == "RS_str":
             return RS_strategy(label_ratio=self.n_ratio_max)
         if name == "DMI_DD_str":
-            return DMI_DD_strategy(n_class=self.n_class, chunk_size=self.chunk_size, query_size=self.query_size, clf=self.clf, X_pt=self.X_pt_source, y_pt=self.y_pt_source)
+            return DMI_DD_strategy(n_class=self.n_class, chunk_size=self.chunk_size, query_size=self.query_size,
+                                   clf=self.clf, X_pt=self.X_pt_source, y_pt=self.y_pt_source)
         raise ValueError("Not valid")
 
+    def get_reg(self, name):
+        name = "reg_" + name
+        if name == "reg_Linear":
+            return Linear(learning_rate=0.02)
+        elif name == "reg_Ridge":
+            return Ridge(alpha=0.01, learning_rate=0.01, normalize=True)
+        elif name == "reg_Lasso":
+            return Lasso(alpha=0.01, learning_rate=0.01, normalize=True)
+        elif name == "reg_KNN":
+            return KNN(n_neighbors=5, max_samples=1000, normalize=True)
+        elif name == "reg_HoeffdingTree":
+            return HoeffdingTreeRegressor()
+        elif name == "reg_HoeffdingAdaptiveTree":
+            return HoeffdingAdaptiveTreeRegressor()
+        elif name == "reg_iSOUPTree":
+            return iSOUPTreeRegressor()
+        elif name == "reg_StackedSingleTargetHoeffdingTree":
+            return StackedSingleTargetHoeffdingTreeRegressor()
+        elif name == "reg_ARF":
+            return AdaptiveRandomForestRegressor(random_state=123456)
+        raise ValueError("Not valid")

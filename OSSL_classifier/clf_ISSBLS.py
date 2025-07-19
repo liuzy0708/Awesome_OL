@@ -174,7 +174,7 @@ class ISSBLS:
         inputdata = np.column_stack((mappingdata, enhencedata))
         return inputdata
 
-    def partial_fit(self, X_at, Y_at, label_flag=0):
+    def partial_fit(self, X_at, Y_at, label_flag=1):
         X_at_enc = self.normalscaler.transform(X_at)
         A_at = self.transform(X_at_enc)
         Y_at = Y_at.ravel()

@@ -1,6 +1,5 @@
 """ SOSELM classifier."""
 
-from sklearn import preprocessing
 from numpy import random
 from scipy import sparse
 from scipy.spatial.distance import pdist, squareform
@@ -123,7 +122,7 @@ class SOSELM:
 
         self.normalscaler = scaler()
         self.onehotencoder = MyOneHotEncoder()
-        self.enhence_generator = node_generator(whiten=True)
+        self.enhence_generator = node_generator(whiten=False)
 
         self.W = []
         self.K = []
@@ -167,7 +166,7 @@ class SOSELM:
         inputdata = self.enhence_generator.transform(data)
         return inputdata
 
-    def partial_fit(self, X_at, Y_at, label_flag=0):
+    def partial_fit(self, X_at, Y_at, label_flag=1):
         X_at_enc = self.normalscaler.transform(X_at)
         H_at = self.transform(X_at_enc)
         Y_at = Y_at.ravel()
