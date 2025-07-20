@@ -16,8 +16,11 @@ class OL_Regression:
                  reg_name_list=None, chunk_size=1, framework="OL_Regression", stream=None):
         # 初始化参数
         self.max_samples = max_samples
+        logger.info(f"Max samples: {max_samples}")
         self.n_round = n_round
+        logger.info(f"n_round: {n_round}")
         self.n_pt = n_pt
+        logger.info(f"n_pt: {n_pt}")
         self.dataset_name = dataset_name
         self.chunk_size = chunk_size
         self.framework = framework
@@ -68,6 +71,7 @@ class OL_Regression:
         except Exception as e:
             logger.error(f"Failed to create directory: {e}")
             raise
+        logger.info(f"directory_path: {self.directory_path}")
 
     def run(self):
         """执行回归实验的主流程"""
@@ -80,13 +84,16 @@ class OL_Regression:
                 # 初始化数据流和模型
                 stream = get_regression_stream(self.dataset_name)
                 X_pt, y_pt = get_pt(stream=stream, n_pt=self.n_pt)
-                reg = self._init_regressor(reg_name, X_pt, y_pt)
+                para_clf = para_init()
+                reg = para_clf.get_reg(name=reg_name)
+                #reg = self._init_regressor(reg_name, X_pt, y_pt)
 
                 # 实时评估变量
                 y_true = np.zeros(self.max_samples)
                 y_pred = np.zeros(self.max_samples)
                 sample_count = 0
 
+                reg.fit(X_pt, y_pt)
                 # 增量学习循环
                 while sample_count < self.max_samples and stream.has_more_samples():
                     X, y = stream.next_sample(self.chunk_size)
@@ -122,6 +129,7 @@ class OL_Regression:
 
     def _init_regressor(self, name, X_pt, y_pt):
         """初始化回归器实例"""
+
         if name == "KNN":
             knn = KNN()
             return knn.fit(X_pt, y_pt)
@@ -141,6 +149,8 @@ class OL_Regression:
             from regression.reg_Linear import Linear
             linear = Linear()
             return linear.fit(X_pt, y_pt)
+
+
         else:
             raise ValueError(f"Unsupported regressor: {name}")
 
@@ -229,7 +239,7 @@ def get_regression_stream(name):
     """获取回归数据流"""
     if name == "RegressionGenerator":
         from skmultiflow.data import RegressionGenerator
-        return RegressionGenerator(random_state=42)
+        return RegressionGenerator(n_features=3, random_state=1)
     else:
         raise ValueError(f"Unknown dataset: {name}")
 
@@ -241,6 +251,10 @@ class RegressorEnum(Enum):
     Ridge = "Ridge"
     Linear = "Linear"
     HoeffdingTree = "HoeffdingTree"
+    ARF = "ARF"
+    HoeffdingAdaptiveTree = "HoeffdingAdaptiveTree"
+    iSOUPTree = "iSOUPTree"
+    StackedSingleTargetHoeffdingTree = "StackedSingleTargetHoeffdingTree"
 
 
 def validate_regression_names_OL(input_list):

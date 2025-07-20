@@ -246,15 +246,9 @@ class para_init:
         elif name == "reg_Lasso":
             return Lasso(alpha=0.01, learning_rate=0.01, normalize=True)
         elif name == "reg_KNN":
-            return KNN(n_neighbors=5, max_samples=1000, normalize=True)
+            return KNN(n_neighbors=2)
         elif name == "reg_HoeffdingTree":
             return HoeffdingTreeRegressor()
-        elif name == "reg_HoeffdingAdaptiveTree":
-            return HoeffdingAdaptiveTreeRegressor()
-        elif name == "reg_iSOUPTree":
-            return iSOUPTreeRegressor()
-        elif name == "reg_StackedSingleTargetHoeffdingTree":
-            return StackedSingleTargetHoeffdingTreeRegressor()
         elif name == "reg_ARF":
             return AdaptiveRandomForestRegressor(random_state=123456)
         raise ValueError("Not valid")

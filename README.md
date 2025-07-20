@@ -30,6 +30,8 @@
 - [⚙️ OAL Classifiers](#-oal-classifiers)
 - [🔍 OSSL Classifiers](#-ossl-classifiers)
 - [📊 Supervised Classifiers](#-supervised-classifiers)
+- [🔮 OAL Regression](#-oal-regression)
+- [🚨 Drift Detection](#-drift-detection)
 - [🧩 Summary of Features](#-summary-of-features)
 - [🛠 Usage Guide](#-usage-guide)
   - [🔧 Environment Setup](#-environment-setup)
@@ -120,6 +122,33 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 ---
 
+## 🔮 OAL Regression
+
+| 🤖 Regressor      | 📝 Description | 📚 Reference                                        | 💾 Source                                                                                                                    | 📅 Year | 🏛️ Journal/Conference |
+|:------------------|:---------------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------|:-------:|:------------------:|
+| **KNN**           |   k-Nearest Neighbors for online regression with sliding window             | —                                                   | —                                                                                                                            |    —    |          —          |
+| **Lasso**         | Online Lasso regression with ℓ1 regularization               | —                                                   | —                                                                                                                            |    —    |         —           |
+| **Ridge**         |  Online Ridge regression with ℓ2 regularization              | —                                                   | —                                                                                                                            |    —    |         —           |
+| **Linear**        |   Ordinary Least Squares with incremental updates             | —                                                   | —                                                                                                                            |    —    |         —           |
+| **HoeffdingTree** | Adaptive decision tree for regression with drift detection         | [IEEE](https://ieeexplore.ieee.org/document/4544780) | [GitHub](https://github.com/scikit-multiflow/scikit-multiflow/blob/master/src/skmultiflow/trees/hoeffding_tree_regressor.py) |  2007   |      ICIAfS              |
+| **ARF**           |    Adaptive Random Forest regressor                         |—                                                     | [GitHub](https://github.com/scikit-multiflow/scikit-multiflow/blob/master/src/skmultiflow/meta/adaptive_random_forest_regressor.py)                    |   —      |                     —     |
+
+
+---
+
+## 🚨 Drift Detection
+
+| 🤖 Detector | 📝 Description | 📚 Reference                                                                                                        | 💾 Source                                                                                                                  | 📅 Year | 🏛️ Journal/Conference |
+|:-------------|:---------------|:--------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|:-------:|:------------------:|
+| **DDM**      |  Drift Detection Method based on error rate monitoring              |  — |      [Github](https://github.com/scikit-multiflow/scikit-multiflow/blob/master/src/skmultiflow/drift_detection/ddm.py)                                                                                                                       |      —   |          —          |
+| **EDDM**     |  Enhanced DDM for gradual drift detection              |     —                                                                                                                | [Github](https://github.com/scikit-multiflow/scikit-multiflow/blob/master/src/skmultiflow/drift_detection/eddm.py)         |   —      |             —       |
+| **KSWIN**    |   Kolmogorov-Smirnov Windowing method for concept drif             | — | [Github](https://github.com/scikit-multiflow/scikit-multiflow/blob/master/src/skmultiflow/drift_detection/kswin.py)        |     —    |    —                |
+| **PageHinkley** |  Sequential change detection with cumulative sum          |       —                                                                                                              | [Github](https://github.com/scikit-multiflow/scikit-multiflow/blob/master/src/skmultiflow/drift_detection/page_hinkley.py) |    —     |            —        |
+
+---
+
+
+
 ## 🧩 Summary of Features
 
 | 🔹 Method  | 🧠 OAL Strategy | 🤖 Classifier | ⚪ Binary | 🟢 Multi-class | 🔄 Drift Adaptation | 🧩 Ensemble |
@@ -181,7 +210,7 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 
 ### 🧪 Demo
 
-- In the project root directory, locate the file `main.ipynb`. Within this notebook, you can select the framework, dataset, classifier, strategies, and hyperparameters you wish to use.
+- In the project root directory, locate the file `classify.ipynb`, `regression.ipynb`, `drift_detection`. Within these notebooks, you can select the framework, dataset, classifier, strategies, drift detector, and hyperparameters you wish to use.
 - Optionally, you can output visualization results for an intuitive comparison of model performance. These results will also be saved automatically in the `Results` folder.
 - For detailed guidance, please follow the step-by-step instructions provided within the notebook.
 
@@ -208,11 +237,15 @@ Visualization tools are provided in the `visualization` folder, including:
 The following example results can be viewed directly in the `main.ipynb`:
 
 <p align="center">
-  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/Results_combined_Waveform_all_models.gif" alt="Combined Waveform Animation" />
+  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/Results_combined_Waveform_all_models.gif" alt="Combined Animation" />
 </p>
 
 <p align="center">
-  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/ConfMatrix_Waveform_all_models.png" alt="Confusion Matrix Waveform" />
+  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/ConfMatrix_Waveform_all_models.png" alt="Confusion Matrix" />
+</p>
+
+<p align="center">
+  <img width="80%" src="https://github.com/Alpha0629/Alpha0629.github.io/raw/main/assets/Visualization_Results_Lasso.png" alt="Regression" />
 </p>
 
 ---
