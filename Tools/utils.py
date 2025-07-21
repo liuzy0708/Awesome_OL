@@ -25,7 +25,6 @@ from skmultiflow.bayes import NaiveBayes
 from classifier.clf_ACDWM import ACDWM
 from classifier.clf_OLI2DS import OLI2DS
 from classifier.clf_QRBLS import QRBLS
-from sklearn.neural_network import MLPClassifier
 
 from OSSL_classifier.clf_OSSBLS import OSSBLS
 from OSSL_classifier.clf_ISSBLS import ISSBLS
@@ -40,15 +39,12 @@ from regression.reg_Linear import Linear
 from regression.reg_Lasso import Lasso
 from regression.reg_Ridge import Ridge
 from skmultiflow.trees import HoeffdingTreeRegressor
-from skmultiflow.trees import HoeffdingAdaptiveTreeRegressor
-from skmultiflow.trees import iSOUPTreeRegressor
-from skmultiflow.trees import StackedSingleTargetHoeffdingTreeRegressor
 from skmultiflow.meta import AdaptiveRandomForestRegressor
 
-from Drift_detection.det_DDM import DDM
-from Drift_detection.det_EDDM import EDDM
-from Drift_detection.det_KSWIN import KSWIN
-from Drift_detection.det_PageHinkley import PageHinkley
+from Drift_detection.my_DDM import DDM
+from Drift_detection.my_EDDM import EDDM
+from Drift_detection.my_KSWIN import KSWIN
+from Drift_detection.my_PageHinkley import PageHinkley
 
 
 def get_stream(name):
