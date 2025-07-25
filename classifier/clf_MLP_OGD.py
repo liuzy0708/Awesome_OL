@@ -46,7 +46,8 @@ class MLP_OGD(nn.Module):
         if not self._is_initialized:
             input_dim = X.shape[1]
             output_dim = len(torch.unique(y)) if y.dim() == 1 else y.shape[1]
-            self._init_network(input_dim, output_dim)
+            #print(output_dim)
+            self._init_network(input_dim, 5)
 
         # 确保标签是类别索引
         y = y.squeeze() if y.dim() > 1 else y

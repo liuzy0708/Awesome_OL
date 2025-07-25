@@ -112,7 +112,7 @@ For usage instructions, please see the [Usage Guide](#-usage-guide).
 | **ARF**       | Adaptive resampling ensemble with ADWIN               | [Springer](https://link.springer.com/article/10.1007/s10994-017-5642-8)| [GitHub](https://github.com/scikit-multiflow/scikit-multiflow)     | **2017**| *Machine Learning*  |
 | **SRP**       | Random subspace + online bagging                       | [IEEE](https://ieeexplore.ieee.org/document/8970784)                  | [GitHub](https://github.com/scikit-multiflow/scikit-multiflow)     | **2019**| *ICDM*             |
 | **BLS-W**     | Online BLS with Sherman–Morrison–Woodbury update      | [IEEE](https://ieeexplore.ieee.org/abstract/document/10375819)        | [GitHub](https://github.com/liuzy0708/DMI-LS-Demo)                 | **2023**| *TCYB*             |
-| **QRBLS**     | BLS with QR factorization                              | [IEEE](https://ieeexplore.ieee.org/abstract/document/4012031)         | [GitHub](https://github.com/Lichen0102/QRBLS)                      | **2025**| *TNNLS*            |
+| **QRBLS**     | BLS with QR factorization                              | [IEEE](https://ieeexplore.ieee.org/abstract/document/11008714)         | [GitHub](https://github.com/Lichen0102/QRBLS)                      | **2025**| *TNNLS*            |
 
 **Baseline Classifier**
 
