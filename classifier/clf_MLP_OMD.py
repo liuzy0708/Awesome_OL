@@ -44,7 +44,7 @@ class MLP_OMD(nn.Module):
         if not self._is_initialized:
             input_dim = X.shape[1]
             output_dim = len(torch.unique(y)) if y.dim() == 1 else y.shape[1]
-            self._init_network(input_dim, 4)
+            self._init_network(input_dim, output_dim)
 
             # 初始化 pi 为真实标签分布
             counts = torch.bincount(y, minlength=self.output_dim).float()
