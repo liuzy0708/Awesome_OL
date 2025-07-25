@@ -3,12 +3,12 @@
 </h1>
 
 <h1 align="center">
-  Awesome_OL: A General Toolkit for Online Learning Approaches
+  Awesome-OL: A General Toolkit for Online Learning Approaches
 </h1>
   
 <p align="center">
-  <img src="https://img.shields.io/github/stars/liuzy0708/Awesome_OL?style=social" />
-  <img src="https://img.shields.io/github/forks/liuzy0708/Awesome_OL?style=social" />
+  <img src="https://img.shields.io/github/stars/liuzy0708/Awesome-OL?style=social" />
+  <img src="https://img.shields.io/github/forks/liuzy0708/Awesome-OL?style=social" />
   <img src="https://img.shields.io/badge/python-3.7%20%7C%203.8-blue.svg" />
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg" />
   <img src="https://img.shields.io/badge/Anaconda-supported-success.svg" />
@@ -17,7 +17,7 @@
 
 
 <p align="center">
-  <img width="80%" alt="Awesome_OL" src="https://github.com/liuzy0708/Awesome_OL/assets/115722686/63b2ae44-b2b4-433d-aafc-db650a46a691" />
+  <img width="80%" alt="Awesome-OL" src="https://github.com/liuzy0708/Awesome-OL/assets/115722686/63b2ae44-b2b4-433d-aafc-db650a46a691" />
 </p>
 
 ---
@@ -49,7 +49,7 @@
 
 ## 🌟 Overview
 
-Welcome to **Awesome_OL**, your comprehensive toolkit for **online learning strategies and classifiers**. This repository includes state-of-the-art implementations for **Online Active Learning (OAL)** and **Online Semi-Supervised Learning (OSSL)**, complete with classifiers, datasets, and visualizations.
+Welcome to **Awesome-OL**, your comprehensive toolkit for **online learning strategies and classifiers**. This repository includes state-of-the-art implementations for **Online Active Learning (OAL)** and **Online Semi-Supervised Learning (OSSL)**, complete with classifiers, datasets, and visualizations.
 
 For usage instructions, please see the [Usage Guide](#-usage-guide).
 
